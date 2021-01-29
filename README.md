@@ -1,13 +1,11 @@
 # Bookish Bay Area
-======
-Learn more about developer Yvonne Yeh at <https://yvonneyeh.com>.
 
------
+By [Yvonne Yeh](https://yvonneyeh.com)
 
 **Bookish Bay Area** is a full-stack web application that helps readers find and log books set in the San Francisco Bay Area. Bookish Bay Area aims to help readers go on their next literary adventure by allowing them to search for and borrow books from local libraries .
 
 ## Features
------
+
 - Displays a list of books set in the Bay Area (Wikipedia, Goodreads, blog list scraping)
 - Has a dropdown list for city/neighborhood subsets
 - Provides a text search for books by title/author
@@ -18,9 +16,9 @@ Learn more about developer Yvonne Yeh at <https://yvonneyeh.com>.
 - Allows readers to submit books/locations to be added to the database
 
 ## Tech Stack
-**Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap
-**Backend**: Python3, Flask, PostgreSQL, SQLAlchemy, Jinja2, Bash
-**APIs**: Libby, Overdrive
+- **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap
+- **Backend**: Python3, Flask, PostgreSQL, SQLAlchemy, Jinja2, Bash
+- **APIs**: Libby, Overdrive
 
 ### Why Books? Why Bay Area?
 I developed this project at [Hackbright Academy](http://www.hackbrightacademy.com/) for my solo capstone project. I’m a voracious reader and every year, I set a goal to read at least 52 books per year. Every time I encounter a reference to my hometown or somewhere nearby, I get super excited! I grew up in the Silicon Valley and I love exploring the area –– what better way to explore during a global pandemic than through literature? 
