@@ -8,7 +8,7 @@ db = SQLAlchemy()
 app = Flask(__name__)
 
 class Reader(db.Model):
-    """A user."""
+    """A reader."""
 
     __tablename__ = "readers"
 
@@ -30,15 +30,30 @@ class Book(db.Model):
 
     __tablename__ = "books"
 
+    # TODO: ADD NULLABLES , nullable = False to title, author_id, isbn
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String)
-    author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'), nullable = False)
+    author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
     description = db.Column(db.Text)
     release_date = db.Column(db.DateTime)
     cover_path = db.Column(db.String)
     isbn = db.Column(db.Integer)
-
+    
+    # relationships
     # ratings = a list of Rating objects
+   
+    # association table relationships
+    authors = db.relationship('Author',
+                            secondary='book_author'
+                            backref='books', order_by=book_id)
+
+    genres = db.relationship('Genre',
+                             secondary='book_genre',
+                             backref='books')
+
+    locations = db.relationship('Location',
+                             secondary='book_loc',
+                             backref='books')
 
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
@@ -51,12 +66,12 @@ class Rating(db.Model):
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('readers.user_id'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
 
     book = db.relationship('Book', backref='ratings')
-    user = db.relationship('User', backref='ratings')
+    reader = db.relationship('Reader', backref='ratings')
 
     def __repr__(self):
         return f'<Rating rating_id={self.rating_id} score={self.score}>'
@@ -83,8 +98,17 @@ class BookAuthor(db.Model):
 
     ba_id = db.Column(db.Integer, unique=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
-    author_id = db.Column(db.Integer, db.ForeignKey('genre.author_id'), nullable = False)
+    author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'), nullable = False)
 
+    book_author_rel = db.relationship(
+                        'Book',
+                        backref=db.backref(
+                            'book_author', order_by=author_id))
+
+    author_rel = db.relationship(
+                        'Author',
+                        backref=db.backref(
+                            'book_author', order_by=book_id))
 
     def __repr__(self):
         return f'<BookAuthor book_id={self.book_id} author_id={self.author_id}>'
@@ -109,7 +133,7 @@ class BookGenre(db.Model):
 
     bg_id = db.Column(db.Integer, unique=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'), nullable = False)
+    genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'), nullable = False)
 
 
     def __repr__(self):
@@ -123,8 +147,8 @@ class Location(db.Model):
 
     loc_id = db.Column(db.Integer, unique=True, primary_key=True)
     loc_name = db.Column(db.String)
-    lat = db.Column(db.Float, precision=None)
-    lng = db.Column(db.Float, precision=None)
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
 
     def __repr__(self):
         return f'<Location loc_id={self.loc_id} Name={self.loc_name}>'
@@ -139,9 +163,14 @@ class BookLocation(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     loc_id = db.Column(db.Integer, db.ForeignKey('locations.loc_id'), nullable = False)
 
+    book_loc_rel = db.relationship('Book',
+                    backref=db.backref(
+                    'locations', order_by=loc_id))
 
     def __repr__(self):
         return f'<BookLocation book_id={self.book_id} loc_id={self.loc_id}>'
+
+
 
 ##################################################
 
