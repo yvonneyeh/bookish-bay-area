@@ -2,7 +2,7 @@
 
 from model import *
 
-
+# USERS
 def create_user(email, password):
     """Create and return a new user."""
 
@@ -32,6 +32,7 @@ def get_user_by_id(username):
     return User.query.filter(User.username == username).one() 
 
 
+# AUTHORS
 def create_author(name):
     """Create and return a new user."""
 
@@ -42,6 +43,26 @@ def create_author(name):
 
     return author
 
+
+def get_all_authors():
+    """Return all authors."""
+
+    return Author.query.all()
+
+
+def get_author_by_id(author_id):
+    """Return authors given their ID"""
+
+    return Author.query.filter(Author.author_id == author_id).one() 
+
+
+def get_author_by_name(name):
+    """Return authors given their name"""
+
+    return Author.query.filter(Author.name == name).one() 
+
+
+# BOOKS
 def create_book(title, author_id, description, pub_date, cover_path, isbn):
     """Create and return a new book."""
 
@@ -71,9 +92,23 @@ def get_all_books():
 def get_book_by_id(book_id):
     """Return books given its ID"""
 
-    return Book.query.filter(book.book_id == book_id).one() 
+    return Book.query.filter(Book.book_id == book_id).one() 
 
 
+# GENRES
+def get_all_genres():
+    """Return all genres."""
+
+    return Genre.query.all()
+
+
+# LOCATIONS
+def get_all_locations():
+    """Return all locations."""
+
+    return Location.query.all()
+
+# RATINGS
 def create_rating(user, book, score):
     """Create and return a new book rating."""
 

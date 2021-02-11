@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, Book
 from random import randint
+import faker
 import crud
 
 from jinja2 import StrictUndefined
@@ -36,12 +37,29 @@ def show_book(book_id):
     return render_template("book_details.html", book=book)
 
 
+@app.route('/authors')
+def all_authors():
+    """Display all authors."""
+    authors = crud.get_all_authors()
+
+    return render_template("all_authors.html", authors=authors)
+
+
+@app.route('/authors/<int:author_id>')
+def show_author(author_id):
+    """Show details for an author."""
+    
+    author = crud.get_author_by_id(author_id)
+
+    return render_template("author_details.html", author=author)
+
+
 @app.route('/users')
 def all_users():
     """Display all users."""
-    user = crud.get_all_users()
+    users = crud.get_all_users()
 
-    return render_template("all_users.html", user=users)
+    return render_template("all_users.html", users=users)
 
 
 @app.route('/users', methods=['POST'])
