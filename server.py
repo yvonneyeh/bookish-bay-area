@@ -1,6 +1,6 @@
 """Server for Bookish Bay Area app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, Book
 from random import randint
 import crud
@@ -71,11 +71,14 @@ def log_in_user():
     if user_object != None:
         if password == user_object.password != None:
             session['username'] = user_object.username
+            # print('Logged in!')
             flash('Logged in!')
         else:
             flash('Incorrect password')   
     else:
         flash('Email does not exist. Please sign up above.')
+    
+    return redirect('/')
 
 
 @app.route('/users/<int:username>')

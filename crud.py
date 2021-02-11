@@ -6,7 +6,7 @@ from model import *
 def create_user(email, password):
     """Create and return a new user."""
 
-    user = Reader(email=email, password=password)
+    user = User(email=email, password=password)
 
     db.session.add(user)
     db.session.commit()
@@ -17,19 +17,19 @@ def create_user(email, password):
 def get_all_users():
     """Return all users."""
 
-    return Reader.query.all()
+    return User.query.all()
 
 
 def get_user_by_email(email):
     """Return a user given an email address."""
 
-    return Reader.query.filter(Reader.email == email).first()
+    return User.query.filter(User.email == email).first()
 
 
 def get_user_by_id(username):
     """Return user given their ID"""
 
-    return Reader.query.filter(Reader.username == username).one() 
+    return User.query.filter(User.username == username).one() 
 
 
 def create_author(name):
