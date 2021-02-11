@@ -36,25 +36,25 @@ def show_book(book_id):
     return render_template("book_details.html", book=book)
 
 
-@app.route('/readers')
-def all_readers():
-    """Display all readers."""
-    reader = crud.get_all_readers()
+@app.route('/users')
+def all_users():
+    """Display all users."""
+    user = crud.get_all_users()
 
-    return render_template("all_readers.html", reader=readers)
+    return render_template("all_users.html", user=users)
 
 
-@app.route('/readers', methods=['POST'])
+@app.route('/users', methods=['POST'])
 def create_account():
     """Create a new user account."""
 
     password = request.form.get('password')
     email = request.form.get('email')
 
-    if crud.get_reader_by_email(email) != None:
+    if crud.get_user_by_email(email) != None:
         flash('Email exists. Please sign up with a different email.')
     else:
-        crud.create_reader(email, password)
+        crud.create_user(email, password)
         flash('Account created successfully!')
 
     return redirect('/')
@@ -66,7 +66,7 @@ def log_in_user():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    user_object = crud.get_reader_by_email(email)
+    user_object = crud.get_user_by_email(email)
 
     if user_object != None:
         if password == user_object.password != None:
@@ -81,9 +81,9 @@ def log_in_user():
 @app.route('/users/<int:username>')
 def show_user(username):
     """Show details for a user"""
-    user = crud.get_reader_by_id(username)
+    user = crud.get_user_by_id(username)
 
-    return render_template("reader_details.html", reader=reader)
+    return render_template("user_details.html", user=user)
 
 
 if __name__ == '__main__':
