@@ -17,7 +17,7 @@ model.connect_to_db(server.app)
 model.db.create_all()
 
 f = open('data/silicon_valley_books.csv')
-csv_f = csv.reader(f)
+csv_f = csv.user(f)
 
 authors_in_db = []
 for row in csv_f:
@@ -30,7 +30,7 @@ print(authors_in_db)
 for n in range(10):
     email = f'reader{n}@books.com'
     password = 'test'
-    new_reader = crud.create_reader(email, password)
+    new_user = crud.create_user(email, password)
 
 
 # book = create_book(title, author_id, description, pub_date, cover_path, isbn, pages)
@@ -45,20 +45,20 @@ for n in range(10):
 # print(books_in_db)
 
 
-test_reader = model.Reader(first_name = 'Yvonne',
+test_user = model.Reader(first_name = 'Yvonne',
             last_name = 'Yeh',
             email = 'email@email.com',
             password = 'test'
             )
 
 
-# test_reader = Reader(first_name = 'Yvonne', last_name = 'Yeh', email = 'email@email.com', password = 'test')
+# test_user = Reader(first_name = 'Yvonne', last_name = 'Yeh', email = 'email@email.com', password = 'test')
 test_book = model.Book(title='BookTitle', author_id = 1)
 test_author = model.Author(author_id = 1, name='Author Author')
 
 rate = model.Rating(book_id=4, user_id=1, score=5)
 
-model.db.session.add(test_reader)
+model.db.session.add(test_user)
 model.db.session.add(test_book)
 model.db.session.add(test_author)
 model.db.session.commit()

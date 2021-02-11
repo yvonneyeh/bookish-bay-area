@@ -7,10 +7,10 @@ db = SQLAlchemy()
 
 app = Flask(__name__)
 
-class Reader(db.Model):
-    """A reader."""
+class User(db.Model):
+    """A user."""
 
-    __tablename__ = "readers"
+    __tablename__ = "users"
 
     # TODO: Add nullables after data model is tested
     username = db.Column(db.Integer, unique=True, primary_key=True)
@@ -21,7 +21,7 @@ class Reader(db.Model):
     join_date = db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'<Reader username={self.username} email={self.email}>'
+        return f'<User username={self.username} email={self.email}>'
 
 
 class Book(db.Model):
@@ -66,13 +66,13 @@ class Rating(db.Model):
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    username = db.Column(db.Integer, db.ForeignKey('readers.username'))
+    username = db.Column(db.Integer, db.ForeignKey('users.username'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
 
     # relationships
     book = db.relationship('Book', backref='ratings')
-    reader = db.relationship('Reader', backref='ratings')
+    user = db.relationship('User', backref='ratings')
 
     def __repr__(self):
         return f'<Rating rating_id={self.rating_id} score={self.score}>'

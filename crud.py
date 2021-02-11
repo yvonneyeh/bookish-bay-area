@@ -3,37 +3,37 @@
 from model import *
 
 
-def create_reader(email, password):
-    """Create and return a new reader."""
+def create_user(email, password):
+    """Create and return a new user."""
 
-    reader = Reader(email=email, password=password)
+    user = Reader(email=email, password=password)
 
-    db.session.add(reader)
+    db.session.add(user)
     db.session.commit()
 
-    return reader
+    return user
 
 
-def get_all_readers():
-    """Return all readers."""
+def get_all_users():
+    """Return all users."""
 
     return Reader.query.all()
 
 
-def get_reader_by_email(email):
-    """Return a reader given an email address."""
+def get_user_by_email(email):
+    """Return a user given an email address."""
 
     return Reader.query.filter(Reader.email == email).first()
 
 
-def get_reader_by_id(username):
-    """Return reader given their ID"""
+def get_user_by_id(username):
+    """Return user given their ID"""
 
     return Reader.query.filter(Reader.username == username).one() 
 
 
 def create_author(name):
-    """Create and return a new reader."""
+    """Create and return a new user."""
 
     author = Author(name=name)
 
@@ -74,10 +74,10 @@ def get_book_by_id(book_id):
     return Book.query.filter(book.book_id == book_id).one() 
 
 
-def create_rating(reader, book, score):
+def create_rating(user, book, score):
     """Create and return a new book rating."""
 
-    rating = Rating(reader=reader, book=book, score=score)
+    rating = Rating(user=user, book=book, score=score)
     
     db.session.add(rating)
     db.session.commit()
