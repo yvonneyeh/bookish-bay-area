@@ -2,7 +2,7 @@
 
 import os
 from random import choice, randint
-from datetime import datetime
+from datetime import date, datetime
 from faker import Faker
 # import pandas as pd
 import csv
@@ -32,39 +32,51 @@ for row in csv_f:
     authors_in_db.append(author_obj)
 # print(authors_in_db)
 
+test_user = model.User(
+                        username = 'yvonneyeh',
+                        first_name = 'Yvonne',
+                        last_name = 'Yeh',
+                        email = 'email@email.email',
+                        password = 'test'
+                        )
 
 for n in range(10):
-    email = f'reader{n}@books.com'
+    email = f'reader{n}@books.book'
+    first_name = fake.first_name()
+    last_name = fake.last_name()
+    username = f'{first_name}{last_name}'
     password = 'test'
-    new_user = crud.create_user(email, password)
+    join_date = datetime.today()
+    new_user = crud.create_user(email, first_name, last_name, username, password, join_date)
 
 
 # book = create_book(title, author_id, description, pub_date, cover_path, isbn, pages)
 
 books_in_db = []
 for row in csv_f:
-    web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover, date = row
+    web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
+    x = crud.get_author_id_by_name(author)
+    author_id = int(x[0])
     # pub_date = datetime.strptime(date('release_date'), '%Y-%m-%d')
     # print(pub_date)
-    book_obj = crud.create_book(title, author, description, date, cover, isbn)
+    book_obj = crud.create_book(title, author_id, description, cover_path, isbn)
+    # create_book(title, author, description, date, cover, isbn)
     books_in_db.append(book_obj)
 print(books_in_db)
 
 
-test_user = model.User(first_name = 'Yvonne',
-            last_name = 'Yeh',
-            email = 'email@email.com',
-            password = 'test'
-            )
+
 
 
 # test_user = User(first_name = 'Yvonne', last_name = 'Yeh', email = 'email@email.com', password = 'test')
-test_book = model.Book(title='BookTitle', author_id = 1)
-test_author = model.Author(author_id = 1, name='Author Author')
+# test_book = model.Book(title='BookTitle', author_id = 1)
+# test_author = model.Author(author_id = 1, name='Author Author')
 
-rate = model.Rating(book_id=4, username=1, score=5)
+# test_rate = model.Rating(book_id=4, username=yvonneyeh, score=5)
 
 model.db.session.add(test_user)
-model.db.session.add(test_book)
-model.db.session.add(test_author)
+# model.db.session.add(test_rate)
+# model.db.session.add(test_book)
+# model.db.session.add(test_author)
+
 model.db.session.commit()

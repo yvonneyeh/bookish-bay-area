@@ -13,7 +13,8 @@ class User(db.Model):
     __tablename__ = "users"
 
     # TODO: Add nullables after data model is tested
-    username = db.Column(db.Integer, unique=True, primary_key=True)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    username = db.Column(db.String, unique=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
@@ -66,7 +67,7 @@ class Rating(db.Model):
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    username = db.Column(db.Integer, db.ForeignKey('users.username'))
+    username = db.Column(db.String, db.ForeignKey('users.username'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
 

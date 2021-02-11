@@ -99,7 +99,7 @@ def log_in_user():
     return redirect('/')
 
 
-@app.route('/users/<int:username>')
+@app.route('/users/<username>')
 def show_user(username):
     """Show details for a user"""
     user = crud.get_user_by_id(username)

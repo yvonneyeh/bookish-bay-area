@@ -3,6 +3,11 @@
 {% block title %}{{ user.username }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ reader.email }}</h1>
+<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+<h1>{{ user.username }}</h1>
+
+<h2>{{ user.email }}</h2>
+<p>{{ user.join_date }}</p>
+
 
 {% endblock %}

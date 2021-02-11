@@ -3,10 +3,10 @@
 from model import *
 
 # USERS
-def create_user(email, password):
+def create_user(email, first_name, last_name, username, password, join_date):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(email=email, first_name=first_name, last_name=last_name, username=username, password=password, join_date=join_date)
 
     db.session.add(user)
     db.session.commit()
@@ -61,20 +61,25 @@ def get_author_by_name(name):
 
     return Author.query.filter(Author.name == name).one() 
 
+def get_author_id_by_name(name):
+    """Return author's ID given their name"""
+
+    return db.session.query(Author.author_id).filter(Author.name == name).one()
+    # return select([Author.author_id]).where(Author.name == name)
+    
 
 # BOOKS
-def create_book(title, author_id, description, pub_date, cover_path, isbn):
+def create_book(title, author_id, description, cover_path, isbn):
     """Create and return a new book."""
 
     book = Book(
                 title = title, 
                 author_id = author_id, 
                 description = description, 
-                pub_date = pub_date, 
+                # pub_date = pub_date, 
                 cover_path = cover_path, 
                 isbn = isbn
-                # , 
-                # pages = pages
+                # , pages = pages
             )
         
     db.session.add(book)
