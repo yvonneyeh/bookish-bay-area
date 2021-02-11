@@ -24,7 +24,6 @@ class Reader(db.Model):
         return f'<Reader user_id={self.user_id} email={self.email}>'
 
 
-
 class Book(db.Model):
     """A book."""
 
@@ -35,16 +34,17 @@ class Book(db.Model):
     title = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
     description = db.Column(db.Text)
-    release_date = db.Column(db.DateTime)
+    pub_date = db.Column(db.DateTime)
     cover_path = db.Column(db.String)
     isbn = db.Column(db.Integer)
+    pages = db.Column(db.Integer)
     
     # relationships
     # ratings = a list of Rating objects
    
     # association table relationships
     authors = db.relationship('Author',
-                            secondary='book_author'
+                            secondary='book_author',
                             backref='books', order_by=book_id)
 
     genres = db.relationship('Genre',
@@ -70,6 +70,7 @@ class Rating(db.Model):
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
 
+    # relationships
     book = db.relationship('Book', backref='ratings')
     reader = db.relationship('Reader', backref='ratings')
 
@@ -83,12 +84,11 @@ class Author(db.Model):
     __tablename__ = "authors"
 
     author_id = db.Column(db.Integer, unique=True, primary_key=True)
-    first_name = db.Column(db.String)
-    last_name = db.Column(db.String)
+    name = db.Column(db.String)
     dob = db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'<Author author_id={self.author_id} Name = {self.first_name} {self.last_name}>'
+        return f'<Author author_id={self.author_id} Name = {self.name}>'
 
 
 class BookAuthor(db.Model):
