@@ -32,6 +32,16 @@ def get_reader_by_id(user_id):
     return Reader.query.filter(Reader.user_id == user_id).one() 
 
 
+def create_author(name):
+    """Create and return a new reader."""
+
+    author = Author(name=name)
+
+    db.session.add(author)
+    db.session.commit()
+
+    return author
+
 def create_book(title, author_id, description, pub_date, cover_path, isbn, pages):
     """Create and return a new book."""
 
@@ -56,10 +66,12 @@ def get_all_books():
 
     return Book.query.all()
 
+
 def get_book_by_id(book_id):
     """Return books given its ID"""
 
     return Book.query.filter(book.book_id == book_id).one() 
+
 
 def create_rating(reader, book, score):
     """Create and return a new book rating."""
@@ -70,6 +82,7 @@ def create_rating(reader, book, score):
     db.session.commit()
 
     return rating
+
 
 if __name__ == '__main__':
     from server import app

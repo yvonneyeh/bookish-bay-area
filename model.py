@@ -85,7 +85,6 @@ class Author(db.Model):
 
     author_id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String)
-    dob = db.Column(db.DateTime)
 
     def __repr__(self):
         return f'<Author author_id={self.author_id} Name = {self.name}>'
@@ -163,9 +162,9 @@ class BookLocation(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     loc_id = db.Column(db.Integer, db.ForeignKey('locations.loc_id'), nullable = False)
 
-    book_loc_rel = db.relationship('Book',
-                    backref=db.backref(
-                    'locations', order_by=loc_id))
+    # book_loc_rel = db.relationship('Book',
+    #                 backref=db.backref(
+    #                 'locations', order_by=loc_id))
 
     def __repr__(self):
         return f'<BookLocation book_id={self.book_id} loc_id={self.loc_id}>'
