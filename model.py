@@ -13,7 +13,7 @@ class Reader(db.Model):
     __tablename__ = "readers"
 
     # TODO: Add nullables after data model is tested
-    user_id = db.Column(db.Integer, unique=True, primary_key=True)
+    username = db.Column(db.Integer, unique=True, primary_key=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
@@ -21,7 +21,7 @@ class Reader(db.Model):
     join_date = db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'<Reader user_id={self.user_id} email={self.email}>'
+        return f'<Reader username={self.username} email={self.email}>'
 
 
 class Book(db.Model):
@@ -66,7 +66,7 @@ class Rating(db.Model):
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('readers.user_id'))
+    username = db.Column(db.Integer, db.ForeignKey('readers.username'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
 

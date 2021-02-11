@@ -60,6 +60,32 @@ def create_account():
     return redirect('/')
 
 
+@app.route('/login', methods=['POST'])
+def log_in_user():
+    """Login user and redirect to homepage."""
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user_object = crud.get_reader_by_email(email)
+
+    if user_object != None:
+        if password == user_object.password != None:
+            session['username'] = user_object.username
+            flash('Logged in!')
+        else:
+            flash('Incorrect password')   
+    else:
+        flash('Email does not exist. Please sign up above.')
+
+
+@app.route('/users/<int:username>')
+def show_user(username):
+    """Show details for a user"""
+    user = crud.get_reader_by_id(username)
+
+    return render_template("reader_details.html", reader=reader)
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

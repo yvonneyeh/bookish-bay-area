@@ -26,10 +26,10 @@ def get_reader_by_email(email):
     return Reader.query.filter(Reader.email == email).first()
 
 
-def get_reader_by_id(user_id):
+def get_reader_by_id(username):
     """Return reader given their ID"""
 
-    return Reader.query.filter(Reader.user_id == user_id).one() 
+    return Reader.query.filter(Reader.username == username).one() 
 
 
 def create_author(name):
@@ -42,7 +42,7 @@ def create_author(name):
 
     return author
 
-def create_book(title, author_id, description, pub_date, cover_path, isbn, pages):
+def create_book(title, author_id, description, pub_date, cover_path, isbn):
     """Create and return a new book."""
 
     book = Book(
@@ -51,8 +51,9 @@ def create_book(title, author_id, description, pub_date, cover_path, isbn, pages
                 description = description, 
                 pub_date = pub_date, 
                 cover_path = cover_path, 
-                isbn = isbn, 
-                pages = pages
+                isbn = isbn
+                # , 
+                # pages = pages
             )
         
     db.session.add(book)
