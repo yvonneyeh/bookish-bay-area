@@ -59,17 +59,17 @@ def get_author_by_id(author_id):
 def get_author_by_name(name):
     """Return authors given their name"""
 
-    return Author.query.filter(Author.name == name).one() 
+    return Author.query.filter(Author.name == name).first() 
 
 def get_author_id_by_name(name):
     """Return author's ID given their name"""
 
-    return db.session.query(Author.author_id).filter(Author.name == name).one()
+    return db.session.query(Author.author_id).filter(Author.name == name).first()
     # return select([Author.author_id]).where(Author.name == name)
     
 
 # BOOKS
-def create_book(title, author_id, description, cover_path, isbn):
+def create_book(title, author_id, description, cover_path):
     """Create and return a new book."""
 
     book = Book(
@@ -77,8 +77,8 @@ def create_book(title, author_id, description, cover_path, isbn):
                 author_id = author_id, 
                 description = description, 
                 # pub_date = pub_date, 
-                cover_path = cover_path, 
-                isbn = isbn
+                cover_path = cover_path 
+                # , isbn = isbn
                 # , pages = pages
             )
         

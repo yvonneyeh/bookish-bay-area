@@ -32,6 +32,7 @@ def all_books():
 def show_book(book_id):
     """Show details for a book."""
     
+    # author = crud.get_author_by_id(author_id)
     book = crud.get_book_by_id(book_id)
 
     return render_template("book_details.html", book=book)

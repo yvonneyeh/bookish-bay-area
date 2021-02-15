@@ -19,64 +19,59 @@ model.db.create_all()
 
 fake = Faker()
 
-f = open('data/silicon_valley_books.csv')
-csv_f = csv.reader(f)
+# f = open('data/silicon_valley_books.csv')
+f = open('data/small.csv')
+# csv_f = csv.reader(f)
+f1 = open('data/test_book_data.csv')
+f2 = open('data/silicon_valley_books.csv')
+
 
 authors_in_db = []
-for row in csv_f:
-    web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover, date = row
-    # if crud.get_author_by_name(author) != None:
-    #     print(author)
-    # else:
-    author_obj = crud.create_author(author)
-    authors_in_db.append(author_obj)
-# print(authors_in_db)
-
-test_user = model.User(
-                        username = 'yvonneyeh',
-                        first_name = 'Yvonne',
-                        last_name = 'Yeh',
-                        email = 'email@email.email',
-                        password = 'test'
-                        )
-
-for n in range(10):
-    email = f'reader{n}@books.book'
-    first_name = fake.first_name()
-    last_name = fake.last_name()
-    username = f'{first_name}{last_name}'
-    password = 'test'
-    join_date = datetime.today()
-    new_user = crud.create_user(email, first_name, last_name, username, password, join_date)
+def seed_authors():
+    csv_f = csv.reader(f1)
+    for row in csv_f:
+        author, link_href, title, author, description, genres, isbn, location, cover, date = row
+        # web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover, date = row
+        # print(crud.get_author_by_name(author))
+        if crud.get_author_by_name(author) == None:
+        # print(author)
+        # else:
+            author_obj = crud.create_author(author)
+            authors_in_db.append(author_obj)
+    print(authors_in_db)
 
 
-# book = create_book(title, author_id, description, pub_date, cover_path, isbn, pages)
+def seed_users():
+    for n in range(10):
+        email = f'reader{n}@books.book'
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        username = f'{first_name}{last_name}'
+        password = 'test'
+        join_date = datetime.today()
+        new_user = crud.create_user(email, first_name, last_name, username, password, join_date)
+
 
 books_in_db = []
-for row in csv_f:
-    web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
-    x = crud.get_author_id_by_name(author)
-    author_id = int(x[0])
-    # pub_date = datetime.strptime(date('release_date'), '%Y-%m-%d')
-    # print(pub_date)
-    book_obj = crud.create_book(title, author_id, description, cover_path, isbn)
-    # create_book(title, author, description, date, cover, isbn)
-    books_in_db.append(book_obj)
-print(books_in_db)
+def seed_books():
+    csv_f = csv.reader(f2)
+    for row in csv_f:
+        web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
+        # print(author)
+        num = crud.get_author_id_by_name(author)
+        author_num = int(num[0])
+        # print(num)
+        # print(author_num)
+        # print(author_id)
+        # print(author)
+        # print(title, author_id, description, cover_path, isbn)
+        book_obj = crud.create_book(title, author_num, description, cover_path)
+        # print(book_obj)
+        # create_book(title, author, description, date, cover)
+        books_in_db.append(book_obj)
+    print(books_in_db)
 
 
-
-
-
-# test_user = User(first_name = 'Yvonne', last_name = 'Yeh', email = 'email@email.com', password = 'test')
-# test_book = model.Book(title='BookTitle', author_id = 1)
-# test_author = model.Author(author_id = 1, name='Author Author')
-
-# test_rate = model.Rating(book_id=4, username=yvonneyeh, score=5)
-
-model.db.session.add(test_user)
-# model.db.session.add(test_rate)
-# model.db.session.add(test_book)
-# model.db.session.add(test_author)
-
-model.db.session.commit()
+seed_authors()
+seed_users()
+seed_books()

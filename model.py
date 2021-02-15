@@ -37,7 +37,7 @@ class Book(db.Model):
     description = db.Column(db.Text)
     pub_date = db.Column(db.DateTime)
     cover_path = db.Column(db.String)
-    isbn = db.Column(db.Integer)
+    isbn = db.Column(db.String)
     pages = db.Column(db.Integer)
     
     # relationships
