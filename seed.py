@@ -14,9 +14,6 @@ import server
 os.system('dropdb books')
 os.system('createdb books')
 
-model.connect_to_db(server.app)
-model.db.create_all()
-
 fake = Faker()
 
 # f = open('data/silicon_valley_books.csv')
@@ -71,7 +68,12 @@ def seed_books():
         books_in_db.append(book_obj)
     print(books_in_db)
 
+#---------------------------------------------------------------------#
 
-seed_authors()
-seed_users()
-seed_books()
+if __name__ == '__main__':
+    model.connect_to_db(server.app)
+    model.db.create_all()
+
+    seed_authors()
+    seed_users()
+    seed_books()

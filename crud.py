@@ -68,6 +68,14 @@ def get_author_id_by_name(name):
     # return select([Author.author_id]).where(Author.name == name)
     
 
+def get_author_name_by_book_id(id):
+    """Return author's name given the ID of a book they wrote"""
+
+    # return db.session.query(Author).filter(Book.book_id == id).first()
+
+    return db.session.query(Author).join(Book, Book.author_id == Author.author_id).first()
+    
+
 # BOOKS
 def create_book(title, author_id, description, cover_path):
     """Create and return a new book."""
