@@ -20,6 +20,13 @@ def homepage():
     return render_template('homepage.html')
 
 
+@app.route('/index.html')
+def index_page():
+    """View homepage."""
+
+    return render_template('index.html')
+
+
 @app.route('/books')
 def all_books():
     """Display all books."""

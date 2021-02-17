@@ -1,89 +1,88 @@
-city,state,country,lat,lng
-Alameda,California,United States,37.6090291,-121.899142
-Albany,California,United States,42.6511674,-73.754968
-American Canyon,California,United States,38.1749179,-122.2608044
-Antioch,California,United States,38.0049214,-121.805789
-Atherton,California,United States,37.453773,-122.2058272
-Belmont,California,United States,37.5164926,-122.2941914
-Belvedere,California,United States,37.8663951,-122.4626994
-Benicia,California,United States,38.049365,-122.1585777
-Berkeley,California,United States,37.8708393,-122.2728639
-Brisbane,California,United States,37.687165,-122.4027942
-Burlingame,California,United States,37.5841026,-122.3660825
-Campbell,California,United States,37.2870626,-121.9448818
-Clayton,California,United States,42.8547706,-91.3667151
-Colma,California,United States,37.6766821,-122.4596031
-Concord,California,United States,43.207178,-71.537476
-Corte Madera,California,United States,37.9254806,-122.5274755
-Cupertino,California,United States,37.3228934,-122.0322895
-Daly City,California,United States,37.6904826,-122.4726708
-Danville,California,United States,40.125222,-87.6304614
-Dublin,California,United States,37.7021521,-121.9357918
-East Palo Alto,California,United States,37.4688273,-122.1410751
-El Cerrito,California,United States,37.9154056,-122.301411
-Emeryville,California,United States,37.8314089,-122.2865266
-Fairfax,California,United States,38.8462236,-77.3063733
-Foster City,California,United States,37.5600336,-122.2688522
-Fremont,California,United States,37.5482697,-121.9885719
-Gilroy,California,United States,37.0065078,-121.5631723
-Half Moon Bay,California,United States,37.4635519,-122.428586
-Hayward,California,United States,37.6688205,-122.080796
-Healdsburg,California,United States,38.603921,-122.88043568164409
-Hercules,California,United States,38.0171441,-122.2885808
-Hillsborough,California,United States,27.9184543,-82.3488057
-Lafayette,California,United States,30.2240897,-92.0198427
-Larkspur,California,United States,37.9340915,-122.5352539
-Livermore,California,United States,37.6820583,-121.7680531
-Los Altos,California,United States,37.3790629,-122.116578
-Los Altos Hills,California,United States,37.3796627,-122.1374637
-Los Gatos,California,United States,37.226611,-121.9746797
-Martinez,California,United States,38.0138934,-122.1338674
-Menlo Park,California,United States,37.4519671,-122.1779927
-Mill Valley,California,United States,37.9060368,-122.5449763
-Millbrae,California,United States,37.598958,-122.4009419
-Milpitas,California,United States,37.4282724,-121.9066238
-Moraga,California,United States,37.834897,-122.12883
-Morgan Hill,California,United States,37.130408,-121.6544974
-Mountain View,California,United States,37.3893889,-122.0832101
-Newark,California,United States,40.735657,-74.1723667
-Novato,California,United States,38.1061979,-122.5681191
-Oakland,California,United States,37.8044557,-122.2713563
-Oakley,California,United States,37.9974219,-121.7124536
-Orinda,California,United States,37.8771476,-122.1796888
-Pacifica,California,United States,37.6138253,-122.4869194
-Palo Alto,California,United States,37.4443293,-122.1598465
-Petaluma,California,United States,38.2325829,-122.636465
-Piedmont,California,United States,37.8243715,-122.231635
-Pinole,California,United States,38.0043667,-122.2988587
-Pittsburg,California,United States,40.4416941,-79.9900861
-Pleasanton,California,United States,37.6624312,-121.8746789
-Redwood City,California,United States,37.4863239,-122.232523
-Richmond,California,United States,37.5385087,-77.43428
-Rohnert Park,California,United States,38.3396367,-122.7010984
-Ross,California,United States,31.7184962,-97.1191695
-Helena,California,United States,46.5927425,-112.036277
-San Anselmo,California,United States,37.9744323,-122.5615032
-San Bruno,California,United States,37.6261715,-122.4332435
-San Carlos,California,United States,37.504936,-122.2618236
-San Francisco,California,United States,37.7790262,-122.4199061
-San Jose,California,United States,37.3361905,-121.890583
-San Leandro,California,United States,37.7249296,-122.1560768
-San Mateo,California,United States,37.496904,-122.3330573
-San Pablo,California,United States,37.9621457,-122.3455263
-San Rafael,California,United States,37.9735346,-122.5310874
-San Ramon,California,United States,37.7648021,-121.9544387
-Santa Clara,California,United States,37.2333253,-121.6846349
-Santa Rosa,California,United States,38.4404925,-122.7141049
-Saratoga,California,United States,37.2638324,-122.0230146
-Sausalito,California,United States,37.8590272,-122.485469
-Sebastopol,California,United States,38.3845125,-122.8332501583744
-Sonoma,California,United States,38.5110803,-122.8473388
-South San Francisco,California,United States,37.6535403,-122.4168664
-Suisun City,California,United States,38.24582825,-121.9722339894544
-Sunnyvalle,California,United States,33.3163597,-111.7185376
-Tiburon,California,United States,37.8734371,-122.456612
-Union City,California,United States,37.5963232,-122.0816297
-Vallejo,California,United States,38.1040864,-122.2566367
-Walnut Creek,California,United States,37.9020731,-122.0618702
-Windsor,California,United States,38.5471327,-122.8163802
-Woodside,California,United States,37.4299388,-122.2538557
+"Alameda","California","United States","37.6090291","-121.899142"
+"Albany","California","United States","42.6511674","-73.754968"
+"American Canyon","California","United States","38.1749179","-122.2608044"
+"Antioch","California","United States","38.0049214","-121.805789"
+"Atherton","California","United States","37.453773","-122.2058272"
+"Belmont","California","United States","37.5164926","-122.2941914"
+"Belvedere","California","United States","37.8663951","-122.4626994"
+"Benicia","California","United States","38.049365","-122.1585777"
+"Berkeley","California","United States","37.8708393","-122.2728639"
+"Brisbane","California","United States","37.687165","-122.4027942"
+"Burlingame","California","United States","37.5841026","-122.3660825"
+"Campbell","California","United States","37.2870626","-121.9448818"
+"Clayton","California","United States","42.8547706","-91.3667151"
+"Colma","California","United States","37.6766821","-122.4596031"
+"Concord","California","United States","43.207178","-71.537476"
+"Corte Madera","California","United States","37.9254806","-122.5274755"
+"Cupertino","California","United States","37.3228934","-122.0322895"
+"Daly City","California","United States","37.6904826","-122.4726708"
+"Danville","California","United States","40.125222","-87.6304614"
+"Dublin","California","United States","37.7021521","-121.9357918"
+"East Palo Alto","California","United States","37.4688273","-122.1410751"
+"El Cerrito","California","United States","37.9154056","-122.301411"
+"Emeryville","California","United States","37.8314089","-122.2865266"
+"Fairfax","California","United States","38.8462236","-77.3063733"
+"Foster City","California","United States","37.5600336","-122.2688522"
+"Fremont","California","United States","37.5482697","-121.9885719"
+"Gilroy","California","United States","37.0065078","-121.5631723"
+"Half Moon Bay","California","United States","37.4635519","-122.428586"
+"Hayward","California","United States","37.6688205","-122.080796"
+"Healdsburg","California","United States","38.603921","-122.88043568164400"
+"Hercules","California","United States","38.0171441","-122.2885808"
+"Hillsborough","California","United States","27.9184543","-82.3488057"
+"Lafayette","California","United States","30.2240897","-92.0198427"
+"Larkspur","California","United States","37.9340915","-122.5352539"
+"Livermore","California","United States","37.6820583","-121.7680531"
+"Los Altos","California","United States","37.3790629","-122.116578"
+"Los Altos Hills","California","United States","37.3796627","-122.1374637"
+"Los Gatos","California","United States","37.226611","-121.9746797"
+"Martinez","California","United States","38.0138934","-122.1338674"
+"Menlo Park","California","United States","37.4519671","-122.1779927"
+"Mill Valley","California","United States","37.9060368","-122.5449763"
+"Millbrae","California","United States","37.598958","-122.4009419"
+"Milpitas","California","United States","37.4282724","-121.9066238"
+"Moraga","California","United States","37.834897","-122.12883"
+"Morgan Hill","California","United States","37.130408","-121.6544974"
+"Mountain View","California","United States","37.3893889","-122.0832101"
+"Newark","California","United States","40.735657","-74.1723667"
+"Novato","California","United States","38.1061979","-122.5681191"
+"Oakland","California","United States","37.8044557","-122.2713563"
+"Oakley","California","United States","37.9974219","-121.7124536"
+"Orinda","California","United States","37.8771476","-122.1796888"
+"Pacifica","California","United States","37.6138253","-122.4869194"
+"Palo Alto","California","United States","37.4443293","-122.1598465"
+"Petaluma","California","United States","38.2325829","-122.636465"
+"Piedmont","California","United States","37.8243715","-122.231635"
+"Pinole","California","United States","38.0043667","-122.2988587"
+"Pittsburg","California","United States","40.4416941","-79.9900861"
+"Pleasanton","California","United States","37.6624312","-121.8746789"
+"Redwood City","California","United States","37.4863239","-122.232523"
+"Richmond","California","United States","37.5385087","-77.43428"
+"Rohnert Park","California","United States","38.3396367","-122.7010984"
+"Ross","California","United States","31.7184962","-97.1191695"
+"Helena","California","United States","46.5927425","-112.036277"
+"San Anselmo","California","United States","37.9744323","-122.5615032"
+"San Bruno","California","United States","37.6261715","-122.4332435"
+"San Carlos","California","United States","37.504936","-122.2618236"
+"San Francisco","California","United States","37.7790262","-122.4199061"
+"San Jose","California","United States","37.3361905","-121.890583"
+"San Leandro","California","United States","37.7249296","-122.1560768"
+"San Mateo","California","United States","37.496904","-122.3330573"
+"San Pablo","California","United States","37.9621457","-122.3455263"
+"San Rafael","California","United States","37.9735346","-122.5310874"
+"San Ramon","California","United States","37.7648021","-121.9544387"
+"Santa Clara","California","United States","37.2333253","-121.6846349"
+"Santa Rosa","California","United States","38.4404925","-122.7141049"
+"Saratoga","California","United States","37.2638324","-122.0230146"
+"Sausalito","California","United States","37.8590272","-122.485469"
+"Sebastopol","California","United States","38.3845125","-122.8332501583740"
+"Sonoma","California","United States","38.5110803","-122.8473388"
+"South San Francisco","California","United States","37.6535403","-122.4168664"
+"Suisun City","California","United States","38.24582825","-121.9722339894540"
+"Sunnyvalle","California","United States","33.3163597","-111.7185376"
+"Tiburon","California","United States","37.8734371","-122.456612"
+"Union City","California","United States","37.5963232","-122.0816297"
+"Vallejo","California","United States","38.1040864","-122.2566367"
+"Walnut Creek","California","United States","37.9020731","-122.0618702"
+"Windsor","California","United States","38.5471327","-122.8163802"
+"Woodside","California","United States","37.4299388","-122.2538557

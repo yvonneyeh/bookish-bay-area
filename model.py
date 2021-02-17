@@ -44,17 +44,21 @@ class Book(db.Model):
     # ratings = a list of Rating objects
    
     # association table relationships
-    authors = db.relationship('Author',
-                            secondary='book_author',
-                            backref='books', order_by=book_id)
+    author_rel = db.relationship(
+                                'Author',
+                                backref=db.backref('books', order_by=book_id))
 
-    genres = db.relationship('Genre',
-                             secondary='book_genre',
-                             backref='books')
+    # genre_rel = db.relationship(
+    #                             'Genre',
+    #                             backref=db.backref('books', order_by=book_id))
 
-    locations = db.relationship('Location',
-                             secondary='book_loc',
-                             backref='books')
+    genre_rel = db.relationship('Genre',
+                                secondary='book_genre',
+                                backref='books')
+
+    loc_rel = db.relationship('Location',
+                                secondary='book_loc',
+                                backref='books')
 
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
@@ -146,12 +150,12 @@ class Location(db.Model):
     __tablename__ = "locations"
 
     loc_id = db.Column(db.Integer, unique=True, primary_key=True)
-    loc_name = db.Column(db.String)
+    name = db.Column(db.String)
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
     def __repr__(self):
-        return f'<Location loc_id={self.loc_id} Name={self.loc_name}>'
+        return f'<Location loc_id={self.loc_id} Name={self.name}>'
 
 
 class BookLocation(db.Model):

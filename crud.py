@@ -109,17 +109,52 @@ def get_book_by_id(book_id):
 
 
 # GENRES
+def create_genre(name):
+    """Create and return a new book."""
+
+    genre = Genre(name = name)
+        
+    db.session.add(genre)
+    db.session.commit()
+
+    return genre
+
 def get_all_genres():
     """Return all genres."""
 
     return Genre.query.all()
 
 
+def get_genre_by_name(name):
+    """Return genre given its name"""
+
+    return Genre.query.filter(Genre.name == name).first() 
+
+
 # LOCATIONS
+def create_location(name, lat, lng):
+    """Create and return a new location."""
+
+    location = Location(name = name, 
+                        lat = lat, 
+                        lng = lng)
+        
+    db.session.add(location)
+    db.session.commit()
+
+    return location
+
 def get_all_locations():
     """Return all locations."""
 
     return Location.query.all()
+
+
+def get_location_by_name(name):
+    """Return location given its name"""
+
+    return Location.query.filter(Location.name == name).first() 
+
 
 # RATINGS
 def create_rating(user, book, score):
