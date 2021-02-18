@@ -84,6 +84,7 @@ def seed_books(filename):
         web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
         a_num = crud.get_author_id_by_name(author)
         author_num = int(a_num[0])
+        test_loc_id = 1
         # if location != None:
         #     l_num = crud.get_location_id_by_name(location)
         #     location_num = int(l_num[0])
@@ -93,6 +94,23 @@ def seed_books(filename):
     
         books_in_db.append(book_obj)
     print(books_in_db)
+
+
+book_locs_in_db = []
+def seed_book_locs():
+    for n in range(1,50):
+        book_id = n
+        loc_id = n
+        # if location != None:
+        #     l_num = crud.get_location_id_by_name(location)
+        #     location_num = int(l_num[0])
+        #     print(l_num)
+        #     print(location_num)
+        book_obj = crud.create_book_location(book_id, loc_id)
+    
+        book_locs_in_db.append(book_obj)
+    print(book_locs_in_db)
+
 
 #---------------------------------------------------------------------#
 
@@ -105,4 +123,5 @@ if __name__ == '__main__':
     seed_genres('data/genres.txt')
     seed_authors('data/author_book_data.csv')
     seed_books('data/sv_books.csv')
+    seed_book_locs()
     seed_users()

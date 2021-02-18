@@ -158,6 +158,17 @@ def get_genre_by_name(name):
 
 
 # LOCATIONS
+def create_book_location(book_id, loc_id):
+    """Create and return a new book location."""
+
+    book_loc = BookLocation(book_id = book_id, loc_id = loc_id)
+
+    db.session.add(book_loc)
+    db.session.commit()
+
+    return book_loc
+
+
 def create_location(name, lat, lng):
     """Create and return a new location."""
 
