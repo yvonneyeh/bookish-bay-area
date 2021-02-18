@@ -2,6 +2,32 @@
 {% block title %}All Books{% endblock %}
 
 {% block body %}
+
+<form id="genre_search" action="/book-list">
+  <label for="genre">Filter by Genre:</label>
+  <br>
+    <select class="form-control" name="genre" id="genre">
+
+      <option value="All">All</option>
+      <option value="Biography">Biography</option>
+      <option value="Business">Business</option>
+      <option value="Contemporary">Contemporary</option>
+      <option value="Cookbooks">Cookbooks</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Graphic Novels">Graphic Novels</option>
+      <option value="History">History</option>
+      <option value="LGBT">LGBT</option>
+      <option value="Memoir">Memoir</option>
+      <option value="Nonfiction">Nonfiction</option>
+      <option value="Philosophy">Philosophy</option>
+      <option value="Psychology">Psychology</option>
+      <option value="Science">Science</option>
+      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Sports">Sports</option>
+      <option value="Travel">Travel</option>
+    </select>
+</form>
+
 <ul>
 {% for book in books %}
 
@@ -11,4 +37,6 @@
   
 {% endfor %}
 </ul>
+
+
 {% endblock body %}

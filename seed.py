@@ -62,16 +62,6 @@ def seed_authors(filename):
     print(authors_in_db)
 
 
-
-    for n in range(10):
-        email = f'reader{n}@books.book'
-        first_name = fake.first_name()
-        last_name = fake.last_name()
-        username = f'{first_name}{last_name}'
-        password = 'test'
-        join_date = datetime.today()
-        new_user = crud.create_user(email, first_name, last_name, username, password, join_date)
-
 locs_in_db = []
 def seed_locations(filename):
     """Add new locations to Location table."""

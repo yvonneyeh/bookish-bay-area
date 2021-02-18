@@ -92,7 +92,7 @@ class Author(db.Model):
     name = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Author author_id={self.author_id} Name = {self.name}>'
+        return f'<Author author_id={self.author_id} name = {self.name}>'
 
 
 class BookAuthor(db.Model):
@@ -127,7 +127,7 @@ class Genre(db.Model):
     name = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Genre genre_id={self.genre_id} Name={self.name}>'
+        return f'<Genre genre_id={self.genre_id} name={self.name}>'
 
 
 class BookGenre(db.Model):
@@ -155,7 +155,7 @@ class Location(db.Model):
     lng = db.Column(db.Float)
 
     def __repr__(self):
-        return f'<Location loc_id={self.loc_id} Name={self.name}>'
+        return f'<Location loc_id={self.loc_id} name={self.name}>'
 
 
 class BookLocation(db.Model):

@@ -35,6 +35,33 @@ def all_books():
     return render_template("all_books.html", books=books)
 
 
+@app.route('/book-list')
+def movie_list():
+    """Show list of books. 
+    If user selected genre: filter by genre.
+    Else: If user entered title search, filter by title
+    Else: display entire book list.
+    """
+    
+    user_genre = None
+    user_title_search = None
+
+    if 'genre' in request.args:
+        user_genre = request.args['genre']
+        books = crud.get_books_by_genre(user_genre)
+
+    elif 'title_search' in request.args:
+        user_title_search = request.args['title_search']
+        books = crud.get_books_by_title(user_title_search)
+        
+    else: 
+        books = crud.get_all_books()
+
+    return render_template("book_list.html", 
+                            books=books, 
+                            genre=user_genre)
+
+
 @app.route('/books/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
@@ -60,6 +87,24 @@ def show_author(author_id):
     author = crud.get_author_by_id(author_id)
 
     return render_template("author_details.html", author=author)
+
+
+
+@app.route('/locations')
+def all_locations():
+    """Display all locations."""
+    locations = crud.get_all_locations()
+
+    return render_template("all_locations.html", locations=locations)
+
+
+@app.route('/locations/<int:loc_id>')
+def show_location(loc_id):
+    """Show details for a location."""
+    
+    location = crud.get_location_by_id(loc_id)
+
+    return render_template("loc_details.html", location=location)
 
 
 @app.route('/users')

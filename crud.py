@@ -84,6 +84,7 @@ def create_book(title, author_id, description, cover_path):
                 title = title, 
                 author_id = author_id, 
                 description = description, 
+                # location = location,
                 # pub_date = pub_date, 
                 cover_path = cover_path 
                 # , isbn = isbn
@@ -97,16 +98,41 @@ def create_book(title, author_id, description, cover_path):
 
 
 def get_all_books():
-    """Return all books"""
+    """Return all books, sorted alphabetically"""
 
-    return Book.query.all()
+    # return Book.query.all()
+    return Book.query.order_by(Book.title).all()
 
 
 def get_book_by_id(book_id):
     """Return books given its ID"""
 
-    return Book.query.filter(Book.book_id == book_id).one() 
+    return Book.query.filter(Book.book_id == book_id).first() 
 
+
+def get_books_by_title(user_title_search):
+    """ Get books based on title search string. 
+    """
+
+    books = Book.query.filter(Book.title.like("%" + user_title_search + "%"))\
+        .order_by(Book.title)\
+        .all()
+
+    return books
+
+def get_books_by_genre(user_genre):
+    """ Get subset of books based on genre. 
+        Accepts genre entered by user, returns books.
+
+    """
+    if user_genre == 'All':
+        books = Book.query.order_by(Book.title).all()
+    else:
+        books = Book.query.filter(Book.book.like("%" + user_genre + "%"))\
+            .order_by(Book.title)\
+            .all()
+
+    return movies
 
 # GENRES
 def create_genre(name):
@@ -147,13 +173,25 @@ def create_location(name, lat, lng):
 def get_all_locations():
     """Return all locations."""
 
-    return Location.query.all()
+    return Location.query.order_by(Location.name).all()
 
 
 def get_location_by_name(name):
     """Return location given its name"""
 
     return Location.query.filter(Location.name == name).first() 
+
+
+def get_location_by_id(loc_id):
+    """Return location given its ID"""
+
+    return Location.query.filter(Location.loc_id == loc_id).one() 
+
+
+def get_location_id_by_name(name):
+    """Return location's ID given their name"""
+
+    return db.session.query(Location.loc_id).filter(Location.name == name).first()
 
 
 # RATINGS

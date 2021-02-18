@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>
-      {% block title %}{% endblock %}
+      {% block title %}
+      {% endblock %}
     </title>
 
-    {% block head %}{% endblock %}
+    {% block head %}
+    {% endblock %}
   </head>
   <body>
     {% for msg in get_flashed_messages() %}
