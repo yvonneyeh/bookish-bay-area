@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block subhead %}
+
+<div id="list_header">
+  <br><br><br>
+<p id="list_page_head">Bookish Bay Area</p>
+<p id="list_page_subhead">Stories set in the Silicon Valley</p>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="col-sm-3">
+      <form id="genre_search" action="/book-list">
+        <label for="genre">Filter by Genre:</label>
+        <br>
+          <select class="form-control" name="genre" id="genre">
+
+            <option value="All">All</option>
+            <option value="Biography">Biography</option>
+            <option value="Business">Business</option>
+            <option value="Contemporary">Contemporary</option>
+            <option value="Cookbooks">Cookbooks</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Graphic Novels">Graphic Novels</option>
+            <option value="History">History</option>
+            <option value="LGBT">LGBT</option>
+            <option value="Memoir">Memoir</option>
+            <option value="Nonfiction">Nonfiction</option>
+            <option value="Philosophy">Philosophy</option>
+            <option value="Psychology">Psychology</option>
+            <option value="Science">Science</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Sports">Sports</option>
+            <option value="Travel">Travel</option>
+          </select>
+      </form>
+
+      <br>
+      <form id="refresh_list" action="/book-list">
+
+        <input type="submit" \
+        class="btn btn-danger submit_button" \
+        value="Refresh book list">
+        <br><br><br>
+      </form>
+
+      <form id="title_search" action="/">
+        <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
+        <br><br>
+
+        <input type="submit" \
+        class="btn btn-danger submit_button"\
+        value="Search for title">
+
+      </form>
+
+      </div>
+
+      <div class="col-sm-9">
+        <table class="table table-condensed">
+          <thead>
+            <tbody>
+            {% for book in books %}
+            <tr>
+
+              <td>
+                <span class="book_title"> {{ book.title }}
+                </span>
+                <span class="release_year"> ({{ movie.release_year}})
+                </span>
+              </td>
+
+              <td>
+                {% if book.locations %}
+                  <a class="map_link" href="/{{ book.book_id }}">Map</a>
+                {% endif %}
+              </td>
+
+              <td>
+                {% if book.genre %}
+                  <span class="genres_for_a_book">
+                    {{ movie.genre }}
+                  </span>
+                {% endif %}
+              </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+          </thead>
+        </table>
+      </div>
+  </div>
+
+<script>
+var selectedGenre = "{{ genre }}";
+if (selectedGenre !== "None") {
+  var optionToSelect = $("option[value=" + selectedGenre +"]");
+  optionToSelect.prop("selected", true);
+}
+
+$("#genre").on("change", function (evt) {
+  $("#genre_search").submit();
+});
+
+</script>
+{% endblock %}
