@@ -82,17 +82,15 @@ def seed_books(filename):
     csv_f = csv.reader(f2)
     for row in csv_f:
         web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
-        # print(author)
-        num = crud.get_author_id_by_name(author)
-        author_num = int(num[0])
-        # print(num)
-        # print(author_num)
-        # print(author_id)
-        # print(author)
-        # print(title, author_id, description, cover_path, isbn)
-        book_obj = crud.create_book(title, author_num, description, cover_path)
-        # print(book_obj)
-        # create_book(title, author, description, date, cover)
+        a_num = crud.get_author_id_by_name(author)
+        author_num = int(a_num[0])
+        # if location != None:
+        #     l_num = crud.get_location_id_by_name(location)
+        #     location_num = int(l_num[0])
+        #     print(l_num)
+        #     print(location_num)
+        book_obj = crud.create_book(title, author_num, description, cover_path, isbn)
+    
         books_in_db.append(book_obj)
     print(books_in_db)
 
@@ -106,5 +104,5 @@ if __name__ == '__main__':
     seed_locations('data/cities.csv')
     seed_genres('data/genres.txt')
     seed_authors('data/author_book_data.csv')
-    seed_books('data/silicon_valley_books.csv')
+    seed_books('data/sv_books.csv')
     seed_users()

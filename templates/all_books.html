@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<form id="genre_search" action="/book-list">
+<form id="genre_search" action="/books">
   <label for="genre">Filter by Genre:</label>
   <br>
     <select class="form-control" name="genre" id="genre">
@@ -27,6 +27,17 @@
       <option value="Travel">Travel</option>
     </select>
 </form>
+<br>
+
+<form id="title_search" action="/books">
+  <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
+  <br><br>
+
+  <input type="submit" \
+  class="submit_button"\
+  value="Search for title">
+
+</form>
 
 <ul>
 {% for book in books %}
@@ -38,5 +49,17 @@
 {% endfor %}
 </ul>
 
+<script>
+  var selectedGenre = "{{ genre }}";
+  if (selectedGenre !== "None") {
+    var optionToSelect = $("option[value=" + selectedGenre +"]");
+    optionToSelect.prop("selected", true);
+  }
+  
+  $("#genre").on("change", function (evt) {
+    $("#genre_search").submit();
+  });
+  
+</script>
 
 {% endblock body %}

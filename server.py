@@ -27,15 +27,15 @@ def index_page():
     return render_template('index.html')
 
 
+# @app.route('/books')
+# def all_books():
+#     """Display all books."""
+#     books = crud.get_all_books()
+
+#     return render_template("all_books.html", books=books)
+
+
 @app.route('/books')
-def all_books():
-    """Display all books."""
-    books = crud.get_all_books()
-
-    return render_template("all_books.html", books=books)
-
-
-@app.route('/book-list')
 def movie_list():
     """Show list of books. 
     If user selected genre: filter by genre.
@@ -57,7 +57,7 @@ def movie_list():
     else: 
         books = crud.get_all_books()
 
-    return render_template("book_list.html", 
+    return render_template("all_books.html", 
                             books=books, 
                             genre=user_genre)
 

@@ -19,6 +19,12 @@
   <span class="book_detail_content"> {{ book.description }}</span>
   <br>
 {% endif %}
+
+{% if book.isbn != "null"%}
+  <span class="book_detail_label">ISBN: </span> 
+  <span class="book_detail_content"> {{ book.isbn }}</span>
+  <br>
+{% endif %}
 <!-- <p>
   {{ book.description }}
 </p> -->

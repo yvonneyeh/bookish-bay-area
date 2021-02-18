@@ -77,7 +77,7 @@ def get_author_name_by_book_id(id):
     
 
 # BOOKS
-def create_book(title, author_id, description, cover_path):
+def create_book(title, author_id, description, cover_path, isbn):
     """Create and return a new book."""
 
     book = Book(
@@ -86,8 +86,8 @@ def create_book(title, author_id, description, cover_path):
                 description = description, 
                 # location = location,
                 # pub_date = pub_date, 
-                cover_path = cover_path 
-                # , isbn = isbn
+                cover_path = cover_path,
+                isbn = isbn
                 # , pages = pages
             )
         

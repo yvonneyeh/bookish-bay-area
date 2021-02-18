@@ -11,7 +11,7 @@
 {% block content %}
   <div class="container-fluid">
     <div class="col-sm-3">
-      <form id="genre_search" action="/book-list">
+      <form id="genre_search" action="/books">
         <label for="genre">Filter by Genre:</label>
         <br>
           <select class="form-control" name="genre" id="genre">
@@ -37,7 +37,7 @@
       </form>
 
       <br>
-      <form id="refresh_list" action="/book-list">
+      <form id="refresh_list" action="/books">
 
         <input type="submit" \
         class="btn btn-danger submit_button" \
@@ -45,7 +45,7 @@
         <br><br><br>
       </form>
 
-      <form id="title_search" action="/">
+      <form id="title_search" action="/books">
         <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
         <br><br>
 
@@ -67,8 +67,7 @@
               <td>
                 <span class="book_title"> {{ book.title }}
                 </span>
-                <span class="release_year"> ({{ movie.release_year}})
-                </span>
+              
               </td>
 
               <td>
@@ -80,7 +79,7 @@
               <td>
                 {% if book.genre %}
                   <span class="genres_for_a_book">
-                    {{ movie.genre }}
+                    {{ book.genre }}
                   </span>
                 {% endif %}
               </td>
