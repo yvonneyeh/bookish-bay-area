@@ -186,6 +186,9 @@ def get_all_locations():
 
     return Location.query.order_by(Location.name).all()
 
+def get_all_book_locations(book_id):
+    """Return all book locations."""
+    return BookLocation.query.filter(BookLocation.book_id == book_id).all()
 
 def get_location_by_name(name):
     """Return location given its name"""
@@ -203,6 +206,42 @@ def get_location_id_by_name(name):
     """Return location's ID given their name"""
 
     return db.session.query(Location.loc_id).filter(Location.name == name).first()
+
+
+def get_locations(book_id):
+    """ Retrieve book locations
+        Accepts book ID, returns locations formatted into 2 structures:
+
+        1. Location dictionary for locations with meaningful latitude & longitude
+        2. Location list for locations for which the Google maps API could not
+           identify a specific location from the description. For these locations, 
+           the Google maps API returns coordinates for Hackbright in San Francisco.
+           Load these locations into a list, to display without markers on the book
+           detail page, because the markers would be misleading.
+    """
+
+    locations = Location.query.filter_by(book_id=book_id).all()
+
+    location_dict = {}
+    location_list = [] 
+
+    for location in locations:
+        dict_key = str(location.lat) + str(location.lng)
+
+        if location.latitude == 37.786220 and location.longitude == -122.432210:
+            location_list.append(location.location_description)
+
+        # elif dict_key in location_dict: 
+        #     location_dict[dict_key]['desc'] += "; <p>" + location.location_description
+
+        else:
+
+            location_dict[dict_key] = {}
+            location_dict[dict_key]['lat'] = location.latitude
+            location_dict[dict_key]['lng'] = location.longitude
+            location_dict[dict_key]['name'] = location.name
+
+    return location_dict, location_list
 
 
 # RATINGS

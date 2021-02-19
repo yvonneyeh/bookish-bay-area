@@ -68,8 +68,13 @@ def show_book(book_id):
     
     author = crud.get_author_name_by_book_id(book_id)
     book = crud.get_book_by_id(book_id)
+    # location_dict, location_list = crud.get_locations(book_id)
 
-    return render_template("book_details.html", author=author, book=book)
+    return render_template("book_details.html", 
+                            author=author, 
+                            book=book)
+                            # book_locations=location_dict,
+                            # location_list=location_list)
 
 
 @app.route('/authors')

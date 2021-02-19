@@ -70,9 +70,9 @@ class Book(db.Model):
                                 secondary='book_genre',
                                 backref='books')
 
-    # loc_rel = db.relationship('Location',
-    #                             secondary='book_loc',
-    #                             backref='books')
+    loc_rel = db.relationship('Location',
+                                secondary='book_loc',
+                                backref='books')
 
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
@@ -168,8 +168,10 @@ class Location(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
-    book = db.relationship('Book', backref='locations')
-    user = db.relationship('User', backref='locations')
+    # book = db.relationship('Post', backref='author',
+    #                     primaryjoin="User.id == Location.user_id")
+    # book = db.relationship('Book', backref='locations', )
+    # user = db.relationship('User', backref='locations')
 
     def __repr__(self):
         return f'<Location loc_id={self.loc_id} name={self.name}>'
@@ -183,6 +185,11 @@ class BookLocation(db.Model):
     bl_id = db.Column(db.Integer, unique=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     loc_id = db.Column(db.Integer, db.ForeignKey('locations.loc_id'), nullable = False)
+
+    book_location_rel = db.relationship(
+                        'Book',
+                        backref=db.backref(
+                            'locations', order_by=loc_id))
 
     book_loc_rel = db.relationship(
                         'Book',
