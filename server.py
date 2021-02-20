@@ -20,11 +20,11 @@ def homepage():
     return render_template('homepage.html')
 
 
-@app.route('/index.html')
+@app.route('/map')
 def index_page():
-    """View homepage."""
+    """View Map."""
 
-    return render_template('index.html')
+    return render_template('map.html')
 
 
 @app.route('/login')
