@@ -27,6 +27,12 @@ def index_page():
     return render_template('index.html')
 
 
+@app.route('/login')
+def login():
+    """View Login page."""
+
+    return render_template('login.html')
+
 # @app.route('/books')
 # def all_books():
 #     """Display all books."""

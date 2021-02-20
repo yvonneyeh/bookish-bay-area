@@ -8,6 +8,7 @@
 
   <h3>Navigation</h3>
   <ul>
+    <li><a href="/login">Sign Up / Log In</a></li>
     <li><a href="/books">View all books</a></li>
     <li><a href="/authors">View all authors</a></li>
     <li><a href="/users">View all users</a></li>
@@ -24,33 +25,4 @@
 
   </form>
 
-  <h2>Create an Account</h2>
-  <form action="/users" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
-
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      <input type="submit">
-    </p>
-</form>
-
-  <h2>Log In</h2>
-  <form action="/login" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
-
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      <input type="submit">
-    </p>
-  </form>
 {% endblock %}
