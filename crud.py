@@ -61,6 +61,18 @@ def get_author_by_name(name):
 
     return Author.query.filter(Author.name == name).first() 
 
+# TODO: fix author search
+def get_author_books_by_search(user_author_search):
+    """ Get author's books based on author name search string. 
+    """
+
+    authors = Author.query.filter(Author.nane.like("%" + user_author_search + "%"))\
+        .join(Book, Book.author_id == Author.author_id)
+        .order_by(Book.title)\
+        .all()
+
+    return authors
+
 def get_author_id_by_name(name):
     """Return author's ID given their name"""
 
