@@ -5,6 +5,7 @@ from model import connect_to_db, Book
 from random import randint
 import faker
 import crud
+import helper
 
 from jinja2 import StrictUndefined
 
@@ -54,11 +55,11 @@ def movie_list():
 
     if 'genre' in request.args:
         user_genre = request.args['genre']
-        books = crud.get_books_by_genre(user_genre)
+        books = helper.get_books_by_genre(user_genre)
 
     elif 'title_search' in request.args:
         user_title_search = request.args['title_search']
-        books = crud.get_books_by_title(user_title_search)
+        books = helper.get_books_by_title(user_title_search)
         
     else: 
         books = crud.get_all_books()

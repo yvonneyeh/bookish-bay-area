@@ -61,17 +61,17 @@ def get_author_by_name(name):
 
     return Author.query.filter(Author.name == name).first() 
 
-# TODO: fix author search
-def get_author_books_by_search(user_author_search):
-    """ Get author's books based on author name search string. 
-    """
+# # TODO: fix author search
+# def get_author_books_by_search(user_author_search):
+#     """ Get author's books based on author name search string. 
+#     """
 
-    authors = Author.query.filter(Author.nane.like("%" + user_author_search + "%"))\
-        .join(Book, Book.author_id == Author.author_id)
-        .order_by(Book.title)\
-        .all()
+#     authors = Author.query.filter(Author.nane.like("%" + user_author_search + "%"))\
+#         .join(Book, Book.author_id == Author.author_id)\
+#         .order_by(Book.title)\
+#         .all()
 
-    return authors
+#     return authors
 
 def get_author_id_by_name(name):
     """Return author's ID given their name"""
@@ -122,29 +122,29 @@ def get_book_by_id(book_id):
     return Book.query.filter(Book.book_id == book_id).first() 
 
 
-def get_books_by_title(user_title_search):
-    """ Get books based on title search string. 
-    """
+# def get_books_by_title(user_title_search):
+#     """ Get books based on title search string. 
+#     """
 
-    books = Book.query.filter(Book.title.like("%" + user_title_search + "%"))\
-        .order_by(Book.title)\
-        .all()
+#     books = Book.query.filter(Book.title.like("%" + user_title_search + "%"))\
+#         .order_by(Book.title)\
+#         .all()
 
-    return books
+#     return books
 
-def get_books_by_genre(user_genre):
-    """ Get subset of books based on genre. 
-        Accepts genre entered by user, returns books.
+# def get_books_by_genre(user_genre):
+#     """ Get subset of books based on genre. 
+#         Accepts genre entered by user, returns books.
 
-    """
-    if user_genre == 'All':
-        books = Book.query.order_by(Book.title).all()
-    else:
-        books = Book.query.filter(Book.book.like("%" + user_genre + "%"))\
-            .order_by(Book.title)\
-            .all()
+#     """
+#     if user_genre == 'All':
+#         books = Book.query.order_by(Book.title).all()
+#     else:
+#         books = Book.query.filter(Book.book.like("%" + user_genre + "%"))\
+#             .order_by(Book.title)\
+#             .all()
 
-    return movies
+#     return movies
 
 # GENRES
 def create_genre(name):
@@ -220,40 +220,40 @@ def get_location_id_by_name(name):
     return db.session.query(Location.loc_id).filter(Location.name == name).first()
 
 
-def get_locations(book_id):
-    """ Retrieve book locations
-        Accepts book ID, returns locations formatted into 2 structures:
+# def get_locations(book_id):
+#     """ Retrieve book locations
+#         Accepts book ID, returns locations formatted into 2 structures:
 
-        1. Location dictionary for locations with meaningful latitude & longitude
-        2. Location list for locations for which the Google maps API could not
-           identify a specific location from the description. For these locations, 
-           the Google maps API returns coordinates for Hackbright in San Francisco.
-           Load these locations into a list, to display without markers on the book
-           detail page, because the markers would be misleading.
-    """
+#         1. Location dictionary for locations with meaningful latitude & longitude
+#         2. Location list for locations for which the Google maps API could not
+#            identify a specific location from the description. For these locations, 
+#            the Google maps API returns coordinates for Hackbright in San Francisco.
+#            Load these locations into a list, to display without markers on the book
+#            detail page, because the markers would be misleading.
+#     """
 
-    locations = Location.query.filter_by(book_id=book_id).all()
+#     locations = Location.query.filter_by(book_id=book_id).all()
 
-    location_dict = {}
-    location_list = [] 
+#     location_dict = {}
+#     location_list = [] 
 
-    for location in locations:
-        dict_key = str(location.lat) + str(location.lng)
+#     for location in locations:
+#         dict_key = str(location.lat) + str(location.lng)
 
-        if location.latitude == 37.786220 and location.longitude == -122.432210:
-            location_list.append(location.location_description)
+#         if location.latitude == 37.786220 and location.longitude == -122.432210:
+#             location_list.append(location.location_description)
 
-        # elif dict_key in location_dict: 
-        #     location_dict[dict_key]['desc'] += "; <p>" + location.location_description
+#         # elif dict_key in location_dict: 
+#         #     location_dict[dict_key]['desc'] += "; <p>" + location.location_description
 
-        else:
+#         else:
 
-            location_dict[dict_key] = {}
-            location_dict[dict_key]['lat'] = location.latitude
-            location_dict[dict_key]['lng'] = location.longitude
-            location_dict[dict_key]['name'] = location.name
+#             location_dict[dict_key] = {}
+#             location_dict[dict_key]['lat'] = location.latitude
+#             location_dict[dict_key]['lng'] = location.longitude
+#             location_dict[dict_key]['name'] = location.name
 
-    return location_dict, location_list
+#     return location_dict, location_list
 
 
 # RATINGS
