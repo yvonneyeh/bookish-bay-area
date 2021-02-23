@@ -4,6 +4,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
+
 db = SQLAlchemy()
 
 app = Flask(__name__)
@@ -38,6 +40,8 @@ class Book(db.Model):
     """A book."""
 
     __tablename__ = "books"
+
+    # __searchable__ = ['title', 'description', 'pub_date', 'isbn']
 
     # TODO: ADD NULLABLES , nullable = False to title, author_id, isbn
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
@@ -102,6 +106,8 @@ class Author(db.Model):
 
     __tablename__ = "authors"
 
+    # __searchable__ = ['name']
+
     author_id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String)
 
@@ -163,6 +169,8 @@ class Location(db.Model):
 
     __tablename__ = "locations"
 
+    # __searchable__ = ['name']
+
     loc_id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String)
     lat = db.Column(db.Float)
@@ -206,6 +214,7 @@ class BookLocation(db.Model):
         return f'<BookLocation book_id={self.book_id} loc_id={self.loc_id}>'
 
 
+# wa.whoosh_index(app, Book, Author, Location)
 
 ##################################################
 
@@ -215,9 +224,13 @@ def connect_to_db(app):
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
     app.config['SQLALCHEMY_ECHO'] = False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # Change to False when done. Whoosh to True to know when something has changed in DB
+    # app.config['DEBUG'] = True # Debug mode, remove when done
+    # app.config['WHOOSH_BASE'] = 'whoosh'
     db.app = app
     db.init_app(app)
+
+
 
 
 if __name__ == '__main__':

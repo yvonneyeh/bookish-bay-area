@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, Book
+from sqlalchemy_searchable import search
 from random import randint
 import faker
 import crud
@@ -146,6 +147,10 @@ def create_account():
 @app.route('/login', methods=['POST'])
 def log_in_user():
     """Login user and redirect to homepage."""
+
+    username = request.form.get('username')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
     email = request.form.get('email')
     password = request.form.get('password')
 
