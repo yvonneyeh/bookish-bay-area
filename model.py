@@ -70,9 +70,13 @@ class Book(db.Model):
                                 'Author',
                                 backref=db.backref('books', order_by=book_id))
 
-    loc_rel = db.relationship(
-                                'Location',
-                                backref=db.backref('books', order_by=book_id))
+
+    # location = db.relationship('Location', backref='book_loc')
+
+
+    # loc_rel = db.relationship(
+    #                             'Location',
+    #                             backref=db.backref('books', order_by=book_id))
 
     # genre_rel = db.relationship(
     #                             'Genre',
@@ -82,9 +86,9 @@ class Book(db.Model):
                                 secondary='book_genre',
                                 backref='books')
 
-    loc_rel = db.relationship('Location',
-                                secondary='book_loc',
-                                backref='books')
+    # loc_rel = db.relationship('Location',
+    #                             secondary='book_loc',
+    #                             backref='books')
 
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
@@ -184,7 +188,7 @@ class Location(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
-    # book = db.relationship('Book', secondary='book_loc', backref='locations')
+    # book = db.relationship('Book', backref='locations')
 
     # book = db.relationship('Post', backref='author',
     #                     primaryjoin="User.id == Location.user_id")
@@ -204,9 +208,22 @@ class BookLocation(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     loc_id = db.Column(db.Integer, db.ForeignKey('locations.loc_id'), nullable = False)
 
-    book_loc_rel = db.relationship('Book',
-                                backref=db.backref(
-                                'locations', order_by=loc_id))
+
+    location = db.relationship(
+                                'Location',
+                                backref=db.backref('book_loc', order_by=book_id))
+
+    book = db.relationship(
+                                'Book',
+                                backref=db.backref('book_loc', order_by=book_id))
+
+    # book_loc_rel = db.relationship('Book',
+    #                             backref=db.backref(
+    #                             'locations'))
+
+    # book = db.relationship('Book', backref='book_loc')
+    # location = db.relationship('Location', backref='book_loc')
+
 
     # book_location_rel = db.relationship(
     #                     'Book',

@@ -18,10 +18,11 @@ def get_books_by_genre(user_genre):
         Accepts genre entered by user, returns books.
 
     """
+ 
     if user_genre == 'All':
         books = Book.query.order_by(Book.title).all()
     else:
-        books = Book.query.filter(Book.book.like("%" + user_genre + "%"))\
+        books = Book.query.filter(Book.genre_rel.like("%" + user_genre + "%"))\
             .order_by(Book.title)\
             .all()
 
@@ -32,6 +33,13 @@ def get_books_by_genre(user_genre):
 def get_author_books_by_search(user_author_search):
     """ Get author's books based on author name search string. 
     """
+
+    # TODO:
+    # change all upper/lower - str.lower() == title.lower()
+    # if any of the words match - 
+    # is query string in the title??
+    # .any
+
 
     authors = Author.query.filter(Author.nane.like("%" + user_author_search + "%"))\
         .join(Book, Book.author_id == Author.author_id)\
@@ -52,26 +60,27 @@ def get_locations(book_id):
            detail page, because the markers would be misleading.
     """
 
-    locations = BookLocation.query.filter_by(book_id=book_id).all()
+    locations = db.session.query(BookLocation).filter_by(book_id=book_id).all() # this is a list
+    print(locations)
 
     location_dict = {}
     location_list = [] 
 
-    for location in locations:
-        dict_key = str(location.lat) + str(location.lng)
+    for loc in locations:
+        dict_key = str(loc.location.lat) + str(loc.location.lng)
         # dict_key = str(location.books.lat) + str(location.books.lng)
 
-        if location.latitude == 37.786220 and location.longitude == -122.432210:
-            location_list.append(location.location_description)
+        # if location.latitude == 37.786220 and location.longitude == -122.432210:
+        #     location_list.append(location.location_description)
 
         # elif dict_key in location_dict: 
         #     location_dict[dict_key]['desc'] += "; <p>" + location.location_description
 
-        else:
+        # else:
 
-            location_dict[dict_key] = {}
-            location_dict[dict_key]['lat'] = location.latitude
-            location_dict[dict_key]['lng'] = location.longitude
-            location_dict[dict_key]['name'] = location.name
+        #     location_dict[dict_key] = {}
+        #     location_dict[dict_key]['lat'] = location.latitude
+        #     location_dict[dict_key]['lng'] = location.longitude
+        #     location_dict[dict_key]['name'] = location.name
 
     return location_dict, location_list

@@ -220,6 +220,21 @@ def get_location_id_by_name(name):
     return db.session.query(Location.loc_id).filter(Location.name == name).first()
 
 
+def get_locations(book_id):
+    """ Retrieve book locations
+        Accepts book ID, returns locations formatted into 2 structures:
+
+        1. Location dictionary for locations with meaningful latitude & longitude
+        2. Location list for locations for which the Google maps API could not
+           identify a specific location from the description. For these locations, 
+           the Google maps API returns coordinates for Hackbright in San Francisco.
+           Load these locations into a list, to display without markers on the book
+           detail page, because the markers would be misleading.
+    """
+
+    locations = db.session.query(BookLocation).filter_by(book_id=book_id).all()
+    print(locations)
+
 # def get_locations(book_id):
 #     """ Retrieve book locations
 #         Accepts book ID, returns locations formatted into 2 structures:
