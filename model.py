@@ -63,7 +63,7 @@ class Book(db.Model):
     
     # relationships
     # ratings = a list of Rating objects
-    # locations = a list of Location objects
+    # locations = a list of Location objects, with secondary book_loc
    
     # association table relationships
     author_rel = db.relationship(
@@ -184,6 +184,8 @@ class Location(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
 
+    # book = db.relationship('Book', secondary='book_loc', backref='locations')
+
     # book = db.relationship('Post', backref='author',
     #                     primaryjoin="User.id == Location.user_id")
     # book = db.relationship('Book', backref='locations', )
@@ -202,20 +204,24 @@ class BookLocation(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     loc_id = db.Column(db.Integer, db.ForeignKey('locations.loc_id'), nullable = False)
 
-    book_location_rel = db.relationship(
-                        'Book',
-                        backref=db.backref(
-                            'locations', order_by=loc_id))
+    book_loc_rel = db.relationship('Book',
+                                backref=db.backref(
+                                'locations', order_by=loc_id))
 
-    book_loc_rel = db.relationship(
-                        'Book',
-                        backref=db.backref(
-                            'book_location', order_by=loc_id))
+    # book_location_rel = db.relationship(
+    #                     'Book',
+    #                     backref=db.backref(
+    #                         'locations', order_by=loc_id))
 
-    loc_rel = db.relationship(
-                        'Location',
-                        backref=db.backref(
-                            'book_location', order_by=book_id))
+    # book_loc_rel = db.relationship(
+    #                     'Book',
+    #                     backref=db.backref(
+    #                         'book_loc', order_by=loc_id))
+
+    # loc_rel = db.relationship(
+    #                     'Location',
+    #                     backref=db.backref(
+    #                         'book_loc', order_by=book_id))
 
 
     def __repr__(self):

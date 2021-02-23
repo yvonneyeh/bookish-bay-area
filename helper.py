@@ -25,7 +25,7 @@ def get_books_by_genre(user_genre):
             .order_by(Book.title)\
             .all()
 
-    return movies
+    return books
     
     
 # TODO: fix author search
@@ -52,13 +52,14 @@ def get_locations(book_id):
            detail page, because the markers would be misleading.
     """
 
-    locations = Location.query.filter_by(book_id=book_id).all()
+    locations = BookLocation.query.filter_by(book_id=book_id).all()
 
     location_dict = {}
     location_list = [] 
 
     for location in locations:
         dict_key = str(location.lat) + str(location.lng)
+        # dict_key = str(location.books.lat) + str(location.books.lng)
 
         if location.latitude == 37.786220 and location.longitude == -122.432210:
             location_list.append(location.location_description)

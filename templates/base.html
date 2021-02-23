@@ -10,8 +10,10 @@
     <a href="/">Bookish Home</a>
     {% block head %}
     {% endblock %}
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
+    <script src="https://code.jquery.com/jquery.js"></script>
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
       {{ msg }}
