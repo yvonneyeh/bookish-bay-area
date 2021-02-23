@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, Book
 from sqlalchemy_searchable import search
+from datetime import date, datetime
 from random import randint
 import faker
 import crud
@@ -132,13 +133,17 @@ def all_users():
 def create_account():
     """Create a new user account."""
 
-    password = request.form.get('password')
+    username = request.form.get('username')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
     email = request.form.get('email')
+    password = request.form.get('password')
+    join_date = datetime.today()
 
     if crud.get_user_by_email(email) != None:
         flash('Email exists. Please sign up with a different email.')
     else:
-        crud.create_user(email, password)
+        crud.create_user(email, first_name, last_name, username, password, join_date)
         flash('Account created successfully!')
 
     return redirect('/')
@@ -148,9 +153,6 @@ def create_account():
 def log_in_user():
     """Login user and redirect to homepage."""
 
-    username = request.form.get('username')
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
     email = request.form.get('email')
     password = request.form.get('password')
 
