@@ -26,106 +26,13 @@ def homepage():
     return render_template('homepage.html')
 
 
-@app.route('/map')
-def index_page():
-    """View Map."""
-
-    return render_template('map.html', MAPS_JS_KEY=MAPS_JS_KEY)
-
+# ---------- ACCOUNT-RELATED ROUTES ---------- #
 
 @app.route('/login')
 def login():
     """View Login page."""
 
     return render_template('login.html')
-
-# @app.route('/books')
-# def all_books():
-#     """Display all books."""
-#     books = crud.get_all_books()
-
-#     return render_template("all_books.html", books=books)
-
-
-@app.route('/books')
-def show_book_list():
-    """Show list of books. 
-    If user selected genre: filter by genre.
-    Else: If user entered title search, filter by title
-    Else: display entire book list.
-    """
-    
-    user_genre = None
-    user_title_search = None
-
-    if 'genre' in request.args:
-        user_genre = request.args['genre']
-        books = helper.get_books_by_genre(user_genre)
-
-    elif 'title_search' in request.args:
-        user_title_search = request.args['title_search']
-        books = helper.get_books_by_title(user_title_search)
-
-        if books == None:
-            flash('No results found')
-        
-    else: 
-        books = crud.get_all_books()
-
-    return render_template("all_books.html", 
-                            books=books, 
-                            genre=user_genre)
-
-
-@app.route('/books/<int:book_id>')
-def show_book(book_id):
-    """Show details for a book."""
-    
-    author = crud.get_author_name_by_book_id(book_id)
-    book = crud.get_book_by_id(book_id)
-    location_dict, location_list = helper.get_locations(book_id)
-
-    return render_template("book_details.html", 
-                            author=author, 
-                            book=book,
-                            book_locations=location_dict,
-                            location_list=location_list, 
-                            MAPS_JS_KEY=MAPS_JS_KEY)
-
-
-@app.route('/authors')
-def all_authors():
-    """Display all authors."""
-    authors = crud.get_all_authors()
-
-    return render_template("all_authors.html", authors=authors)
-
-
-@app.route('/authors/<int:author_id>')
-def show_author(author_id):
-    """Show details for an author."""
-    
-    author = crud.get_author_by_id(author_id)
-
-    return render_template("author_details.html", author=author)
-
-
-
-@app.route('/locations')
-def all_locations():
-    """Display all locations."""
-    locations = crud.get_all_locations()
-
-    return render_template("all_locations.html", locations=locations)
-
-
-@app.route('/locations/<int:loc_id>')
-def show_location(loc_id):
-    """Show details for a location."""
-    
-    location = crud.get_location_by_id(loc_id)
-
-    return render_template("loc_details.html", location=location)
 
 
 @app.route('/users')
@@ -184,6 +91,101 @@ def show_user(username):
     user = crud.get_user_by_id(username)
 
     return render_template("user_details.html", user=user)
+
+
+# ---------- BOOK-RELATED ROUTES ---------- #
+
+@app.route('/books')
+def show_book_list():
+    """Show list of books. 
+    If user selected genre: filter by genre.
+    Else: If user entered title search, filter by title
+    Else: display entire book list.
+    """
+    
+    user_genre = None
+    user_title_search = None
+
+    if 'genre' in request.args:
+        user_genre = request.args['genre']
+        books = helper.get_books_by_genre(user_genre)
+
+    elif 'title_search' in request.args:
+        user_title_search = request.args['title_search']
+        books = helper.get_books_by_title(user_title_search)
+
+        if books == None:
+            flash('No results found')
+        
+    else: 
+        books = crud.get_all_books()
+
+    return render_template("all_books.html", 
+                            books=books, 
+                            genre=user_genre)
+
+
+@app.route('/books/<int:book_id>')
+def show_book(book_id):
+    """Show details for a book."""
+    
+    author = crud.get_author_name_by_book_id(book_id)
+    book = crud.get_book_by_id(book_id)
+    location_dict, location_list = helper.get_locations(book_id)
+
+    return render_template("book_details.html", 
+                            author=author, 
+                            book=book,
+                            book_locations=location_dict,
+                            location_list=location_list, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
+
+
+# ---------- AUTHOR-RELATED ROUTES ---------- #
+
+@app.route('/authors')
+def all_authors():
+    """Display all authors."""
+    authors = crud.get_all_authors()
+
+    return render_template("all_authors.html", authors=authors)
+
+
+@app.route('/authors/<int:author_id>')
+def show_author(author_id):
+    """Show details for an author."""
+    
+    author = crud.get_author_by_id(author_id)
+
+    return render_template("author_details.html", author=author)
+
+
+# ---------- LOCATION-RELATED ROUTES ---------- #
+
+@app.route('/map')
+def index_page():
+    """View Map."""
+
+    return render_template('map.html', MAPS_JS_KEY=MAPS_JS_KEY)
+
+@app.route('/locations')
+def all_locations():
+    """Display all locations."""
+    locations = crud.get_all_locations()
+
+    return render_template("all_locations.html", locations=locations)
+
+
+@app.route('/locations/<int:loc_id>')
+def show_location(loc_id):
+    """Show details for a location."""
+    
+    location = crud.get_location_by_id(loc_id)
+
+    return render_template("loc_details.html", location=location)
+
+
+
 
 
 if __name__ == '__main__':
