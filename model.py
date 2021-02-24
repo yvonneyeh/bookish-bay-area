@@ -70,18 +70,6 @@ class Book(db.Model):
                                 'Author',
                                 backref=db.backref('books', order_by=book_id))
 
-
-    # location = db.relationship('Location', backref='book_loc')
-
-
-    # loc_rel = db.relationship(
-    #                             'Location',
-    #                             backref=db.backref('books', order_by=book_id))
-
-    # genre_rel = db.relationship(
-    #                             'Genre',
-    #                             backref=db.backref('books', order_by=book_id))
-
     genre_rel = db.relationship('Genre',
                                 secondary='book_genre',
                                 backref='books')

@@ -1,5 +1,6 @@
 """Server for Bookish Bay Area app."""
 
+import os
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, Book
 from sqlalchemy_searchable import search
@@ -10,6 +11,8 @@ import crud
 import helper
 
 from jinja2 import StrictUndefined
+
+MAPS_JS_KEY = os.environ['MAPS_JS_KEY']
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -27,7 +30,7 @@ def homepage():
 def index_page():
     """View Map."""
 
-    return render_template('map.html')
+    return render_template('map.html', MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/login')
@@ -45,7 +48,7 @@ def login():
 
 
 @app.route('/books')
-def movie_list():
+def show_book_list():
     """Show list of books. 
     If user selected genre: filter by genre.
     Else: If user entered title search, filter by title
@@ -62,6 +65,9 @@ def movie_list():
     elif 'title_search' in request.args:
         user_title_search = request.args['title_search']
         books = helper.get_books_by_title(user_title_search)
+
+        if books == None:
+            flash('No results found')
         
     else: 
         books = crud.get_all_books()
@@ -81,9 +87,10 @@ def show_book(book_id):
 
     return render_template("book_details.html", 
                             author=author, 
-                            book=book)
-                            # book_locations=location_dict,
-                            # location_list=location_list)
+                            book=book,
+                            book_locations=location_dict,
+                            location_list=location_list, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/authors')

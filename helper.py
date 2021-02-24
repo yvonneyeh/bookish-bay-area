@@ -70,17 +70,17 @@ def get_locations(book_id):
         dict_key = str(loc.location.lat) + str(loc.location.lng)
         # dict_key = str(location.books.lat) + str(location.books.lng)
 
-        # if location.latitude == 37.786220 and location.longitude == -122.432210:
-        #     location_list.append(location.location_description)
+        if loc.location.lat == 37.786220 and loc.location.lng == -122.432210:
+            location_list.append(location.location_description)
 
-        # elif dict_key in location_dict: 
-        #     location_dict[dict_key]['desc'] += "; <p>" + location.location_description
+        elif dict_key in location_dict: 
+            location_dict[dict_key]['desc'] += "; <p>" + location.location_description
 
-        # else:
+        else:
 
-        #     location_dict[dict_key] = {}
-        #     location_dict[dict_key]['lat'] = location.latitude
-        #     location_dict[dict_key]['lng'] = location.longitude
-        #     location_dict[dict_key]['name'] = location.name
+            location_dict[dict_key] = {}
+            location_dict[dict_key]['lat'] = loc.location.lat
+            location_dict[dict_key]['lng'] = loc.location.lng
+            location_dict[dict_key]['name'] = loc.location.name
 
     return location_dict, location_list
