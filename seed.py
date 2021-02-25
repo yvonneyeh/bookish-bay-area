@@ -116,12 +116,18 @@ def seed_book_locs():
 
 if __name__ == '__main__':
     model.connect_to_db(server.app)
+
+    # Create tables if not already created. Delete all existing entries in tables.
     model.db.create_all()
 
-    
+    print("Tables created. Deleting all rows and creating new seed data.")
+
+    # Seed sample data into the database
     seed_locations('data/cities.csv')
     seed_genres('data/genres.txt')
     seed_authors('data/author_book_data.csv')
     seed_books('data/sv_books.csv')
     seed_book_locs()
     seed_users()
+
+    print("Sample data seeded")
