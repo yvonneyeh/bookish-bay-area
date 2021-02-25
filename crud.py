@@ -198,14 +198,17 @@ def create_location(name, lat, lng):
 
     return location
 
+
 def get_all_locations():
     """Return all locations."""
 
     return Location.query.order_by(Location.name).all()
 
+
 def get_all_book_locations(book_id):
     """Return all book locations."""
     return BookLocation.query.filter(BookLocation.book_id == book_id).all()
+
 
 def get_location_by_name(name):
     """Return location given its name"""
@@ -287,6 +290,18 @@ def create_rating(user_id, book_id, log_date, score):
     db.session.commit()
 
     return rating
+
+
+def get_all_ratings():
+    """Return all ratings."""
+
+    return Rating.query.all()
+
+
+def get_rating_by_id(rating_id):
+    """Return rating given its ID"""
+
+    return Rating.query.filter(Rating.rating_id == rating_id).one() 
 
 def get_user_ratings(username):
     """Get user's saved book ratings."""

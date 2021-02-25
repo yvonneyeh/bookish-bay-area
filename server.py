@@ -26,7 +26,7 @@ def homepage():
     return render_template('homepage.html')
 
 
-# ---------- ACCOUNT-RELATED ROUTES ---------- #
+# ---------- ACCOUNT ROUTES ---------- #
 
 @app.route("/register")
 def reg_form():
@@ -58,6 +58,15 @@ def register_user():
         flash("User created!")
 
         return redirect("/login")
+
+    # If account does exist, flash message to indicating email or username exists.
+    else:
+        if User.query.filter_by(email=email).all():
+            flash(f"There's already an account associated with {email}")
+        else:
+            flash(f"The username {username} is already taken")
+
+        return redirect("/register")
 
 @app.route('/login')
 def login():
@@ -126,7 +135,7 @@ def show_user(username):
     return render_template("user_details.html", user=user, ratings=ratings)
 
 
-# ---------- BOOK-RELATED ROUTES ---------- #
+# ---------- BOOK ROUTES ---------- #
 
 @app.route('/books')
 def show_book_list():
@@ -174,7 +183,7 @@ def show_book(book_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
-# ---------- AUTHOR-RELATED ROUTES ---------- #
+# ---------- AUTHOR ROUTES ---------- #
 
 @app.route('/authors')
 def all_authors():
@@ -193,7 +202,7 @@ def show_author(author_id):
     return render_template("author_details.html", author=author)
 
 
-# ---------- LOCATION-RELATED ROUTES ---------- #
+# ---------- LOCATION ROUTES ---------- #
 
 @app.route('/map')
 def index_page():
@@ -220,9 +229,28 @@ def show_location(loc_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
+# ---------- RATING ROUTES ---------- #
 
 
-# ---------- AJAX-RELATED ROUTES ---------- #
+@app.route('/ratings')
+def all_ratings():
+    """Display all ratings."""
+    ratings = crud.get_all_ratings()
+
+    return render_template("all_ratings.html", ratings=ratings)
+
+
+@app.route('/ratings/<int:rating_id>')
+def show_rating(rating_id):
+    """Show details for a location."""
+    
+    rating = crud.get_rating_by_id(rating_id)
+
+    return render_template("rating_details.html", 
+                            rating=rating)
+
+
+# ---------- AJAX / JSON ROUTES ---------- #
 
 @app.route("/user/loggedin")
 def is_user_logged_in():

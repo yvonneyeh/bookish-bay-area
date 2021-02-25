@@ -99,8 +99,12 @@ class Rating(db.Model):
     # book_id, user_id, log_date, score
 
     # relationships
-    book = db.relationship('Book', backref='ratings')
+    # book = db.relationship('Book', backref='ratings')
     user = db.relationship('User', backref='ratings')
+
+    book = db.relationship(
+                                'Book',
+                                backref=db.backref('ratings', order_by=book_id))
 
     def __repr__(self):
         return f'<Rating rating_id={self.rating_id} book_id={self.book_id} score={self.score}>'
