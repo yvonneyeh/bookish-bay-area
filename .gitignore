@@ -1,3 +1,6 @@
 env
 temp
 secrets.sh
+.DS_Store
+*pycache*
+*.sql
