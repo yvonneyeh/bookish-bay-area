@@ -214,7 +214,10 @@ def show_location(loc_id):
     
     location = crud.get_location_by_id(loc_id)
 
-    return render_template("loc_details.html", location=location)
+    return render_template("loc_details.html", 
+                            location=location, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
+
 
 
 

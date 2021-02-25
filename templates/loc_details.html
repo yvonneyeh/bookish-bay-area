@@ -11,3 +11,72 @@
 
 
 {% endblock %}
+
+{% block map %}
+<div id="map-canvas" style="height:500px"></div>
+<script>
+function initialize() {
+
+  var defaultLocation = new google.maps.LatLng({{ location.lat }},{{ location.lng }})
+
+  var contentString =
+      '<div id="content">'+ "<p></p>"+'</div>';
+
+  var mapOptions = {
+    zoom: 12,
+    center: defaultLocation
+  };
+
+  var map = new google.maps.Map(
+      document.getElementById('map-canvas'),
+      mapOptions);
+
+  var infoWindow = new google.maps.InfoWindow({
+      maxwidth: 200
+  });
+
+
+  // Attach markers to location
+        var location, marker, contentString;
+
+            // Define the marker
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(location.lat, location.lng),
+                map: map,
+                title: location.desc
+            });
+
+            // Define the content of the infoWindow
+            contentString = (
+                '<div class="window-content">' +
+                    location.desc +
+                '</div>');
+
+      // Inside the loop call bindInfoWindow passing it the marker,
+      // map, infoWindow and contentString
+      bindInfoWindow(marker, map, infoWindow, contentString);
+    }
+
+// This function is outside the for loop.
+    // When a marker is clicked it closes any currently open infowindows
+    // Sets the content for the new marker with the content passed through
+    // then it open the infoWindow with the new content on the marker that's clicked
+    function bindInfoWindow(marker, map, infoWindow, html) {
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.close();
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+        });
+    }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<!-- Google Maps JS API script -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMap">
+</script>
+
+{% endblock %}
