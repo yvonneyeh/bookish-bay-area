@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 # make_searchable()
 
+# classes (User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
 
 class User(db.Model):
     """A user."""
@@ -30,6 +31,7 @@ class User(db.Model):
     last_name = db.Column(db.String)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
+    password_hash = db.Column(db.String(120))
     join_date = db.Column(db.DateTime)
 
     # Password hashing functions

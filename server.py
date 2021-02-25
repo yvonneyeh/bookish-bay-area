@@ -2,7 +2,7 @@
 
 import os
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
-from model import connect_to_db, Book
+from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
 from sqlalchemy_searchable import search
 from datetime import date, datetime
 from random import randint
@@ -28,11 +28,63 @@ def homepage():
 
 # ---------- ACCOUNT-RELATED ROUTES ---------- #
 
+@app.route("/register")
+def reg_form():
+    """Display registration form"""
+
+    return render_template("register.html")
+
+
+@app.route("/register", methods=["POST"])
+def register_user():
+    """Creates new user if user does not yet exist"""
+
+    username = request.form.get("username")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    # Validate if username or email already exists in users table in database
+    if not crud.get_user_by_email_id(email, username):
+
+        user = User(username=username, email=email)
+
+        user.set_password(password)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash("User created!")
+
+        return redirect("/login")
+
 @app.route('/login')
 def login():
     """View Login page."""
 
     return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def log_in_user():
+    """Login user and redirect to homepage."""
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    user_object = crud.get_user_by_id(username)
+
+    if user_object != None:
+        if password == user_object.password != None:
+            session['username'] = user_object.username
+            # print('Logged in!')
+            flash('Logged in!')
+        else:
+            flash('Incorrect password')   
+    else:
+        flash('Username does not exist. Please register for an account.')
+    
+    return redirect('/')
 
 
 @app.route('/users')
@@ -63,26 +115,6 @@ def create_account():
     return redirect('/')
 
 
-@app.route('/login', methods=['POST'])
-def log_in_user():
-    """Login user and redirect to homepage."""
-
-    email = request.form.get('email')
-    password = request.form.get('password')
-
-    user_object = crud.get_user_by_email(email)
-
-    if user_object != None:
-        if password == user_object.password != None:
-            session['username'] = user_object.username
-            # print('Logged in!')
-            flash('Logged in!')
-        else:
-            flash('Incorrect password')   
-    else:
-        flash('Email does not exist. Please sign up above.')
-    
-    return redirect('/')
 
 
 @app.route('/users/<username>')
@@ -185,6 +217,18 @@ def show_location(loc_id):
     return render_template("loc_details.html", location=location)
 
 
+
+# ---------- AJAX-RELATED ROUTES ---------- #
+
+@app.route("/user/loggedin")
+def is_user_logged_in():
+    """Check if user is logged in"""
+
+    if "user_id" in session:
+        return "true"
+
+    else:
+        return "false"
 
 
 

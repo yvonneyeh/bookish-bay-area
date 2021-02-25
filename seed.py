@@ -29,9 +29,9 @@ def seed_users():
         first_name = fake.first_name()
         last_name = fake.last_name()
         username = f'{first_name}{last_name}'
-        password = 'test'
+        password_hash = 'test'
         join_date = datetime.today()
-        new_user = crud.create_user(email, first_name, last_name, username, password, join_date)
+        new_user = crud.create_user(email, first_name, last_name, username, password_hash, join_date)
 
 genres_in_db = []
 def seed_genres(filename):

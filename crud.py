@@ -31,6 +31,11 @@ def get_user_by_id(username):
 
     return User.query.filter(User.username == username).one() 
 
+def get_user_by_email_id(email, username):
+
+    return User.query.filter((User.email == email) |
+                             (User.username == username)).all()
+
 
 # AUTHORS
 def create_author(name):
