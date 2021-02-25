@@ -277,15 +277,23 @@ def get_locations(book_id):
 
 
 # RATINGS
-def create_rating(user, book, score):
+def create_rating(user_id, book_id, log_date, score):
     """Create and return a new book rating."""
 
-    rating = Rating(user=user, book=book, score=score)
+
+    rating = Rating(user_id=user_id, book_id=book_id, score=score)
     
     db.session.add(rating)
     db.session.commit()
 
     return rating
+
+def get_user_ratings(username):
+    """Get user's saved book ratings."""
+
+    ratings = Rating.query.filter((Rating.username == username)).all()
+
+    return ratings
 
 
 if __name__ == '__main__':

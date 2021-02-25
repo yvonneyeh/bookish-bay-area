@@ -121,8 +121,9 @@ def create_account():
 def show_user(username):
     """Show details for a user"""
     user = crud.get_user_by_id(username)
+    ratings = crud.get_user_ratings(username)
 
-    return render_template("user_details.html", user=user)
+    return render_template("user_details.html", user=user, ratings=ratings)
 
 
 # ---------- BOOK-RELATED ROUTES ---------- #

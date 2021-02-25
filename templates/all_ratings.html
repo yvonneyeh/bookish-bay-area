@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}All Ratings{% endblock %}
+
+{% block body %}
+<ul>
+{% for rating in ratings %}
+
+  <li>
+      <a href="/ratings/{{rating.rating_id}}">{{ rating.book_id }}</a> - Score: {{ rating.score }}
+  </li>
+  
+{% endfor %}
+</ul>
+{% endblock body %}

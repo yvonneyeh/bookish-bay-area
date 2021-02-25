@@ -22,9 +22,9 @@ fake = Faker()
 # f1 = open('data/test_book_data.csv')
 # f2 = open('data/silicon_valley_books.csv')
 
-
+users_in_db = []
 def seed_users():
-    for n in range(10):
+    for n in range(20):
         email = f'reader{n}@books.book'
         first_name = fake.first_name()
         last_name = fake.last_name()
@@ -32,6 +32,19 @@ def seed_users():
         password_hash = 'test'
         join_date = datetime.today()
         new_user = crud.create_user(email, first_name, last_name, username, password_hash, join_date)
+        users_in_db.append(new_user)
+    print(users_in_db)
+
+ratings_in_db = []
+def seed_ratings():
+    for n in range(100):
+        user_id = randint(1,10)
+        book_id = randint(1,80)
+        log_date = datetime.today()
+        score = randint(1,5)
+        rate_obj = crud.create_rating(user_id, book_id, log_date, score)  
+        ratings_in_db.append(rate_obj)
+    print(ratings_in_db)
 
 genres_in_db = []
 def seed_genres(filename):
@@ -129,5 +142,6 @@ if __name__ == '__main__':
     seed_books('data/sv_books.csv')
     seed_book_locs()
     seed_users()
+    seed_ratings()
 
     print("Sample data seeded")

@@ -9,5 +9,12 @@
 <h2>{{ user.email }}</h2>
 <p>{{ user.join_date }}</p>
 
+{% for rating in ratings %}
+
+  <li>
+      <a href="/books/{{book.book_id}}">{{ book.title }}</a>
+  </li>
+  
+{% endfor %}
 
 {% endblock %}

@@ -91,16 +91,19 @@ class Rating(db.Model):
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    username = db.Column(db.String, db.ForeignKey('users.username'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    # username = db.Column(db.String, db.ForeignKey('users.username'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
+
+    # book_id, user_id, log_date, score
 
     # relationships
     book = db.relationship('Book', backref='ratings')
     user = db.relationship('User', backref='ratings')
 
     def __repr__(self):
-        return f'<Rating rating_id={self.rating_id} score={self.score}>'
+        return f'<Rating rating_id={self.rating_id} book_id={self.book_id} score={self.score}>'
 
 
 class Author(db.Model):
