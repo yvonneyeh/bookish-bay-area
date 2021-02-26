@@ -29,7 +29,7 @@ def get_user_by_email(email):
 def get_user_by_id(username):
     """Return user given their ID"""
 
-    return User.query.filter(User.username == username).one() 
+    return User.query.filter(User.username == username).first() 
 
 def get_user_by_email_id(email, username):
 
@@ -306,7 +306,9 @@ def get_rating_by_id(rating_id):
 def get_user_ratings(username):
     """Get user's saved book ratings."""
 
-    ratings = Rating.query.filter((Rating.username == username)).all()
+    ratings = db.session.query(Rating).join(User, Rating.user_id == User.user_id)\
+                .filter((User.username == username)).all()
+
 
     return ratings
 

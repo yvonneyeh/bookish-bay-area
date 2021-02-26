@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Update Account Info{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row align-items-center">
+    <div id="update-acct-info" class="col">
+      <div class="row justify-content-center">
+        <h4>Tell us more about yourself</h4>
+      </div>
+      <div class="row justify-content-center">
+        <form class="form-group" action="/account/update_info" method="POST">
+          <div class="form-row">
+            <div class="col">
+              <label for="first_name">First Name</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" 
+              {% if user.first_name%} value={{user.first_name}} {% endif %}>
+            </div>
+            <div class="col">
+              <label for="last_name">Last Name</label>
+              <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
+              {% if user.last_name%} value={{user.last_name}} {% endif %}>
+            </div>
+          </div>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
+            {% if user.email%} value={{user.email}} {% endif %}>
+            
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" 
+            {% if user.username%} value={{user.username}} {% endif %}>
+
+            <label for="bio">Bio</label>
+            <input type="textarea" class="form-control" id="bio" name="bio" placeholder="Bio" 
+            {% if user.bio%} value={{user.bio}} {% endif %}>
+
+
+          <input type="submit" class="btn btn-primary"> 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

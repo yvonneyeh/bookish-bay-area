@@ -68,11 +68,13 @@ def register_user():
 
         return redirect("/register")
 
+
 @app.route('/login')
 def login():
     """View Login page."""
 
     return render_template('login.html')
+
 
 @app.route('/login', methods=['POST'])
 def log_in_user():
@@ -92,9 +94,109 @@ def log_in_user():
             flash('Incorrect password')   
     else:
         flash('Username does not exist. Please register for an account.')
+        return redirect("/register")
     
     return redirect('/')
 
+
+@app.route("/account/update_info")
+def show_acct_info_form():
+    """Display form for user to update account information"""
+
+    if "user_id" in session:
+        user = User.query.get(session.get("user_id"))
+
+        return render_template("/user_info.html", user=user)
+
+    else:
+        flash("You need to be logged in to access that page")
+
+        return redirect("/login")
+
+
+@app.route("/account/update_info", methods=["POST"])
+def update_account_info():
+    """Update a user's account information"""
+
+    if "user_id" in session:
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        username = request.form.get("username")
+        email = request.form.get("email")
+        bio = request.form.get("bio")
+        
+        user = User.query.get(session["user_id"])
+
+        # Form fields are not required - only update database if text was
+        # entered in that field and not the same as what's already in the db
+        if len(first_name) > 0 and first_name != user.first_name:
+            user.first_name = first_name
+
+        if len(last_name) > 0 and last_name != user.last_name:
+            user.last_name = last_name
+
+        if len(username) > 0 and username != user.username:
+            user.username = username
+
+        if len(email) > 0 and email != user.email:
+            user.email = email
+
+        if len(bio) > 0 and bio != user.bio:
+            user.bio = bio
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash("Information updated!")
+
+        return redirect("/account/update_info")
+
+    else:
+        flash("You need to be logged in to access that page")
+
+        return redirect("/login")
+
+
+@app.route("/account/change_password")
+def show_change_pass_form():
+    """Show form for users to change their password"""
+
+    if "user_id" in session:
+        return render_template("update_password.html")
+
+    else:
+        flash("You need to be logged in to access that page")
+        return redirect("/login")
+
+@app.route("/account/change_password", methods=["POST"])
+def change_user_password():
+    """Change a user's password"""
+
+    if "user_id" in session:
+        old_pass = request.form.get("oldpass")
+        new_pass = request.form.get("newpass")
+
+        user = User.query.get(session["user_id"])
+
+        if user.check_password(old_pass):
+            user.set_password(new_pass)
+
+            db.session.add(user)
+            db.session.commit()
+
+            flash("Password successfully updated")
+
+            return redirect("/account/change_password")
+
+        else:
+            flash("Incorrect password, please try again")
+
+            return redirect("/account/change_password")
+
+    else:
+        flash("You need to be logged in to access that page")
+
+        return redirect("/login")
 
 @app.route('/users')
 def all_users():

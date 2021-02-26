@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ rating.book.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ rating.book.title }}</h1>
+
+<p>User: {{rating.user.username}}</p>
+<p>Score: {{ rating.score }}</p>
+
+{% endblock %}

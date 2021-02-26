@@ -33,6 +33,7 @@ class User(db.Model):
     password = db.Column(db.String(120))
     password_hash = db.Column(db.String(120))
     join_date = db.Column(db.DateTime)
+    bio = db.Column(db.Text)
 
     # Password hashing functions
 
