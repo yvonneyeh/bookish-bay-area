@@ -255,6 +255,17 @@ def show_user(username):
     return render_template("user_details.html", user=user, ratings=ratings)
 
 
+@app.route("/logout")
+def log_out_user():
+    """Log out user"""
+
+    if "user_id" in session:
+        del session["user_id"]
+        flash("Logged out")
+
+    return redirect("/")
+
+
 # ---------- BOOK ROUTES ---------- #
 
 @app.route('/books')
@@ -301,6 +312,12 @@ def show_book(book_id):
                             book_locations=location_dict,
                             location_list=location_list, 
                             MAPS_JS_KEY=MAPS_JS_KEY)
+
+
+@app.route('/log_book')
+def show_log_book_form():
+
+    return render_template("log_book.html")
 
 
 # ---------- AUTHOR ROUTES ---------- #
