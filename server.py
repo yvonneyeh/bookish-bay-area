@@ -198,6 +198,24 @@ def change_user_password():
 
         return redirect("/login")
 
+
+@app.route("/account/saved_books")
+def display_saved_books():
+    """Display a user's saved books"""
+
+    if "username" in session:
+        username = session.get("username")
+        ratings = crud.get_user_ratings(username)
+
+        return render_template("user_books.html",
+                               ratings=ratings)
+
+    else:
+        flash("You need to be logged in to access that page")
+
+        return redirect("/login")
+
+
 @app.route('/users')
 def all_users():
     """Display all users."""

@@ -7,7 +7,7 @@
 {% for rating in ratings %}
 
   <li>
-      <a href="/books/{{book.book_id}}">{{ book.title }}</a>
+      <a href="/books/{{rating.book.book_id}}">{{ rating.book.title }}</a>
   </li>
   
 {% endfor %}
