@@ -48,7 +48,7 @@ def register_user():
     # Validate if username or email already exists in users table in database
     if not crud.get_user_by_email_id(email, username):
 
-        user = User(username=username, email=email)
+        user = User(username=username, email=email, first_name=first_name, last_name=last_name, password=password)
 
         user.set_password(password)
 
@@ -88,10 +88,12 @@ def log_in_user():
     if user_object != None:
         if password == user_object.password != None:
             session['username'] = user_object.username
+            session['user_id'] = user_object.user_id
             # print('Logged in!')
             flash('Logged in!')
         else:
-            flash('Incorrect password')   
+            flash('Incorrect password') 
+            return redirect("/login")  
     else:
         flash('Username does not exist. Please register for an account.')
         return redirect("/register")

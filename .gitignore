@@ -1,6 +1,8 @@
 env
 temp
+ignore
 secrets.sh
 .DS_Store
 *pycache*
 *.sql
+.vscode/
