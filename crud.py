@@ -174,6 +174,12 @@ def get_genre_by_name(name):
     return Genre.query.filter(Genre.name == name).first() 
 
 
+def get_genre_by_id(genre_id):
+    """Return authors given their ID"""
+
+    return Genre.query.filter(Genre.genre_id == genre_id).one() 
+
+
 # LOCATIONS
 def create_book_location(book_id, loc_id):
     """Create and return a new book location."""

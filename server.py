@@ -383,6 +383,16 @@ def show_location(loc_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
+# ---------- GENRE ROUTES ---------- #
+
+@app.route('/genres/<int:genre_id>')
+def show_genre(genre_id):
+    """Show details for a genre."""
+    
+    author = crud.get_genre_by_id(genre_id)
+
+    return render_template("genre_details.html", genre=genre)
+
 # ---------- RATING ROUTES ---------- #
 
 
