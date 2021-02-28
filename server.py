@@ -280,6 +280,7 @@ def show_book_list():
     
     user_genre = None
     user_title_search = None
+    user_author_search = None
 
     if 'genre' in request.args:
         user_genre = request.args['genre']
@@ -291,13 +292,21 @@ def show_book_list():
 
         if books == None:
             flash('No results found')
+
+    elif 'author_search' in request.args:
+        user_author_search = request.args['author_search']
+        authors = helper.get_books_by_author(user_author_search)
+
+        if books == None:
+            flash('No results found')
         
     else: 
         books = crud.get_all_books()
 
     return render_template("all_books.html", 
                             books=books, 
-                            genre=user_genre)
+                            genre=user_genre,
+                            authors=authors)
 
 
 @app.route('/books/<int:book_id>')

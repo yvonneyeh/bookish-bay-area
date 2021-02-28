@@ -29,19 +29,11 @@ def get_books_by_genre(user_genre):
     return books
     
     
-# TODO: fix author search
-def get_author_books_by_search(user_author_search):
+def get_books_by_author(user_author_search):
     """ Get author's books based on author name search string. 
     """
 
-    # TODO:
-    # change all upper/lower - str.lower() == title.lower()
-    # if any of the words match - 
-    # is query string in the title??
-    # .any
-
-
-    authors = Author.query.filter(Author.nane.ilike("%" + user_author_search + "%"))\
+    authors = Author.query.filter(Author.name.ilike("%" + user_author_search + "%"))\
         .join(Book, Book.author_id == Author.author_id)\
         .order_by(Book.title)\
         .all()
