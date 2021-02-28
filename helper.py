@@ -6,7 +6,7 @@ def get_books_by_title(user_title_search):
     """ Get books based on title search string. 
     """
 
-    books = Book.query.filter(Book.title.like("%" + user_title_search + "%"))\
+    books = Book.query.filter(Book.title.ilike("%" + user_title_search + "%"))\
         .order_by(Book.title)\
         .all()
 
@@ -22,7 +22,7 @@ def get_books_by_genre(user_genre):
     if user_genre == 'All':
         books = Book.query.order_by(Book.title).all()
     else:
-        books = Book.query.filter(Book.genre_rel.like("%" + user_genre + "%"))\
+        books = Book.query.filter(Book.genre_rel.ilike("%" + user_genre + "%"))\
             .order_by(Book.title)\
             .all()
 
@@ -41,7 +41,7 @@ def get_author_books_by_search(user_author_search):
     # .any
 
 
-    authors = Author.query.filter(Author.nane.like("%" + user_author_search + "%"))\
+    authors = Author.query.filter(Author.nane.ilike("%" + user_author_search + "%"))\
         .join(Book, Book.author_id == Author.author_id)\
         .order_by(Book.title)\
         .all()
