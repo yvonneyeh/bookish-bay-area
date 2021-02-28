@@ -41,13 +41,15 @@
 <br>
 
 <form id="title_search" action="/books">
-  <input type="text" class="form-control" name="title_search" id="author_search" placeholder="Search for books by author" size="50">
+  <input type="text" class="form-control" name="author_search" id="author_search" placeholder="Search for books by author" size="50">
 
   <input type="submit" \
   class="submit_button"\
   value="Search for author">
 
 </form>
+<br>
+<br>
 
 <ul>
 {% for book in books %}

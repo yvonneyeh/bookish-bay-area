@@ -33,12 +33,12 @@ def get_books_by_author(user_author_search):
     """ Get author's books based on author name search string. 
     """
 
-    authors = Author.query.filter(Author.name.ilike("%" + user_author_search + "%"))\
-        .join(Book, Book.author_id == Author.author_id)\
-        .order_by(Book.title)\
-        .all()
+    books = db.session.query(Book).filter(Author.name.ilike("%" + user_author_search + "%"))\
+            .join(Author, Book.author_id == Author.author_id)\
+            .order_by(Book.title)\
+            .all()
 
-    return authors
+    return books
 
 def get_locations(book_id):
     """ Retrieve book locations
