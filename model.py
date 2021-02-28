@@ -169,6 +169,14 @@ class BookGenre(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable = False)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.genre_id'), nullable = False)
 
+    genre = db.relationship(
+                                'Genre',
+                                backref=db.backref('book_genre', order_by=book_id))
+
+    book = db.relationship(
+                                'Book',
+                                backref=db.backref('book_genre', order_by=book_id))
+
 
     def __repr__(self):
         return f'<BookGenre book_id={self.book_id} genre_id={self.genre_id}>'
