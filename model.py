@@ -82,26 +82,24 @@ class Book(db.Model):
 
 
 class Rating(db.Model):
-    """A rating."""
+    """A user's saved book - or a rating on a book."""
 
     __tablename__ = "ratings"
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     # username = db.Column(db.String, db.ForeignKey('users.username'))
     log_date = db.Column(db.DateTime)
     score = db.Column(db.Integer)
+    read = db.Column(db.Boolean, default=False)
 
     # book_id, user_id, log_date, score
 
     # relationships
-    # book = db.relationship('Book', backref='ratings')
     user = db.relationship('User', backref='ratings')
 
-    book = db.relationship(
-                                'Book',
-                                backref=db.backref('ratings', order_by=book_id))
+    book = db.relationship('Book', backref=db.backref('ratings', order_by=book_id))
 
     def __repr__(self):
         return f'<Rating rating_id={self.rating_id} book_id={self.book_id} score={self.score}>'
