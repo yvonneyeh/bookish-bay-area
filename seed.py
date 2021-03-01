@@ -1,7 +1,7 @@
 """Script to seed database."""
 
 import os
-from random import choice, randint
+from random import choice, randint, getrandbits
 from datetime import date, datetime
 from faker import Faker
 from geopy.geocoders import Nominatim
@@ -42,7 +42,8 @@ def seed_ratings():
         book_id = randint(1,80)
         log_date = datetime.today()
         score = randint(1,5)
-        rate_obj = crud.create_rating(user_id, book_id, log_date, score)  
+        read = bool(getrandbits(1)) #choice([True, False])
+        rate_obj = crud.create_rating(user_id, book_id, log_date, score, read)  
         ratings_in_db.append(rate_obj)
     print(ratings_in_db)
 

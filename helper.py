@@ -45,7 +45,7 @@ def get_users_rated_books(user_id):
     """Query database to find Ratings objects belonging to user
         & not marked complete."""
 
-read_books = Rating.query.filter((Rating.user_id == user_id)
+    read_books = Rating.query.filter((Rating.user_id == user_id)
                                     & (Rating.is_completed.is_(True))).all()
 
     return read_books
