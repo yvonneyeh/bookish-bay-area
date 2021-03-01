@@ -46,7 +46,7 @@ def get_users_rated_books(user_id):
         & not marked complete."""
 
     read_books = Rating.query.filter((Rating.user_id == user_id)
-                                    & (Rating.is_completed.is_(True))).all()
+                                    & (Rating.read.is_(True))).all()
 
     return read_books
 

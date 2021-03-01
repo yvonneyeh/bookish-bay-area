@@ -226,13 +226,13 @@ def display_read_books():
     # & not marked complete
     if "user_id" in session:
         user_id = session.get("user_id")
-        read_books = get_users_rated_books(user_id)
+        read_books = helper.get_users_rated_books(user_id)
 
         return render_template("user_read.html",
                                read_books=read_books)
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", "error")
 
         return redirect("/login")
 
