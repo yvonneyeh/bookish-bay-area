@@ -40,6 +40,16 @@ def get_books_by_author(user_author_search):
 
     return books
 
+
+def get_users_rated_books(user_id):
+    """Query database to find Ratings objects belonging to user
+        & not marked complete."""
+
+read_books = Rating.query.filter((Rating.user_id == user_id)
+                                    & (Rating.is_completed.is_(True))).all()
+
+    return read_books
+
 def get_locations(book_id):
     """ Retrieve book locations
         Accepts book ID, returns locations formatted into 2 structures:

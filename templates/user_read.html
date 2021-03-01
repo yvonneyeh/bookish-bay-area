@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Completed Books{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col" id="completed-books-list-div">
+      <h4>Completed Books:</h4>
+      {% if read_books %}
+        <ul id="completed-books-list-div-li">
+          {% for book in read_books %}
+          <li><a href="/books/{{book.book_id}}">{{book.book.title}}</a> <p>Score: {{ book.score }}</p></li>
+
+          {% endfor %}
+        </ul>
+        {% else %}
+          <p>No completed books! Save some of your read books <a href="/books">here</a></p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

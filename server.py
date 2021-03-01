@@ -218,6 +218,25 @@ def display_saved_books():
         return redirect("/login")
 
 
+@app.route("/account/read_books")
+def display_read_books():
+    """Display a user's read/rated books"""
+
+    # Query database to find Ratings objects belonging to user
+    # & not marked complete
+    if "user_id" in session:
+        user_id = session.get("user_id")
+        read_books = get_users_rated_books(user_id)
+
+        return render_template("user_read.html",
+                               read_books=read_books)
+
+    else:
+        flash("You need to be logged in to access that page")
+
+        return redirect("/login")
+
+
 @app.route('/users')
 def all_users():
     """Display all users."""
