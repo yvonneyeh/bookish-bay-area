@@ -162,6 +162,19 @@ def create_genre(name):
 
     return genre
 
+
+def create_book_genres(book_id, genre_id):
+    """Create and return a new book genre."""
+
+    book_genre = BookGenre(book_id = book_id, genre_id = genre_id)
+
+    db.session.add(book_genre)
+    db.session.commit()
+
+    return book_genre
+
+
+
 def get_all_genres():
     """Return all genres."""
 

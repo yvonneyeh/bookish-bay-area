@@ -77,10 +77,6 @@ class Book(db.Model):
                                 secondary='book_genre',
                                 backref='books')
 
-    # loc_rel = db.relationship('Location',
-    #                             secondary='book_loc',
-    #                             backref='books')
-
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
 

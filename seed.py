@@ -125,6 +125,16 @@ def seed_book_locs():
     print(book_locs_in_db)
 
 
+book_genres_in_db = []
+def seed_book_genres():
+    for n in range(1,80):
+        book_id = n
+        genre_id = randint(1,39)
+        book_obj = crud.create_book_genres(book_id, genre_id)
+        book_genres_in_db.append(book_obj)
+    print(book_genres_in_db)
+
+
 #---------------------------------------------------------------------#
 
 if __name__ == '__main__':
@@ -136,11 +146,12 @@ if __name__ == '__main__':
     print("Tables created. Deleting all rows and creating new seed data.")
 
     # Seed sample data into the database
-    seed_locations('data/cities.csv')
-    seed_genres('data/genres.txt')
     seed_authors('data/author_book_data.csv')
     seed_books('data/sv_books.csv')
+    seed_locations('data/cities.csv')
     seed_book_locs()
+    seed_genres('data/genres.txt')
+    seed_book_genres()
     seed_users()
     seed_ratings()
 
