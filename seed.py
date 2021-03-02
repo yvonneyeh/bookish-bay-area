@@ -113,6 +113,8 @@ def seed_books(filename):
 book_locs_in_db = []
 def seed_book_locs():
     
+    # Sample data for multiple locations - Hackbright & Home
+
     # for n in range (1,84):
     #     book_id = n
     #     loc_id = 1
