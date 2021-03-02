@@ -350,10 +350,41 @@ def show_book(book_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
-@app.route('/log_book')
-def show_log_book_form():
+@app.route('/user/log_book', methods=["POST"])
+def save_book_to_user_list():
+    """Instantiate a Rating (User-Book) instance."""
 
-    return render_template("log_book.html")
+    if "user_id" in session:
+        book_id = request.form.get("book_id")
+
+        saved_book = Rating(user_id=session["user_id"], book_id=book_id)
+
+        db.session.add(saved_book)
+        db.session.commit()
+
+        return "Book added"
+
+    else:
+        return "You must sign in to save books"
+
+
+@app.route("/user/unlog_book", methods=["POST"])
+def unsave_book_to_user_list():
+    """Remove a User-Book instance"""
+
+    book_id = request.form.get("book_id")
+
+    if "user_id" in session:
+        user_id = session.get("user_id")
+        book_to_delete = helper.get_rating_by_ids(user_id, book_id)
+
+        db.session.delete(book_to_delete)
+        db.session.commit()
+
+        return "Book removed"
+
+    else:
+        return "You must sign in to edit saved books"
 
 
 # ---------- AUTHOR ROUTES ---------- #

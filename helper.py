@@ -50,6 +50,18 @@ def get_users_rated_books(user_id):
 
     return read_books
 
+
+def get_rating_by_ids(user_id, book_id):
+    """Query database to find Ratings objects matching search params."""
+
+    rating = Rating.query.filter((Rating.user_id == user_id) 
+                                & (Rating.book_id == book_id)).first()
+
+    return rating
+
+
+
+
 def get_locations(book_id):
     """ Retrieve book locations
         Accepts book ID, returns locations formatted into 2 structures:

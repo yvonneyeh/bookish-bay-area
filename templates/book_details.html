@@ -12,7 +12,6 @@
 {% endif %}
 
 <br>
-<!-- <h2>{{ book.author_rel.name }}</h2> -->
 
 {% if book.description != "null"%}
   <span class="book_detail_label">Description: </span> 
@@ -34,6 +33,24 @@
 
 <img src="{{ book.cover_path }}">
 {% endblock %}
+
+
+<div class="row">
+  <div class="col text-right">
+      <button type="button" class="btn btn-primary" id="save-button">
+          Save Book
+      </button>
+      <button type="button" class="btn btn-primary hidden" id="unsave-button">
+          Unsave Book
+      </button>
+      <button type="button" class="btn btn-primary" id="complete-button">
+          Mark As Read
+      </button>
+      <button type="button" class="btn btn-primary hidden" id="uncomplete-button">
+          Unmark As Read
+      </button>
+  </div>
+</div>
 
 {% block map %}
 <div id="map-canvas" style="height:500px"></div>
@@ -100,6 +117,9 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+
+<!-- Script to capture interaction with save & read buttons on book details page -->
+<script src="/static/js/bookpagebuttons.js"></script>
 
 <!-- Google Maps JS API script -->
 <script async defer
