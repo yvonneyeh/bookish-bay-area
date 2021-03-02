@@ -5,6 +5,26 @@
 {% block body %}
 <h1>{{ book.title }}</h1>
 
+<!-- Buttons to Save/Read books -->
+
+<div class="row">
+    <div class="col text-right">
+        <button type="button" class="btn btn-primary" id="save-button">
+            Save Book
+        </button>
+        <button type="button" class="btn btn-primary hidden" style="display:None" id="unsave-button">
+            Unsave Book
+        </button>
+        <button type="button" class="btn btn-primary" id="read-button">
+            Mark As Read
+        </button>
+        <button type="button" class="btn btn-primary hidden" style="display:None" id="unread-button">
+            Mark As Not Read
+        </button>
+    </div>
+  </div>
+
+
 {% if book.author_rel.name %}
   <span class="book_detail_label">Author: </span> 
   <span class="book_detail_content"> {{ book.author_rel.name }}</span>
@@ -31,8 +51,20 @@
   {{ book.description }}
 </p> -->
 
+{% if session['user_id'] %}
+    <a href='/user/save-book'>Save Book</a>
+    <h1>the user_id is {{ session['user_id']}}</h1>
+    <h2>{{ book.ratings }}</h2>
+    {% for rating in book.ratings %}
+        {% if rating.user_id == session['user_id'] %}
+            <h3>this book is saved by our user #{{session['user_id']}}</h3>
+        {% endif %}
+
+    {% endfor %}
+{% endif %}
+
 <img src="{{ book.cover_path }}">
-{% endblock %}
+
 
 
 <!-- <div class="row">
@@ -52,23 +84,7 @@
   </div>
 </div> -->
 
-
-<div class="row">
-    <div class="col text-right">
-        <button type="button" class="btn btn-primary" id="save-button">
-            Save Book
-        </button>
-        <button type="button" class="btn btn-primary hidden" style="display:None" id="unsave-button">
-            Unsave Book
-        </button>
-        <button type="button" class="btn btn-primary" id="read-button">
-            Mark As Read
-        </button>
-        <button type="button" class="btn btn-primary hidden" style="display:None" id="unread-button">
-            Mark As Not Read
-        </button>
-    </div>
-  </div>
+{% endblock %}
 
 {% block map %}
 <div id="map-canvas" style="height:500px"></div>
