@@ -434,7 +434,28 @@ def unmark_saved_book_as_read():
         return "Book marked as not read"
 
 
+@app.route("/user/is-book-saved/<book_id>")
+def check_if_book_saved_for_user(book_id):
+    """For a given user, check if a book is saved in user_books"""
 
+    user_id = session.get("user_id")
+
+    if user_id:
+        ub = helper.get_rating_by_ids(user_id, book_id)
+
+    response = {}
+
+    if ub:
+        response["saved"] = True
+        if ub.read:
+            response["read"] = True
+        else:
+            response["read"] = False
+    else:
+        response["saved"] = False
+        response["read"] = False
+
+    return jsonify(response)
 
 
 # ---------- AUTHOR ROUTES ---------- #
