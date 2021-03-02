@@ -24,6 +24,16 @@ fake = Faker()
 
 users_in_db = []
 def seed_users():
+    first_name = 'Yvonne'
+    last_name = 'Yeh'
+    username = 'yvonneyeh'
+    password = 'test'
+    password_hash = 'test'
+    join_date = '2020-03-17'
+    email = 'code@yvonneyeh.com'
+    yy = crud.create_user(email, first_name, last_name, username, password, join_date)
+    users_in_db.append(yy)
+
     for n in range(20):
         email = f'reader{n}@books.book'
         first_name = fake.first_name()

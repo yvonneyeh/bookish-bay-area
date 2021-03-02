@@ -209,8 +209,8 @@ def display_saved_books():
         username = session.get("username")
         ratings = crud.get_user_ratings(username)
 
-        return render_template("user_books.html",
-                               ratings=ratings)
+        return render_template("user_read.html",
+                               read_books=ratings)
 
     else:
         flash("You need to be logged in to access that page")
