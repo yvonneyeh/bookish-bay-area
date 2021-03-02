@@ -43,13 +43,32 @@ def get_books_by_author(user_author_search):
 
 def get_users_rated_books(user_id):
     """Query database to find Ratings objects belonging to user
-        & not marked complete."""
+        & not marked 'read."""
 
     read_books = Rating.query.filter((Rating.user_id == user_id)
                                     & (Rating.read.is_(True))).all()
 
     return read_books
 
+
+def get_users_saved_book(user_id, book_id):
+    """Query database to find Ratings objects belonging to user
+        & matching book_id"""
+
+    saved_book = Rating.query.filter((Rating.user_id == user_id)
+                                              & (Rating.book_id == book_id)).first()
+
+    return saved_book
+
+
+def get_session_users_saved_book(user_id, book_id):
+    """Query database to find Ratings objects belonging to user in session
+        & matching book_id"""
+
+    saved_book = Rating.query.filter((Rating.user_id == session["user_id"])
+                                              & (Rating.book_id == book_id)).first()
+
+    return saved_book
 
 def get_rating_by_ids(user_id, book_id):
     """Query database to find Ratings objects matching search params."""
@@ -87,7 +106,7 @@ def get_locations(book_id):
             location_list.append(loc.location.name)
 
         elif dict_key in location_dict: 
-            location_dict[dict_key]['desc'] += "; <p>" + loc.location.description
+            location_dict[dict_key]['desc'] = loc.location.description
 
         else:
 

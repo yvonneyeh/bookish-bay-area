@@ -1,7 +1,7 @@
 """Server for Bookish Bay Area app."""
 
 import os
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
 from sqlalchemy_searchable import search
 from datetime import date, datetime
@@ -223,7 +223,7 @@ def display_read_books():
     """Display a user's read/rated books"""
 
     # Query database to find Ratings objects belonging to user
-    # & not marked complete
+    # & not marked read
     if "user_id" in session:
         user_id = session.get("user_id")
         read_books = helper.get_users_rated_books(user_id)
@@ -385,6 +385,56 @@ def unsave_book_to_user_list():
 
     else:
         return "You must sign in to edit saved books"
+
+
+@app.route("/user/read-book", methods=["POST"])
+def mark_saved_book_as_read():
+    """Update a Rating's 'read' attribute to True"""
+
+    if "user_id" in session:
+        book_id = int(request.form.get("book_id"))
+        user_id = session["user_id"]
+
+        saved_book = helper.get_users_saved_book(user_id, book_id)
+
+        if saved_book:
+            saved_book.read = True
+
+            db.session.add(saved_book)
+            db.session.commit()
+
+        else:
+            saved_book = Rating(user_id=user_id, book_id=book_id,
+                                     read=True)
+
+            db.session.add(saved_book)
+            db.session.commit()
+
+        return "Book marked as read"
+
+    else:
+        return "You must be signed in to save books"
+
+
+@app.route("/user/unread-book", methods=["POST"])
+def unmark_saved_book_as_read():
+    """Update a Rating's 'read' attribute to False"""
+
+    if "user_id" in session:
+
+        book_id = int(request.form.get("book_id"))
+
+        saved_book = helper.get_session_users_saved_book(user_id, book_id)
+
+        saved_book.read = False
+
+        db.session.add(saved_book)
+        db.session.commit()
+
+        return "Book marked as not read"
+
+
+
 
 
 # ---------- AUTHOR ROUTES ---------- #
