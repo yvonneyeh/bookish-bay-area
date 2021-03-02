@@ -85,10 +85,10 @@ def get_locations(book_id):
         # dict_key = str(location.books.lat) + str(location.books.lng)
 
         if loc.location.lat == 37.786220 and loc.location.lng == -122.432210:
-            location_list.append(location.location_description)
+            location_list.append(loc.location.description)
 
         elif dict_key in location_dict: 
-            location_dict[dict_key]['desc'] += "; <p>" + location.location_description
+            location_dict[dict_key]['desc'] += "; <p>" + loc.location.description
 
         else:
 

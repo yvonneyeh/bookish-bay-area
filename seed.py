@@ -78,7 +78,7 @@ def seed_authors(filename):
 
 locs_in_db = []
 def seed_locations(filename):
-    """Add new locations to Location table."""
+    """Add new sample locations to Location table."""
 
     f = open(filename)
     csv_f = csv.reader(f)
@@ -112,7 +112,20 @@ def seed_books(filename):
 
 book_locs_in_db = []
 def seed_book_locs():
-    for n in range(1,50):
+    
+    # for n in range (1,84):
+    #     book_id = n
+    #     loc_id = 1
+    #     book_obj = crud.create_book_location(book_id, loc_id)
+    #     book_locs_in_db.append(book_obj)
+
+    # for n in range (1,84):
+    #     book_id = n
+    #     loc_id = 2
+    #     book_obj = crud.create_book_location(book_id, loc_id)
+    #     book_locs_in_db.append(book_obj)
+
+    for n in range(2,84):
         book_id = n
         loc_id = n
         # if location != None:
@@ -121,7 +134,6 @@ def seed_book_locs():
         #     print(l_num)
         #     print(location_num)
         book_obj = crud.create_book_location(book_id, loc_id)
-    
         book_locs_in_db.append(book_obj)
     print(book_locs_in_db)
 
