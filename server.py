@@ -350,7 +350,7 @@ def show_book(book_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
-@app.route('/user/log_book', methods=["POST"])
+@app.route('/user/save-book', methods=["POST"])
 def save_book_to_user_list():
     """Instantiate a Rating (User-Book) instance."""
 
@@ -368,7 +368,7 @@ def save_book_to_user_list():
         return "You must sign in to save books"
 
 
-@app.route("/user/unlog_book", methods=["POST"])
+@app.route("/user/unsave-book", methods=["POST"])
 def unsave_book_to_user_list():
     """Remove a User-Book instance"""
 
@@ -434,7 +434,7 @@ def unmark_saved_book_as_read():
         return "Book marked as not read"
 
 
-@app.route("/user/is-book-saved/<book_id>")
+@app.route("/user/is-book-saved/<int:book_id>")
 def check_if_book_saved_for_user(book_id):
     """For a given user, check if a book is saved in user_books"""
 

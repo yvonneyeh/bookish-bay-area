@@ -8,9 +8,9 @@ const logBookLink = $("#log_book")
 
 
 $(document).ready(function() {
-    console.log( "ready!" );
+    // console.log( "ready!" );
     $.get("/user/loggedin", (res) => {
-        console.log(res)
+        console.log("user logged in:", res)
         if (res === "true") {
             accountLink.show();
             registerLink.hide();
