@@ -170,6 +170,7 @@ def show_change_pass_form():
         flash("You need to be logged in to access that page")
         return redirect("/login")
 
+
 @app.route("/account/change_password", methods=["POST"])
 def change_user_password():
     """Change a user's password"""
@@ -496,11 +497,17 @@ def show_author(author_id):
 
 # ---------- LOCATION ROUTES ---------- #
 
-@app.route('/map')
-def index_page():
+@app.route('/book-map')
+def show_book_map():
     """View Map."""
 
-    return render_template('map.html', MAPS_JS_KEY=MAPS_JS_KEY)
+    return render_template('book_map.html', MAPS_JS_KEY=MAPS_JS_KEY)
+
+@app.route('/library-map')
+def show_library_map():
+    """View Map."""
+
+    return render_template('library_map.html', MAPS_JS_KEY=MAPS_JS_KEY)
 
 @app.route('/locations')
 def all_locations():
