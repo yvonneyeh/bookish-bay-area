@@ -51,18 +51,6 @@
   {{ book.description }}
 </p> -->
 
-{% if session['user_id'] %}
-    <a href='/user/save-book'>Save Book</a>
-    <h1>the user_id is {{ session['user_id']}}</h1>
-    <h2>{{ book.ratings }}</h2>
-    {% for rating in book.ratings %}
-        {% if rating.user_id == session['user_id'] %}
-            <h3>this book is saved by our user #{{session['user_id']}}</h3>
-        {% endif %}
-
-    {% endfor %}
-{% endif %}
-
 <img src="{{ book.cover_path }}">
 
 

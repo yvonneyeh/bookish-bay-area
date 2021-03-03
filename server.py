@@ -404,8 +404,9 @@ def mark_saved_book_as_read():
             db.session.commit()
 
         else:
-            saved_book = Rating(user_id=user_id, book_id=book_id,
-                                     read=True)
+            saved_book = Rating(user_id=user_id, 
+                                book_id=book_id,
+                                read=True)
 
             db.session.add(saved_book)
             db.session.commit()
