@@ -1,6 +1,19 @@
 """Helper functions for server.py"""
 
 from model import *
+from sqlalchemy import and_, or_, not_
+
+
+def get_books_by_search(user_search):
+    """ Get books based on search string. """
+
+    books = Book.query.filter(or_(Book.title.ilike("%" + user_search + "%")),
+                                (Author.name.ilike("%" + user_search + "%")))\
+        .order_by(Book.title)\
+        .all()
+
+    return books
+
 
 def get_books_by_title(user_title_search):
     """ Get books based on title search string. 

@@ -300,6 +300,8 @@ def show_book_list():
     user_genre = None
     user_title_search = None
     user_author_search = None
+    user_search = None
+    # books = []
 
     if 'genre' in request.args:
         user_genre = request.args['genre']
@@ -308,9 +310,10 @@ def show_book_list():
     else: 
         books = crud.get_all_books()
 
-    if 'title_search' in request.args:
-        user_title_search = request.args['title_search']
-        books = helper.get_books_by_title(user_title_search)
+    
+    if 'user_search' in request.args:
+        user_title_search = request.args['user_search']
+        books = helper.get_books_by_search(user_search)
 
         if books == None:
             flash('No results found')
@@ -318,20 +321,33 @@ def show_book_list():
     else: 
         books = crud.get_all_books()
 
-    if 'author_search' in request.args:
-        user_author_search = request.args['author_search']
-        books = helper.get_books_by_author(user_author_search)
+
+    if 'title_search' in request.args:
+        user_title_search = request.args['title_search']
+        books = helper.get_books_by_title(user_title_search)
+        # print("search", len(books))
 
         if books == None:
             flash('No results found')
-        
+    
     else: 
         books = crud.get_all_books()
+        # print(len(books))
 
+    # if 'author_search' in request.args:
+    #     user_author_search = request.args['author_search']
+    #     books = helper.get_books_by_author(user_author_search)
+
+    #     if books == None:
+    #         flash('No results found')
+        
+    # else: 
+    #     books = crud.get_all_books()
+
+    # print("final", len(books))
     return render_template("all_books.html", 
                             books=books, 
                             genre=user_genre)
-                            # authors=authors)
 
 
 @app.route('/books/<int:book_id>')
