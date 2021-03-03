@@ -559,6 +559,15 @@ def show_rating(rating_id):
                             rating=rating)
 
 
+# ---------- SEARCH ROUTES ---------- #
+
+@app.route("/search")
+def display_search_results():
+    """Display search results"""
+
+    return render_template("search.html", MAPS_JS_KEY=MAPS_JS_KEY)
+
+
 # ---------- AJAX / JSON ROUTES ---------- #
 
 @app.route("/user/loggedin")
