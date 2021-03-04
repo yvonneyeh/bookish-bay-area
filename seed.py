@@ -87,15 +87,28 @@ def seed_authors(filename):
 
 
 locs_in_db = []
-def seed_locations(filename):
-    """Add new sample locations to Location table."""
+
+def seed_addresses(filename):
+    """Add new sample addresses to Location table."""
+
+    f = open(filename)
+    csv_f = csv.reader(f)
+    for row in csv_f:
+        name, address, lat, lng = row
+        if crud.get_location_by_name(name) == None:
+            loc_obj = crud.create_location(name, float(lat), float(lng), address)
+            locs_in_db.append(loc_obj)
+    print(locs_in_db)
+
+def seed_cities(filename):
+    """Add new sample cities to Location table."""
 
     f = open(filename)
     csv_f = csv.reader(f)
     for row in csv_f:
         city, state, country, lat, lng = row
         if crud.get_location_by_name(city) == None:
-            loc_obj = crud.create_location(city, float(lat), float(lng))
+            loc_obj = crud.create_location(city, float(lat), float(lng), city)
             locs_in_db.append(loc_obj)
     print(locs_in_db)
 
@@ -173,7 +186,8 @@ if __name__ == '__main__':
     # Seed sample data into the database
     seed_authors('data/author_book_data.csv')
     seed_books('data/sv_books.csv')
-    seed_locations('data/cities.csv')
+    seed_addresses('data/addresses.csv')
+    seed_cities('data/cities.csv')
     seed_book_locs()
     seed_genres('data/genres.txt')
     seed_book_genres()
