@@ -82,7 +82,6 @@ def get_author_id_by_name(name):
     """Return author's ID given their name"""
 
     return db.session.query(Author.author_id).filter(Author.name == name).first()
-    # return select([Author.author_id]).where(Author.name == name)
     
 
 def get_author_name_by_book_id(id):
@@ -126,30 +125,10 @@ def get_book_by_id(book_id):
 
     return Book.query.filter(Book.book_id == book_id).first() 
 
+def get_book_id_by_title(title):
+    """Return book's ID given its title"""
 
-# def get_books_by_title(user_title_search):
-#     """ Get books based on title search string. 
-#     """
-
-#     books = Book.query.filter(Book.title.like("%" + user_title_search + "%"))\
-#         .order_by(Book.title)\
-#         .all()
-
-#     return books
-
-# def get_books_by_genre(user_genre):
-#     """ Get subset of books based on genre. 
-#         Accepts genre entered by user, returns books.
-
-#     """
-#     if user_genre == 'All':
-#         books = Book.query.order_by(Book.title).all()
-#     else:
-#         books = Book.query.filter(Book.book.like("%" + user_genre + "%"))\
-#             .order_by(Book.title)\
-#             .all()
-
-#     return movies
+    return db.session.query(Book.book_id).filter(Book.title == title).first()
 
 # GENRES
 def create_genre(name):

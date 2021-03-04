@@ -47,6 +47,18 @@ def seed_users():
 
 ratings_in_db = []
 def seed_ratings():
+    
+    yy_books = ["Homegoing","Transcendent Kingdom","The Circle","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
+    for title in yy_books:
+        print(title)
+        book_id = crud.get_book_id_by_title(title)
+        user_id = crud.get_user_by_id("yvonneyeh")
+        log_date = f"2020-{randint(1,12)}-{randint(1,30)}"
+        score = randint(3,5)
+        read = True
+        my_book = crud.create_rating(1, book_id, log_date, score, read)  
+        ratings_in_db.append(my_book)
+
     for n in range(100):
         user_id = randint(1,10)
         book_id = randint(1,80)
@@ -136,15 +148,26 @@ def seed_books(filename):
 book_locs_in_db = []
 def seed_book_locs():
     
-    # Sample data for multiple locations - Hackbright & Home
+    # homegoing = 
+    # t_kingdom = 
+    # stanford = 
+    # tofu_house = 
+    # homegoing_obj = crud.create_book_location(1, loc_id)
 
-    for n in range (1,84):
+    # for n in range (1,2):
+    #     book_id = n
+    #     loc_id = 3
+    #     book_obj = crud.create_book_location(book_id, loc_id)
+    #     book_locs_in_db.append(book_obj)
+
+    # Sample data for multiple locations - Hackbright & Home
+    for n in range (3,84):
         book_id = n
         loc_id = 1
         book_obj = crud.create_book_location(book_id, loc_id)
         book_locs_in_db.append(book_obj)
 
-    for n in range (1,84):
+    for n in range (3,84):
         book_id = n
         loc_id = 2
         book_obj = crud.create_book_location(book_id, loc_id)
@@ -184,7 +207,7 @@ if __name__ == '__main__':
     print("Tables created. Deleting all rows and creating new seed data.")
 
     # Seed sample data into the database
-    seed_authors('data/author_book_data.csv')
+    seed_authors('data/authors.csv')
     seed_books('data/sv_books.csv')
     seed_addresses('data/addresses.csv')
     seed_cities('data/cities.csv')
