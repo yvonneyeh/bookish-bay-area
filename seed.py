@@ -150,8 +150,8 @@ def seed_book_locs():
     
     # homegoing = 
     # t_kingdom = 
-    # stanford = 
-    # tofu_house = 
+    # stanford = 3
+    # tofu_house = 4
     # homegoing_obj = crud.create_book_location(1, loc_id)
 
     # for n in range (1,2):

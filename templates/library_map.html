@@ -126,11 +126,12 @@
 
     // Handle a geolocation error
     function handleLocationError(browserHasGeolocation, infoWindow) {
-      // Set default location to Googleplex
-      pos = {lat: 37.4221, lng: -122.0841};
+      // Set default location to Hackbright
+      // "37.786220","-122.432210"
+      pos = {lat: 37.786220, lng: -122.432210};
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 15
+        zoom: 13
       });
 
       // Display an InfoWindow at the map center
@@ -271,9 +272,13 @@
   </script>
 
 <!-- Google Maps JS API script -->
-<script async defer
+<!-- <script async defer
 src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMap">
+</script> -->
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&libraries=places&callback=initMap">
 </script>
+
 </body>
 
 </html>

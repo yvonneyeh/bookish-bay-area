@@ -266,12 +266,28 @@ def create_account():
     return redirect('/')
 
 
+# @app.route('/users/profile')
+# def show_logged_in_user_profile():
+#     """Show details for a logged-in user"""
+
+#     if "username" in session:
+#         user = User.query.get(session.get("username")
+#         ratings = crud.get_user_ratings(session.get("username")) 
+#         # TODO: SyntaxError: invalid syntax
+
+#         return render_template("/user_details.html", user=user, ratings=ratings)
+
+#     else:
+#         flash("You need to be logged in to access that page")
+
+#         return redirect("/login")
+
 
 
 @app.route('/users/<username>')
 def show_user(username):
     """Show details for a user"""
-    user = crud.get_user_by_id(username)
+    user = crud.get_user_by_username(username)
     ratings = crud.get_user_ratings(username)
 
     return render_template("user_details.html", user=user, ratings=ratings)
