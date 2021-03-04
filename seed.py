@@ -125,17 +125,17 @@ def seed_book_locs():
     
     # Sample data for multiple locations - Hackbright & Home
 
-    # for n in range (1,84):
-    #     book_id = n
-    #     loc_id = 1
-    #     book_obj = crud.create_book_location(book_id, loc_id)
-    #     book_locs_in_db.append(book_obj)
+    for n in range (1,84):
+        book_id = n
+        loc_id = 1
+        book_obj = crud.create_book_location(book_id, loc_id)
+        book_locs_in_db.append(book_obj)
 
-    # for n in range (1,84):
-    #     book_id = n
-    #     loc_id = 2
-    #     book_obj = crud.create_book_location(book_id, loc_id)
-    #     book_locs_in_db.append(book_obj)
+    for n in range (1,84):
+        book_id = n
+        loc_id = 2
+        book_obj = crud.create_book_location(book_id, loc_id)
+        book_locs_in_db.append(book_obj)
 
     for n in range(2,84):
         book_id = n

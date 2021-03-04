@@ -98,24 +98,26 @@ function initialize() {
   });
 
   var locations = {{ book_locations|tojson|safe }};
+  console.log("locations = ", locations);
 
   // Attach markers to each location in returned JSON
         var location, marker, contentString;
 
         for (var key in locations) {
             location = locations[key];
+            console.log("the key is ", key )
 
             // Define the marker
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(location.lat, location.lng),
                 map: map,
-                title: location.desc
+                title: location.name
             });
 
             // Define the content of the infoWindow
             contentString = (
                 '<div class="window-content">' +
-                    location.desc +
+                    location.name +
                 '</div>');
 
       // Inside the loop call bindInfoWindow passing it the marker,

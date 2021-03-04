@@ -359,6 +359,9 @@ def show_book(book_id):
     book = crud.get_book_by_id(book_id)
     location_dict, location_list = helper.get_locations(book_id)
 
+    print("*"*20)
+    print(f"book_locations={location_dict}, \n location_list={location_list}" )
+
     return render_template("book_details.html", 
                             author=author, 
                             book=book,
