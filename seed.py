@@ -29,7 +29,7 @@ def seed_users():
     username = 'yvonneyeh'
     password = 'test'
     password_hash = 'test'
-    join_date = '2020-03-17'
+    join_date = '2020-03-17 12-34'
     email = 'code@yvonneyeh.com'
     yy = crud.create_user(email, first_name, last_name, username, password, join_date)
     users_in_db.append(yy)
@@ -50,7 +50,7 @@ def seed_ratings():
     
     yy_books = ["Homegoing","Transcendent Kingdom","The Circle","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
     for title in yy_books:
-        print(title)
+        # print(title)
         book_id = crud.get_book_id_by_title(title)
         user_id = crud.get_user_by_id("yvonneyeh")
         log_date = f"2020-{randint(1,12)}-{randint(1,30)}"
