@@ -513,17 +513,17 @@ def check_if_book_saved_for_user(book_id):
     if user_id:
         ub = helper.get_rating_by_ids(user_id, book_id)
 
-    response = {}
+        response = {}
 
-    if ub:
-        response["saved"] = True
-        if ub.read:
-            response["read"] = True
+        if ub:
+            response["saved"] = True
+            if ub.read:
+                response["read"] = True
+            else:
+                response["read"] = False
         else:
+            response["saved"] = False
             response["read"] = False
-    else:
-        response["saved"] = False
-        response["read"] = False
 
     return jsonify(response)
 

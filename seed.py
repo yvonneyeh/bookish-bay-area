@@ -215,18 +215,41 @@ def seed_book_locs():
         book_locs_in_db.append(book_obj)
 
     # Sample data for Apple Books
-    apple_books = ["Apple Confidential 2.0: The Definitive History of the World's Most Colorful Company","Dogfight: How Apple and Google Went to War and Started a Revolution", "Haunted Empire: Apple After Steve Jobs"] 
-    apple_locs = ["1 Infinite Loop", "Apple Park", "Apple Central & Wolfe Campus"]
+    apple_books = ["Steve Jobs","Apple Confidential 2.0: The Definitive History of the World's Most Colorful Company","Dogfight: How Apple and Google Went to War and Started a Revolution", "Haunted Empire: Apple After Steve Jobs"] 
+    apple_locs = ["1 Infinite Loop", "Apple Park", "Apple Central & Wolfe Campus","Apple Garage"]
     n = 0
     for book in apple_books:
-        book_id = crud.get_book_id_by_title(title)
-        loc = apple_locs[n]
-        loc_id = crud.get_location_by_name(name)
+        if n < 4:
+            book_id = crud.get_book_id_by_title(book)
+            loc = apple_locs[n]
+            loc_obj = crud.get_location_by_name(loc)
+            loc_id = loc_obj.loc_id
+            book_obj = crud.create_book_location(book_id, loc_id)
+            book_locs_in_db.append(book_obj)
+            n += 1
+
+    jobs_locs = ["Steve Jobs' Home","Homestead High School"]
+    for loc in jobs_locs:
+        book_id = crud.get_book_id_by_title("Steve Jobs")
+        loc_obj = crud.get_location_by_name(loc)
+        loc_id = loc_obj.loc_id
         book_obj = crud.create_book_location(book_id, loc_id)
         book_locs_in_db.append(book_obj)
-        n += 1
 
     # Sample data for Google Books
+    goog_books = ["Are You Smart Enough to Work at Google?","Dogfight: How Apple and Google Went to War and Started a Revolution","Googled: The End of the World as We Know It","Google Speaks","How Google Works","I'm Feeling Lucky: The Confessions of Google Employee Number 59","Planet Google: One Company's Audacious Plan to Organize Everything We Know","The Big Switch: Rewiring the World, from Edison to Google","The Search: How Google and Its Rivals Rewrote the Rules of Business and Transformed Our Culture","What Would Google Do?","Work Rules!: Insights from Inside Google That Will Transform How You Live and Lead"]
+    goog_locs = ["Googleplex","Google X Lab","Google SF","Google RWC","Google Sunnyvale","Google Garage"]
+    n = 0
+    for book in goog_books:
+        if n < 6:
+            book_id = crud.get_book_id_by_title(book)
+            loc = goog_locs[n]
+            loc_obj = crud.get_location_by_name(loc)
+            loc_id = loc_obj.loc_id
+            book_obj = crud.create_book_location(book_id, loc_id)
+            book_locs_in_db.append(book_obj)
+            n += 1
+
 
     for n in range(2,84):
         book_id = n
