@@ -588,6 +588,17 @@ def show_location(loc_id):
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
+# @app.route('/locations/<int:loc_id>')
+# def show_location(loc_id):
+#     """Show details for a location."""
+    
+#     location = crud.get_location_by_id(loc_id)
+
+#     return render_template("loc_deets.html", 
+#                             location=location, 
+#                             MAPS_JS_KEY=MAPS_JS_KEY)
+
+
 # ---------- GENRE ROUTES ---------- #
 
 @app.route('/genres')

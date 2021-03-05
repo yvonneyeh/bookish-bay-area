@@ -73,10 +73,10 @@ def seed_users():
 ratings_in_db = []
 def seed_ratings():
 
-    yg_books = ["Homegoing","Transcendent Kingdom"] 
-    yy_books = ["The Circle","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
+    fave_books = ["Homegoing","Transcendent Kingdom","Steve Jobs"] 
+    yy_books = ["The Circle","Bad Blood: Secrets and Lies in a Silicon Valley Startup","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
     
-    for title in yg_books:
+    for title in fave_books:
         # print(title)
         book_id = crud.get_book_id_by_title(title)
         user_id = 1
@@ -266,7 +266,7 @@ def seed_book_locs():
 
 book_genres_in_db = []
 def seed_book_genres():
-    for n in range(1,80):
+    for n in range(1,86):
         book_id = n
         genre_id = randint(1,39)
         book_obj = crud.create_book_genres(book_id, genre_id)

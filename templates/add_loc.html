@@ -2,18 +2,19 @@
 {% block title %}Bookish Bay Area{% endblock %}
 
 {% block body %}
+
+<h1>Add a New Location</h1>
+<h3>Enter the location's address</h3>
+
 <div class="container">
     <div class="row align-items-center">
       <div class="col">
         <div class="row justify-content-center">
-
-  <h1>Add a New Location</h1>
-
-  <h2>Enter the location's address</h2>
-<form action="/new-loc" method="POST">
+  
+<form action="/add/location" method="POST">
 
     <label for="name">Location Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Apple Campus" required minlength=5>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Apple Campus" required minlength=3>
     <br>
     <label for="address">Address</label>
     <input type="text" class="form-control" id="address" name="address" placeholder="1 Infinite Loop" required>
@@ -83,7 +84,7 @@
     <br>
     <textarea rows="4" cols="50" name="description" form="loc-form" id="description">
         Enter a location description here...
-        Apple Inc.'s corporate headquarters</textarea>
+        "Apple Inc.'s corporate headquarters"</textarea>
     <br>
     <input type="submit" class="btn btn-primary">
 </form>
