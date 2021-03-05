@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}All Authors{% endblock %}
+{% block title %}All Locations{% endblock %}
 
 {% block body %}
 <ul>
 {% for location in locations %}
 
   <li>
-      <a href="/locations/{{location.loc_id}}">{{ location.name }}</a>
+      <a href="/locations/{{location.loc_id}}">{{ location.name }}</a> – ID: <b>{{ location.loc_id }}</b>
   </li>
   
 {% endfor %}

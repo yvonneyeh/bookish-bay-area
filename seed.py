@@ -125,6 +125,7 @@ def seed_genres(filename):
 
 authors_in_db = []
 def seed_authors(filename):
+
     f1 = open(filename)
     csv_f = csv.reader(f1)
     for row in csv_f:
@@ -136,6 +137,10 @@ def seed_authors(filename):
         # else:
             author_obj = crud.create_author(author)
             authors_in_db.append(author_obj)
+
+    wi_obj = crud.create_author("Walter Isaacson")
+    authors_in_db.append(wi_obj)
+
     print(authors_in_db)
 
 
@@ -172,7 +177,7 @@ def seed_books(filename):
     csv_f = csv.reader(f2)
     for row in csv_f:
         web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
-        a_num = crud.get_author_id_by_name(author)
+        a_num = crud.get_author_id_by_name(author) 
         author_num = int(a_num[0])
         test_loc_id = 1
         # if location != None:
@@ -183,6 +188,13 @@ def seed_books(filename):
         book_obj = crud.create_book(title, author_num, description, cover_path, isbn)
     
         books_in_db.append(book_obj)
+
+    # wi = crud.get_author_id_by_name("Walter Isaacson")
+    # wi_num = int(wi[0])
+    # jobs_obj = crud.create_book(title, author_num, description, cover_path, isbn)
+    
+    # books_in_db.append(jobs_obj)
+
     print(books_in_db)
 
 
@@ -201,6 +213,20 @@ def seed_book_locs():
         loc_id = 2
         book_obj = crud.create_book_location(book_id, loc_id)
         book_locs_in_db.append(book_obj)
+
+    # Sample data for Apple Books
+    apple_books = ["Apple Confidential 2.0: The Definitive History of the World's Most Colorful Company","Dogfight: How Apple and Google Went to War and Started a Revolution", "Haunted Empire: Apple After Steve Jobs"] 
+    apple_locs = ["1 Infinite Loop", "Apple Park", "Apple Central & Wolfe Campus"]
+    n = 0
+    for book in apple_books:
+        book_id = crud.get_book_id_by_title(title)
+        loc = apple_locs[n]
+        loc_id = crud.get_location_by_name(name)
+        book_obj = crud.create_book_location(book_id, loc_id)
+        book_locs_in_db.append(book_obj)
+        n += 1
+
+    # Sample data for Google Books
 
     for n in range(2,84):
         book_id = n

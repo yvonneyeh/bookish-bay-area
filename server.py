@@ -383,15 +383,15 @@ def show_book_list():
         books = crud.get_all_books()
         # print(len(books))
 
-    if 'author_search' in request.args:
-        user_author_search = request.args['author_search']
-        books = helper.get_books_by_author(user_author_search)
+    # if 'author_search' in request.args:
+    #     user_author_search = request.args['author_search']
+    #     books = helper.get_books_by_author(user_author_search)
 
-        if books == None:
-            flash('No results found')
+    #     if books == None:
+    #         flash('No results found')
         
-    else: 
-        books = crud.get_all_books()
+    # else: 
+    #     books = crud.get_all_books()
 
     # print("final", len(books))
     return render_template("all_books.html", 
