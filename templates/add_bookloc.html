@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Bookish Bay Area{% endblock %}
+
+{% block body %}
+
+<h1>Save a New Location for a Book</h1>
+
+<div class="container">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="row justify-content-center">
+  
+<form action="/add/book-loc" method="POST">
+
+    <label for="name">Location Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Apple Campus" required minlength=3>
+    <br>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" name="address" placeholder="1 Infinite Loop" required>
+    <br>
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city" placeholder="Cupertino">
+    <br>
+    <label for="state">State</label>
+    <br>
+    <br>
+    <label for="zipcode">Zip Code</label>
+    <input type="zipcode" class="form-control" id="zipcode" name="zipcode" placeholder="99999" required>
+    <br>
+    <label for="description">Description</label>
+    <br>
+    <textarea rows="4" cols="50" name="description" form="loc-form" id="description">
+        Enter a location description here...
+        "Apple Inc.'s corporate headquarters"</textarea>
+    <br>
+    <input type="submit" class="btn btn-primary">
+</form>
+
+
+{% endblock %}

@@ -3,6 +3,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms import StringField, TextField, Form
+from wtforms.validators import DataRequired, Length
 
 # from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy_searchable import make_searchable
@@ -76,6 +78,9 @@ class Book(db.Model):
     genre_rel = db.relationship('Genre',
                                 secondary='book_genre',
                                 backref='books')
+
+    def as_dict(self):
+        return {'title': self.title}
 
     def __repr__(self):
         return f'<Book book_id={self.book_id} title={self.title}>'
@@ -246,6 +251,13 @@ class BookLocation(db.Model):
     def __repr__(self):
         return f'<BookLocation book_id={self.book_id} loc_id={self.loc_id}>'
 
+
+class BookSearchForm(Form): 
+    title = StringField('Title', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Book Title"})
+
+
+class LocSearchForm(Form): 
+    location = StringField('Location', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Location Name"})
 
 # wa.whoosh_index(app, Book, Author, Location)
 

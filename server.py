@@ -655,6 +655,19 @@ def show_new_book_loc_form():
     return render_template("add_bookloc.html")
 
 
+@app.route('/add/book-loc', methods=['POST'])
+def create_new_book_location():
+    """Create a new user-submitted book-location."""
+
+    name = request.form.get('name')
+    address = request.form.get('address')
+
+    helper.create_user_submitted_loc(name, address)
+    flash('Location submitted successfully!')
+
+    return redirect('/locations')
+
+
 # ---------- SEARCH ROUTES ---------- #
 
 @app.route("/search")

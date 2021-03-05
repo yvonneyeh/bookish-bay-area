@@ -9,6 +9,9 @@
 
 <div class="row">
     <div class="col text-right">
+        <button type="button" class="btn btn-primary" id="new-loc" onclick="window.location.href='/add/book-loc';">
+            Add New Location
+        </button>
         <button type="button" class="btn btn-primary" id="save-button">
             Save Book
         </button>
@@ -57,14 +60,17 @@
 <script>
 function initialize() {
 
-  const defaultLocation = new google.maps.LatLng(37.787971,-122.418472)
+// HB Default Loc
+//   const defaultLocation = new google.maps.LatLng(37.787971,-122.418472)
+  const defaultLocation = new google.maps.LatLng(37.786220,-122.432210)
 
   var contentString =
       '<div id="content">'+ "<p></p>"+'</div>';
 
   const mapOptions = {
-    zoom: 10,
-    center: defaultLocation
+    zoom: 9,
+    center: defaultLocation,
+    mapId: 'a72aa248840e8771'
   };
 
   const map = new google.maps.Map(
@@ -83,7 +89,7 @@ function initialize() {
 
         for (var key in locations) {
             location = locations[key];
-            console.log("the key is ", key )
+            // console.log("the key is ", key )
 
             // Define the marker
             marker = new google.maps.Marker({

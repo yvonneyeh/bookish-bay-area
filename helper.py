@@ -110,6 +110,14 @@ def get_rating_by_ids(user_id, book_id):
     return rating
 
 
+def get_book_titles_for_form():
+
+    res = Book.query.all()
+    books = [r.as_dict() for r in res]
+    
+    return jsonify(books)
+
+
 def get_all_locations():
 
     locations = db.session.query(BookLocation).all()
@@ -191,6 +199,7 @@ def get_books_by_location(loc_id):
 
         book_list.append(loc.book.title)
 
+        # TODO: FIX BOOK DICTIONARY
         if dict_key not in book_dict: 
             book_dict.get('dict_key',{})
 
@@ -223,7 +232,7 @@ def get_locations(book_id):
     print(locations)
 
     location_dict = {}
-    book_list = [] 
+    location_list = [] 
 
     for loc in locations:
         dict_key = str(loc.location.lat) + str(loc.location.lng)

@@ -279,12 +279,18 @@ def add_yy_books():
     t_kingdom = 2
     stanford = 3
     tofu_house = 4
-    hg_obj = crud.create_book_location(homegoing, stanford)
-    tk_obj1 = crud.create_book_location(homegoing, stanford)
-    tk_obj2 = crud.create_book_location(homegoing, tofu_house)
-    book_locs_in_db.append(hg_obj)
+    loc_obj = crud.get_location_by_name('Palo Alto')
+    paly = loc_obj.loc_id
+    hg_obj1 = crud.create_book_location(homegoing, stanford)
+    hg_obj2 = crud.create_book_location(homegoing, paly)
+    tk_obj1 = crud.create_book_location(t_kingdom, stanford)
+    tk_obj2 = crud.create_book_location(t_kingdom, tofu_house)
+    tk_obj1 = crud.create_book_location(t_kingdom, paly)
+    book_locs_in_db.append(hg_obj1)
+    book_locs_in_db.append(hg_obj2)
     book_locs_in_db.append(tk_obj1)
     book_locs_in_db.append(tk_obj2)
+    book_locs_in_db.append(tk_obj3)
     
 
 

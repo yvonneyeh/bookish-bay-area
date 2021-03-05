@@ -1,5 +1,6 @@
 "use strict";
 
+const newLocButton = $("#new-loc")
 const saveButton = $("#save-button")
 const readButton = $("#read-button")
 const unsaveButton = $("#unsave-button")
@@ -15,12 +16,14 @@ console.log('book_id:', book_id1)
 $.get("/user/loggedin", (res) => {
     console.log("user logged in:", res)
     if (res === "false") {
+        newLocButton.hide();
         saveButton.hide();
         unsaveButton.hide();
         readButton.hide();
         unreadButton.hide();
     }
     else {
+        newLocButton.show();
         saveButton.show();
         unsaveButton.show();
         readButton.show();
