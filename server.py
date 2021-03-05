@@ -408,9 +408,6 @@ def show_book(book_id):
     book = crud.get_book_by_id(book_id)
     location_dict, location_list = helper.get_locations(book_id)
 
-    # print("*"*20)
-    # print(f"book_locations={location_dict}, \n location_list={location_list}" )
-
     return render_template("book_details.html", 
                             author=author, 
                             book=book,
@@ -582,21 +579,13 @@ def show_location(loc_id):
     """Show details for a location."""
     
     location = crud.get_location_by_id(loc_id)
+    book_dict, book_list = helper.get_books_by_location(loc_id)
 
     return render_template("loc_details.html", 
                             location=location, 
+                            books = book_dict, 
+                            books_list = book_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
-
-
-# @app.route('/locations/<int:loc_id>')
-# def show_location(loc_id):
-#     """Show details for a location."""
-    
-#     location = crud.get_location_by_id(loc_id)
-
-#     return render_template("loc_deets.html", 
-#                             location=location, 
-#                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 # ---------- GENRE ROUTES ---------- #

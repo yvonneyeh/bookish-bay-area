@@ -20,7 +20,7 @@
     </style>
     <script>
       function initMap() {
-        console.log({ lat: {{ location.lat }}, lng: {{ location.lng }} })
+        // console.log({ lat: {{ location.lat }}, lng: {{ location.lng }} })
         const myLatLng = { lat: {{ location.lat }}, lng: {{ location.lng }} };
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 10,
