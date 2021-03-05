@@ -245,12 +245,14 @@ def display_user_booklocs():
     if "user_id" in session:
         user_id = session.get("user_id")
         read_books = helper.get_users_rated_books(user_id)
+        location_dict, location_list = helper.get_locations_by_user(user_id)
 
         return render_template("user_locs.html",
                                read_books=read_books,
+                               book_locations=location_dict,
+                               location_list=location_list,  
                                MAPS_JS_KEY=MAPS_JS_KEY)
 
-                               
         # author = crud.get_author_name_by_book_id(book_id)
         # book = crud.get_book_by_id(book_id)
         # location_dict, location_list = helper.get_locations(book_id)
