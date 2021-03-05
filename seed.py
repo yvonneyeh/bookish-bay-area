@@ -1,8 +1,8 @@
 """Script to seed database."""
 
 import os
-from random import choice, randint, getrandbits
-from datetime import date, datetime
+from random import choice, randint, getrandbits, randrange
+from datetime import date, datetime, timedelta
 from faker import Faker
 from geopy.geocoders import Nominatim
 import csv
@@ -15,6 +15,31 @@ os.system('dropdb books')
 os.system('createdb books')
 
 fake = Faker()
+
+def random_date(start, end):
+    """
+    This function will return a random datetime between two datetime 
+    objects.
+    """
+    delta = end - start
+    int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
+    random_second = randrange(int_delta)
+    return start + timedelta(seconds=random_second)
+
+d1 = datetime.strptime('1/1/2020 1:30 PM', '%m/%d/%Y %I:%M %p')
+d2 = datetime.strptime('1/1/2021 4:50 AM', '%m/%d/%Y %I:%M %p')
+
+rand_date = random_date(d1, d2)
+
+
+# start_date = datetime.date(2020, 1, 1)
+# datetime.date(2020-01-01)
+# end_date = datetime.date(2021, 3, 1)
+
+# time_between_dates = end_date - start_date
+# days_between_dates = time_between_dates.days
+# random_number_of_days = random.randrange(days_between_dates)
+# random_date = start_date + datetime.timedelta(days=random_number_of_days)
 
 # # f = open('data/silicon_valley_books.csv')
 # f = open('data/small.csv')
@@ -29,7 +54,7 @@ def seed_users():
     username = 'yvonneyeh'
     password = 'test'
     password_hash = 'test'
-    join_date = '2020-03-17 12-34'
+    join_date = '2020-03-17 12:34:56'
     email = 'code@yvonneyeh.com'
     yy = crud.create_user(email, first_name, last_name, username, password, join_date)
     users_in_db.append(yy)
@@ -47,22 +72,38 @@ def seed_users():
 
 ratings_in_db = []
 def seed_ratings():
+
+    yg_books = ["Homegoing","Transcendent Kingdom"] 
+    yy_books = ["The Circle","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
     
-    yy_books = ["Homegoing","Transcendent Kingdom","The Circle","Imagine: How Creativity Works","The Pixar Touch: The Making of a Company","Brotopia: Breaking Up the Boys' Club of Silicon Valley"]
+    for title in yg_books:
+        # print(title)
+        book_id = crud.get_book_id_by_title(title)
+        user_id = 1
+        log_date = '2020-07-13'
+        # log_date = f"2020-07-13 {randint(0,23)}:{randint(0,59)}:{randint(0,59)}"
+        score = 5
+        read = True
+        my_book = crud.create_rating(user_id, book_id, log_date, score, read)  
+        ratings_in_db.append(my_book)
+
+
     for title in yy_books:
         # print(title)
         book_id = crud.get_book_id_by_title(title)
-        user_id = crud.get_user_by_id("yvonneyeh")
-        log_date = f"2020-{randint(1,12)}-{randint(1,30)}"
+        user_id = 1
+        log_date = random_date(d1, d2)
+        # log_date = f"2020-{randint(1,12)}-{randint(1,30)} {randint(0,23)}:{randint(0,59)}:{randint(0,59)}"
         score = randint(3,5)
         read = True
-        my_book = crud.create_rating(1, book_id, log_date, score, read)  
+        my_book = crud.create_rating(user_id, book_id, log_date, score, read)  
         ratings_in_db.append(my_book)
 
     for n in range(100):
         user_id = randint(1,10)
         book_id = randint(1,80)
-        log_date = datetime.today()
+        log_date = rand_date = random_date(d1, d2)
+        # log_date = datetime.today()
         score = randint(1,5)
         read = bool(getrandbits(1)) #choice([True, False])
         rate_obj = crud.create_rating(user_id, book_id, log_date, score, read)  
@@ -147,18 +188,6 @@ def seed_books(filename):
 
 book_locs_in_db = []
 def seed_book_locs():
-    
-    # homegoing = 
-    # t_kingdom = 
-    # stanford = 3
-    # tofu_house = 4
-    # homegoing_obj = crud.create_book_location(1, loc_id)
-
-    # for n in range (1,2):
-    #     book_id = n
-    #     loc_id = 3
-    #     book_obj = crud.create_book_location(book_id, loc_id)
-    #     book_locs_in_db.append(book_obj)
 
     # Sample data for multiple locations - Hackbright & Home
     for n in range (3,84):
@@ -196,6 +225,20 @@ def seed_book_genres():
     print(book_genres_in_db)
 
 
+def add_yy_books():
+    homegoing = 1
+    t_kingdom = 2
+    stanford = 3
+    tofu_house = 4
+    hg_obj = crud.create_book_location(homegoing, stanford)
+    tk_obj1 = crud.create_book_location(homegoing, stanford)
+    tk_obj2 = crud.create_book_location(homegoing, tofu_house)
+    book_locs_in_db.append(hg_obj)
+    book_locs_in_db.append(tk_obj1)
+    book_locs_in_db.append(tk_obj2)
+    
+
+
 #---------------------------------------------------------------------#
 
 if __name__ == '__main__':
@@ -216,5 +259,6 @@ if __name__ == '__main__':
     seed_book_genres()
     seed_users()
     seed_ratings()
+    add_yy_books()
 
     print("Sample data seeded")

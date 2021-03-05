@@ -13,7 +13,7 @@
 {% for rating in ratings %}
 
   <li>
-      <a href="/books/{{rating.book.book_id}}">{{ rating.book.title }}</a>
+      Score: <b>{{rating.score}}</b> — <a href="/books/{{rating.book.book_id}}">{{ rating.book.title }}</a>
   </li>
   
 {% endfor %}
