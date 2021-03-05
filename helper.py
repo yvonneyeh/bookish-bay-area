@@ -110,6 +110,59 @@ def get_rating_by_ids(user_id, book_id):
     return rating
 
 
+def get_all_locations():
+
+    locations = db.session.query(BookLocation).all()
+
+    location_dict = {}
+    location_list = [] 
+
+    for loc in locations:
+        dict_key = str(loc.location.lat) + str(loc.location.lng)
+
+        if loc.location.lat == 37.786220 and loc.location.lng == -122.432210:
+            location_list.append(loc.location.name)
+
+        elif dict_key in location_dict: 
+            location_dict[dict_key]['desc'] = loc.location.description
+
+        else:
+
+            location_dict[dict_key] = {}
+            location_dict[dict_key]['lat'] = loc.location.lat
+            location_dict[dict_key]['lng'] = loc.location.lng
+            location_dict[dict_key]['name'] = loc.location.name
+
+    return location_dict, location_list
+
+
+def get_locations_by_user(user_id):
+    """ Retrieve book locations
+    """
+
+    locations = db.session.query(BookLocation).filter_by(user_id=user_id).all() # this is a list
+    print(locations)
+
+    location_dict = {}
+    location_list = [] 
+
+    for loc in locations:
+        dict_key = str(loc.location.lat) + str(loc.location.lng)
+
+        if loc.location.lat == 37.786220 and loc.location.lng == -122.432210:
+            location_list.append(loc.location.name)
+
+        elif dict_key in location_dict: 
+            location_dict[dict_key]['desc'] = loc.location.description
+
+        else:
+
+            location_dict[dict_key] = {}
+            location_dict[dict_key]['lat'] = loc.location.lat
+            location_dict[dict_key]['lng'] = loc.location.lng
+            location_dict[dict_key]['name'] = loc.location.name
+
+    return location_dict, location_list
 
 
 def get_locations(book_id):

@@ -238,6 +238,36 @@ def display_read_books():
         return redirect("/login")
 
 
+@app.route("/account/locations")
+def display_user_booklocs():
+    """Display a user's saved book locations"""
+
+    if "user_id" in session:
+        user_id = session.get("user_id")
+        read_books = helper.get_users_rated_books(user_id)
+
+        return render_template("user_locs.html",
+                               read_books=read_books,
+                               MAPS_JS_KEY=MAPS_JS_KEY)
+
+                               
+        # author = crud.get_author_name_by_book_id(book_id)
+        # book = crud.get_book_by_id(book_id)
+        # location_dict, location_list = helper.get_locations(book_id)
+
+        # return render_template("book_details.html", 
+        #                     author=author, 
+        #                     book=book,
+        #                     book_locations=location_dict,
+        #                     location_list=location_list, 
+        #                     )
+
+    else:
+        flash("You need to be logged in to access that page", "error")
+
+        return redirect("/login")
+
+
 @app.route('/users')
 def all_users():
     """Display all users."""
@@ -375,8 +405,8 @@ def show_book(book_id):
     book = crud.get_book_by_id(book_id)
     location_dict, location_list = helper.get_locations(book_id)
 
-    print("*"*20)
-    print(f"book_locations={location_dict}, \n location_list={location_list}" )
+    # print("*"*20)
+    # print(f"book_locations={location_dict}, \n location_list={location_list}" )
 
     return render_template("book_details.html", 
                             author=author, 
