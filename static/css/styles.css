@@ -173,3 +173,27 @@
     margin-left: auto;
     margin-right: auto
 }
+
+/* Styling for place details */
+.hero {
+    width: 100%;
+    height: auto;
+    max-height: 166px;
+    display: block;
+}
+
+.place,
+p {
+    font-family: 'open sans', arial, sans-serif;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.details {
+    color: darkslategrey;
+}
+
+a {
+    text-decoration: none;
+    color: cadetblue;
+}

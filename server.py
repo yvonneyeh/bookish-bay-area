@@ -579,12 +579,12 @@ def show_location(loc_id):
     """Show details for a location."""
     
     location = crud.get_location_by_id(loc_id)
-    book_dict, book_list = helper.get_books_by_location(loc_id)
+    # book_dict, book_list = helper.get_books_by_location(loc_id)
 
     return render_template("loc_details.html", 
                             location=location, 
-                            books = book_dict, 
-                            books_list = book_list,
+                            # books = book_dict, 
+                            # books_list = book_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 

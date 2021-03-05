@@ -68,17 +68,15 @@
 {% endblock %}
 {% block body %}
 <body>
-  <!-- TODO: Step 4A2: Add a generic sidebar -->
-  <!-- The slide-out panel for showing place details -->
+  
   <div id="panel"></div>
 
   <!-- Map appears here -->
   <div id="map"></div>
 
   <script>
-    /* Note: This example requires that you consent to location sharing when
-     * prompted by your browser. If you see the error "Geolocation permission
-     * denied.", it means you probably did not give permission for the browser * to locate you. */
+    /* This map requires that you consent to location sharing when prompted by browser.
+     * Returns "Geolocation permission denied.", if user does not give permission for geolocation. */
     let pos;
     let map;
     let bounds;

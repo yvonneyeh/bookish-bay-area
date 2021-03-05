@@ -180,26 +180,29 @@ def get_books_by_location(loc_id):
     """
 
     books = db.session.query(BookLocation).filter_by(loc_id=loc_id).all() # this is a list
-    print(locations)
+    print(books)
 
     book_dict = {}
     book_list = [] 
 
-    for loc in locations:
-        dict_key = str(loc.location.lat) + str(loc.location.lng)
+    for loc in books:
+        dict_key = loc.book.book_id
+        print(dict_key)
 
-        if loc.location.lat == 37.786220 and loc.location.lng == -122.432210:
-            book_list.append(loc.location.name)
+        book_list.append(loc.book.title)
 
-        elif dict_key in book_dict: 
-            book_dict[dict_key]['desc'] = loc.location.description
+        if dict_key not in book_dict: 
+            book_dict.get('dict_key',{})
 
         else:
 
             book_dict[dict_key] = {}
-            book_dict[dict_key]['lat'] = loc.location.lat
-            book_dict[dict_key]['lng'] = loc.location.lng
-            book_dict[dict_key]['name'] = loc.location.name
+            book_dict[dict_key]['title'] = loc.book.title
+            book_dict[dict_key]['link'] = "/books/<int:loc.book.book_id>"
+            book_dict[dict_key]['cover'] = loc.book.cover_path
+
+    print(book_list)
+    print(book_dict)
 
     return book_dict, book_list
 
