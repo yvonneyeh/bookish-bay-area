@@ -7,7 +7,7 @@ from geopy.geocoders import Nominatim
 geolocator = Nominatim(user_agent="app")
 
 
-def create_user_submitted_loc(name, address)
+def create_user_submitted_loc(name, address):
     """Create and return a new user-submitted location."""
 
     location = geolocator.geocode(address)
@@ -136,10 +136,12 @@ def get_all_locations():
     return location_dict, location_list
 
 
-def get_locations_by_user(user_id):
+# TODO: FIX query - user - ratings - books - book_loc
+def get_booklocs_by_user(user_id):
     """ Retrieve book locations
     """
 
+    # locations = FIX THIS, join
     locations = db.session.query(BookLocation).filter_by(user_id=user_id).all() # this is a list
     print(locations)
 

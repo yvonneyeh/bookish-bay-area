@@ -245,7 +245,7 @@ def display_user_booklocs():
     if "user_id" in session:
         user_id = session.get("user_id")
         read_books = helper.get_users_rated_books(user_id)
-        location_dict, location_list = helper.get_locations_by_user(user_id)
+        location_dict, location_list = helper.get_booklocs_by_user(user_id)
 
         return render_template("user_locs.html",
                                read_books=read_books,
@@ -399,6 +399,7 @@ def show_book_list():
                             genre=user_genre)
 
 
+
 @app.route('/books/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
@@ -548,11 +549,19 @@ def show_author(author_id):
 
 # ---------- LOCATION ROUTES ---------- #
 
-@app.route('/book-map')
-def show_book_map():
-    """View Map."""
+@app.route('/books/map')
+def show_book_map(book_id):
+    """Show all book locations on a map."""
+    
+    location_dict, location_list = helper.get_all_locations()
 
-    return render_template('book_map.html', MAPS_JS_KEY=MAPS_JS_KEY)
+    # print("*"*20)
+    # print(f"book_locations={location_dict}, \n location_list={location_list}" )
+
+    return render_template("book_map.html", 
+                            book_locations=location_dict,
+                            location_list=location_list, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
 
 @app.route('/library-map')
 def show_library_map():
