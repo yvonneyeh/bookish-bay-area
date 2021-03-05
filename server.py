@@ -83,7 +83,7 @@ def log_in_user():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    user_object = crud.get_user_by_id(username)
+    user_object = crud.get_user_by_username(username)
 
     if user_object != None:
         if password == user_object.password != None:
@@ -266,41 +266,21 @@ def create_account():
     return redirect('/')
 
 
-@app.route('/new-loc')
-def show_new_loc_form():
-    """Display new location submission form."""
+@app.route('/users/profile')
+def show_logged_in_user_profile():
+    """Show details for a logged-in user"""
 
-    return render_template("add_loc.html")
+    if "username" in session:
+        username = session["username"]
+        user = crud.get_user_by_username(username)
+        ratings = crud.get_user_ratings(username) 
 
+        return render_template("/user_details.html", user=user, ratings=ratings)
 
-@app.route('/new-loc', methods=['POST'])
-def create_new_user_submitted_location():
-    """Create a new user-submitted location."""
+    else:
+        flash("You need to be logged in to access that page")
 
-    name = request.form.get('name')
-    address = request.form.get('address')
-
-    helper.create_user_submitted_loc(name, address)
-    flash('Location submitted successfully!')
-
-    return redirect('/locations')
-
-
-# @app.route('/users/profile')
-# def show_logged_in_user_profile():
-#     """Show details for a logged-in user"""
-
-#     if "username" in session:
-#         user = User.query.get(session.get("username")
-#         ratings = crud.get_user_ratings(session.get("username")) 
-#         # TODO: SyntaxError: invalid syntax
-
-#         return render_template("/user_details.html", user=user, ratings=ratings)
-
-#     else:
-#         flash("You need to be logged in to access that page")
-
-#         return redirect("/login")
+        return redirect("/login")
 
 
 
@@ -603,6 +583,35 @@ def show_rating(rating_id):
 
     return render_template("rating_details.html", 
                             rating=rating)
+
+
+# ---------- SUBMISSION FORM ROUTES ---------- #
+
+@app.route('/add/location')
+def show_new_loc_form():
+    """Display new location submission form."""
+
+    return render_template("add_loc.html")
+
+
+@app.route('/add/location', methods=['POST'])
+def create_new_user_submitted_location():
+    """Create a new user-submitted location."""
+
+    name = request.form.get('name')
+    address = request.form.get('address')
+
+    helper.create_user_submitted_loc(name, address)
+    flash('Location submitted successfully!')
+
+    return redirect('/locations')
+
+
+@app.route('/add/book-loc')
+def show_new_book_loc_form():
+    """Display new book-location submission form."""
+
+    return render_template("add_bookloc.html")
 
 
 # ---------- SEARCH ROUTES ---------- #
