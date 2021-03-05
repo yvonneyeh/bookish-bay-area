@@ -266,6 +266,26 @@ def create_account():
     return redirect('/')
 
 
+@app.route('/new-loc')
+def show_new_loc_form():
+    """Display new location submission form."""
+
+    return render_template("add_loc.html")
+
+
+@app.route('/new-loc', methods=['POST'])
+def create_new_user_submitted_location():
+    """Create a new user-submitted location."""
+
+    name = request.form.get('name')
+    address = request.form.get('address')
+
+    helper.create_user_submitted_loc(name, address)
+    flash('Location submitted successfully!')
+
+    return redirect('/locations')
+
+
 # @app.route('/users/profile')
 # def show_logged_in_user_profile():
 #     """Show details for a logged-in user"""

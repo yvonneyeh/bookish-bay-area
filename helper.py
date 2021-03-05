@@ -1,7 +1,25 @@
 """Helper functions for server.py"""
-
-from model import *
+# from model import *
+from crud import *
 from sqlalchemy import and_, or_, not_
+from geopy.geocoders import Nominatim
+
+geolocator = Nominatim(user_agent="app")
+
+
+def create_user_submitted_loc(name, address)
+    """Create and return a new user-submitted location."""
+
+    location = geolocator.geocode(address)
+    lat = location.latitude
+    lng = location.longitude
+
+    location = create_location(name, lat, lng, address)
+        
+    db.session.add(location)
+    db.session.commit()
+
+    return location
 
 
 def get_books_by_search(user_search):
