@@ -22,6 +22,17 @@ def create_user_submitted_loc(name, address):
     return location
 
 
+# def create_user_submitted_bookloc(book_id, loc_id):
+#     """Create and return a new user-submitted location."""
+
+#     bookloc = create_book_location(book_id, loc_id)
+        
+#     db.session.add(bookloc)
+#     db.session.commit()
+
+#     return location
+
+
 def get_books_by_search(user_search):
     """ Get books based on search string. """
 
@@ -109,13 +120,6 @@ def get_rating_by_ids(user_id, book_id):
 
     return rating
 
-
-def get_book_titles_for_form():
-
-    res = Book.query.all()
-    books = [r.as_dict() for r in res]
-    
-    return jsonify(books)
 
 
 def get_all_locations():

@@ -399,21 +399,54 @@ def show_book_list():
                             genre=user_genre)
 
 
-
 @app.route('/books/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
     
     author = crud.get_author_name_by_book_id(book_id)
     book = crud.get_book_by_id(book_id)
+    locations = crud.get_all_locations()
     location_dict, location_list = helper.get_locations(book_id)
 
     return render_template("book_details.html", 
                             author=author, 
                             book=book,
+                            locations = locations,
                             book_locations=location_dict,
                             location_list=location_list, 
                             MAPS_JS_KEY=MAPS_JS_KEY)
+
+
+@app.route('/books/<int:book_id>', methods=["POST"])
+def create_book_location_on_details_page(book_id):
+    # """Show details for a book."""
+    
+    title = request.form.get('title')
+    location = request.form.get('location')
+
+    if title == None:
+	    flash("Select a Title")
+        # return redirect("/add/book-loc")
+    else:
+        # book_id = crud.get_book_id_by_title(title)
+        loc = crud.get_location_id_by_name(location)
+        loc_id = loc.loc_id
+
+        crud.create_book_location(book_id, loc_id)
+        flash('New Book Location submitted successfully!')
+
+    return redirect('/books/<int:book_id>')
+
+    # author = crud.get_author_name_by_book_id(book_id)
+    # book = crud.get_book_by_id(book_id)
+    # location_dict, location_list = helper.get_locations(book_id)
+
+    # return render_template("book_details.html", 
+    #                         author=author, 
+    #                         book=book,
+    #                         book_locations=location_dict,
+    #                         location_list=location_list, 
+    #                         MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/user/save-book', methods=["POST"])
@@ -652,20 +685,52 @@ def create_new_user_submitted_location():
 def show_new_book_loc_form():
     """Display new book-location submission form."""
 
-    return render_template("add_bookloc.html")
+    books = crud.get_all_books()
+    locations = crud.get_all_locations()
+
+    return render_template("add_bookloc.html",
+                            books = books,
+                            locations = locations)
 
 
 @app.route('/add/book-loc', methods=['POST'])
 def create_new_book_location():
     """Create a new user-submitted book-location."""
 
-    name = request.form.get('name')
-    address = request.form.get('address')
+    title = request.form.get('title')
+    location = request.form.get('location')
 
-    helper.create_user_submitted_loc(name, address)
-    flash('Location submitted successfully!')
+    if title == None or location == None:
+	    flash("Select a Title & Location")
+        # return redirect("/add/book-loc")
+    elif title == None:
+	    flash("Select a Title")
+        # return redirect("/add/book-loc")
+    elif location == None:
+	    flash("Select a Location")
+        # return redirect("/add/book-loc")
+	
+    else:
+        book_id = crud.get_book_id_by_title(title)
+        loc_id = crud.get_location_id_by_name(location)
 
-    return redirect('/locations')
+        crud.create_book_location(book_id, loc_id)
+        flash('New Book Location submitted successfully!')
+
+    return redirect('/books')
+
+    # title = request.form['book']
+    # book_id = crud.get_book_id_by_title(title)
+
+    # if book:
+    #     return jsonify({'country':country})
+    #     flash('Location submitted successfully!')
+
+    # return jsonify({'error': 'missing data..'})
+
+    # crud.create_book_location(book_id, loc_id)
+    
+    # return redirect('/books')
 
 
 # ---------- SEARCH ROUTES ---------- #
@@ -689,6 +754,14 @@ def is_user_logged_in():
     else:
         return "false"
 
+
+@app.route('/json/book-titles')
+def get_book_titles_for_form():
+
+    res = Book.query.all()
+    books = [r.as_dict() for r in res]
+    
+    return jsonify(books)
 
 
 if __name__ == '__main__':

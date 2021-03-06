@@ -1,6 +1,7 @@
 "use strict";
 
 const newLocButton = $("#new-loc")
+const newLocForm = $("#new-loc-form")
 const saveButton = $("#save-button")
 const readButton = $("#read-button")
 const unsaveButton = $("#unsave-button")

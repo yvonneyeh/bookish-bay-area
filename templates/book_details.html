@@ -28,6 +28,19 @@
   </div>
 
 
+  <form action="/add/book-loc" method="POST" id="new-loc-form" style="display:None">
+
+    <label for="location">Location Name</label>
+    <select name="location" id="location" required>
+        <option value="starter" selected>Select a Location</option>
+        {% for location in locations %}
+        <option value="{{location.loc_id}}">{{ location.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" class="btn btn-primary">
+</form>
+
 {% if book.author_rel.name %}
   <span class="book_detail_label">Author: </span> 
   <span class="book_detail_content"> {{ book.author_rel.name }}</span>

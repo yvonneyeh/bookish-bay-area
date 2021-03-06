@@ -125,10 +125,23 @@ def get_all_books():
     return Book.query.order_by(Book.title).all()
 
 
+# def get_all_book_titles():
+#     """Return all book titles, sorted alphabetically"""
+
+#     return Book.query(Book.title).order_by(Book.title).all()
+
+
 def get_book_by_id(book_id):
     """Return books given its ID"""
 
     return Book.query.filter(Book.book_id == book_id).first() 
+
+
+def get_book_by_title(title):
+    """Return books given its title"""
+
+    return Book.query.filter(Book.title == title).first() 
+
 
 def get_book_id_by_title(title):
     """Return book's ID given its title"""
@@ -207,6 +220,12 @@ def get_all_locations():
     """Return all locations."""
 
     return Location.query.order_by(Location.name).all()
+
+
+# def get_all_loc_names():
+#     """Return all location names, sorted alphabetically"""
+
+#     return Location.query(Location.name).order_by(Location.name).all()
 
 
 def get_all_book_locations(book_id):
