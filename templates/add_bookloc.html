@@ -16,7 +16,7 @@
     <select name="title" id="title" required>
         <option value="starter" selected>Select a Book</option>
         {% for book in books %}
-        <option value="{{book.book_id}}">{{ book.title }}</option>
+        <option value="{{book.title}}">{{ book.title }}</option>
         {% endfor %}
     </select>
     <br>
@@ -24,7 +24,7 @@
     <select name="location" id="location" required>
         <option value="starter" selected>Select a Location</option>
         {% for location in locations %}
-        <option value="{{location.loc_id}}">{{ location.name }}</option>
+        <option value="{{location.name}}">{{ location.name }}</option>
         {% endfor %}
     </select>
     <br>

@@ -421,21 +421,24 @@ def show_book(book_id):
 def create_book_location_on_details_page(book_id):
     # """Show details for a book."""
     
-    title = request.form.get('title')
     location = request.form.get('location')
+    loc = crud.get_location_id_by_name(location)
 
-    if title == None:
-	    flash("Select a Title")
-        # return redirect("/add/book-loc")
+    if loc == None:
+        flash("Select a Title")
+        
+        return redirect(f"/books/{book_id}")
+    
     else:
         # book_id = crud.get_book_id_by_title(title)
-        loc = crud.get_location_id_by_name(location)
+        # print(loc)
+        # print(type(loc))
         loc_id = loc.loc_id
 
         crud.create_book_location(book_id, loc_id)
         flash('New Book Location submitted successfully!')
 
-    return redirect('/books/<int:book_id>')
+    return redirect(f"/books/{book_id}")
 
     # author = crud.get_author_name_by_book_id(book_id)
     # book = crud.get_book_by_id(book_id)
@@ -700,6 +703,10 @@ def create_new_book_location():
     title = request.form.get('title')
     location = request.form.get('location')
 
+    # return title, location
+    # print(title)
+    # print(location)
+
     if title == None or location == None:
 	    flash("Select a Title & Location")
         # return redirect("/add/book-loc")
@@ -714,9 +721,10 @@ def create_new_book_location():
         book_id = crud.get_book_id_by_title(title)
         loc_id = crud.get_location_id_by_name(location)
 
-        crud.create_book_location(book_id, loc_id)
+        bookloc = crud.create_book_location(book_id, loc_id)
         flash('New Book Location submitted successfully!')
 
+    print(bookloc)
     return redirect('/books')
 
     # title = request.form['book']
