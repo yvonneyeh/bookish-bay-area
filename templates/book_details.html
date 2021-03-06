@@ -1,19 +1,38 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ book.title }} - Details{% endblock %}
-
+<!-- {% block head %}
+<style>
+    #myDIV {
+      width: 100%;
+      padding: 50px 0;
+      text-align: center;
+      background-color: lightblue;
+      margin-top: 20px;
+    }
+    </style>
+{% endblock %} -->
 {% block body %}
 <h1>{{ book.title }}</h1>
+
+<!-- <div id="myDIV">
+    This is my DIV element.
+</div>
+<button onclick="myFunction()">Try it</button> -->
 
 <!-- Buttons to Save/Read books -->
 
 <div class="row">
     <div class="col text-right">
-        <button type="button" class="btn btn-primary" id="new-loc" onclick="window.location.href='/add/book-loc';">
+        <!-- Button to redirect to add book-loc page -->
+        <!-- <button type="button" class="btn btn-primary" id="new-loc" onclick="window.location.href='/add/book-loc';">
             Add New Location
-        </button>
+        </button> -->
+        <!-- <button type="button" class="btn btn-primary" id="new-loc">
+            Add New Location
+        </button> -->
         <button type="button" class="btn btn-primary" id="new-loc" onclick="toggleLocForm()">
-            Add New Location Here
+            Add New Location
         </button>
         <button type="button" class="btn btn-primary" id="save-button">
             Save Book
@@ -142,6 +161,20 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+
+<!-- Script to toggle form to submit a new book-location -->
+<script>
+    function toggleLocForm() {
+    var x = document.getElementById("new-loc-form");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>
+
+
 
 <!-- Script to capture interaction with save & read buttons on book details page -->
 <script src="/static/js/bookpagebuttons.js"></script>

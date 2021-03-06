@@ -14,17 +14,18 @@ const path1 = window.location.pathname
 const book_id1 = path1.slice(7)
 console.log('book_id:', book_id1)
 
-const toggleLocForm() {
-    var x = document.getElementById("new-loc-form");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+
+// function toggleLocForm() {
+//     var x = document.getElementById("new-loc-form");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+//   }
 
 $.get("/user/loggedin", (res) => {
-    console.log("user logged in:", res)
+    // console.log("user logged in:", res)
     if (res === "false") {
         newLocButton.hide();
         saveButton.hide();
@@ -51,6 +52,11 @@ $.get(`/user/is-book-saved/${book_id1}`, (res) => {
         saveButton.hide();
         unsaveButton.show();
     }
+});
+
+newLocButton.on("click", () => {
+        newLocForm.show();
+        });
 });
 
 saveButton.on("click", () => {
