@@ -148,8 +148,8 @@ def get_locations_by_search(user_loc_search):
     """
 
     locations = Location.query.filter(Location.name.ilike("%" + user_loc_search + "%"))\
-        .order_by(Location.name)\
-        .all()
+                .order_by(Location.name)\
+                .all()
 
     return locations
 
