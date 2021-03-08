@@ -15,6 +15,40 @@
     width: auto;
 }
 
+.homepage {
+    display: flex !important;
+}
+
+#homepage {
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#homepage-search-div {
+    flex: 1 0 auto;
+    flex-direction: row;
+    width: 100%;
+}
+
+#homepage-header {
+    color: white;
+}
+
+#homepage-search-bar {
+    flex: 1 1 auto;
+}
+
+#homepage-search-btn {
+    flex: 1 0 auto;
+    margin: 0 0 0 12px;
+}
+
+#homepage-logo {
+    padding: 16px;
+}
 
 .form-control {
     font-size: 14px;

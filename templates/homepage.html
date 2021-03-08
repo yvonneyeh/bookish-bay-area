@@ -17,14 +17,20 @@
     <li><a href="/ratings">Ratings</a></li>
   </ul>
 
-  <form id="title_search" action="/books">
-    <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
-    <br><br>
-
-    <input type="submit" \
-    class="submit_button"\
-    value="Search">
-
-  </form>
+<div id="homepage-wrapper" class="homepage">
+  <div id="homepage" class="homepage">
+    <div class="form-group" id="homepage-search-div" class="homepage">
+      <form id="title_search" action="/books">
+      <!-- <input type="text" name="search" id="homepage-search-bar" class="form-control" class="homepage" placeholder="Search for books"> -->
+      <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
+      <input type="submit" class="btn btn-primary" value="Search" id="homepage-search-btn" class="homepage">
+      <!-- <br><br> -->
+      </form>
+      <!-- <input type="submit" \
+      class="submit_button"\
+      value="Search"> -->
+    </div>
+  </div>
+</div>
 
 {% endblock %}
