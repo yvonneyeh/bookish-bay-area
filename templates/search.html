@@ -7,7 +7,34 @@
 
 {% block content %}
 
+<div class="row align-items-top flex-row" id="search-terms-div">
+    <form action="/search" class="d-flex flex-grow-1" autocomplete="off">
+      <input type="text" name="search" id="search-results-search" class="d-flex flex-grow-1">
+      <input type="submit" class="btn btn-primary d-flex" id="search-results-search-button" value="Search">
+    </form>
+</div>
 
+<div class="row">
+  <div class="col fixed-width-card" id="search-list">
+    <div id="trail-list-container">
+        <h4 id="trail-list-header"></h4>
+    </div>
+    <button type="button" class="btn btn-primary hidden" id="prev-button">
+      Previous 10 books
+    </button>
+    <button type="button" class="btn btn-primary" id="next-button">
+      Next 10 books
+    </button>
+  </div>
+  <div class="col" id="search-map">
+    <div id="search-map-container" class="map-container">
+    </div>
+    <button class="btn btn-primary hidden book-button" id="hide-book-markers">Hide Book Markers</button>
+    <button class="btn btn-primary hidden book-button" id="show-book-markers">Show Book Markers</button>
+  </div>
+</div>
+
+<script src="static/js/searchresults.js"></script>
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMap">

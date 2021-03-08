@@ -772,6 +772,42 @@ def get_book_titles_for_form():
     return jsonify(books)
 
 
+@app.route("/json/search")
+def return_json_search_results():
+    """Search for books given a location, 
+    seed books into database, 
+    and return json response."""
+
+    search_terms = request.args.get("search")
+    lat_long = helper.call_geocoding_api(search_terms)
+
+    if lat_long != "Invalid search terms":
+        # response = call_geocoding_api(lat_long)
+        # crud.create_book(response)
+
+        json_response = jsonify(response["books"])
+
+        return json_response
+
+    else:
+        return "Invalid search terms"
+
+
+@app.route("/json/search-coords")
+def get_search_coordinates():
+    """Call Google Maps Geocoding API with search terms & return json
+    of coordinates"""
+
+    search_terms = request.args.get("search")
+    lat_long = helper.call_geocoding_api(search_terms)
+
+    if lat_long != "Invalid search terms":
+        return jsonify(lat_long)
+
+    else:
+        return "Invalid search terms"
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

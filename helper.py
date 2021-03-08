@@ -6,6 +6,28 @@ from geopy.geocoders import Nominatim
 
 geolocator = Nominatim(user_agent="app")
 
+def call_geocoding_api(search_terms):
+    """Query Google Maps Geocoding API to convert search terms to
+    lat/lng coordinates"""
+
+    api_url = "https://maps.googleapis.com/maps/api/geocode/json"
+    payload = {
+        "address": search_terms,
+        "key": MAPS_GEOCODING_KEY
+    }
+
+    r = requests.get(api_url, params=payload)
+    response = r.json()
+
+    # Check to see if search was valid
+    if response.get("results"):
+        lat_long = response["results"][0]["geometry"]["location"]
+        return lat_long
+
+    # Return error message if message invalid
+    else:
+        return "Invalid search terms"
+
 
 def create_user_submitted_loc(name, address):
     """Create and return a new user-submitted location."""
