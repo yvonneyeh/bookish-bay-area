@@ -227,7 +227,7 @@ def display_read_books():
     # & not marked read
     if "user_id" in session:
         user_id = session.get("user_id")
-        read_books = helper.get_users_rated_books(user_id)
+        read_.get_users_rated_books(user_id)
 
         return render_template("user_read.html",
                                read_books=read_books)
@@ -399,7 +399,7 @@ def show_book_list():
                             genre=user_genre)
 
 
-@app.route('/books/<int:book_id>')
+@app.route('/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
     
@@ -604,8 +604,22 @@ def show_library_map():
 
 @app.route('/locations')
 def all_locations():
-    """Display all locations."""
-    locations = crud.get_all_locations()
+    """Show list of books. 
+    If user entered location search, filter by location
+    Else: display entire book list.
+    """
+
+    user_loc_search = None
+
+    if 'loc_search' in request.args:
+        user_loc_search = request.args['loc_search']
+        locations = helper.get_locations_by_search(user_loc_search)
+
+        if locations == None:
+            flash('No results found')
+    
+    else: 
+        locations = crud.get_all_locations()
 
     return render_template("all_locations.html", locations=locations)
 
@@ -738,7 +752,7 @@ def create_new_book_location():
 
     # crud.create_book_location(book_id, loc_id)
     
-    # return redirect('/books')
+    # return redirect('')
 
 
 # ---------- SEARCH ROUTES ---------- #

@@ -2,6 +2,17 @@
 {% block title %}All Locations{% endblock %}
 
 {% block body %}
+
+<form id="loc_search" action="/locations">
+  <input type="text" class="form-control" name="loc_search" id="loc_search" placeholder="Search for locations by name" size="50">
+
+  <input type="submit" \
+  class="submit_button"\
+  value="Search for location">
+
+</form>
+
+
 <ul>
 {% for location in locations %}
 

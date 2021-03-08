@@ -143,6 +143,16 @@ def get_rating_by_ids(user_id, book_id):
     return rating
 
 
+def get_locations_by_search(user_loc_search):
+    """ Get books based on location search string. 
+    """
+
+    locations = Location.query.filter(Location.name.ilike("%" + user_loc_search + "%"))\
+        .order_by(Location.name)\
+        .all()
+
+    return locations
+
 
 def get_all_locations():
 
