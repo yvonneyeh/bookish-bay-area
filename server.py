@@ -55,16 +55,16 @@ def register_user():
         db.session.add(user)
         db.session.commit()
 
-        flash("User created!")
+        flash("User created!", "success")
 
         return redirect("/login")
 
     # If account does exist, flash message to indicating email or username exists.
     else:
         if User.query.filter_by(email=email).all():
-            flash(f"There's already an account associated with {email}")
+            flash(f"There's already an account associated with {email}", "warning")
         else:
-            flash(f"The username {username} is already taken")
+            flash(f"The username {username} is already taken", "warning")
 
         return redirect("/register")
 
@@ -92,10 +92,10 @@ def log_in_user():
             # print('Logged in!')
             flash('Logged in!')
         else:
-            flash('Incorrect password') 
+            flash('Incorrect password', 'warning') 
             return redirect("/login")  
     else:
-        flash('Username does not exist. Please register for an account.')
+        flash('Username does not exist. Please register for an account.', 'warning')
         return redirect("/register")
     
     return redirect('/')
@@ -111,7 +111,7 @@ def show_acct_info_form():
         return render_template("/user_info.html", user=user)
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -149,12 +149,12 @@ def update_account_info():
         db.session.add(user)
         db.session.commit()
 
-        flash("Information updated!")
+        flash("Information updated!", 'info')
 
         return redirect("/account/update_info")
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -167,7 +167,7 @@ def show_change_pass_form():
         return render_template("update_password.html")
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
         return redirect("/login")
 
 
@@ -187,17 +187,17 @@ def change_user_password():
             db.session.add(user)
             db.session.commit()
 
-            flash("Password successfully updated")
+            flash("Password successfully updated", 'success')
 
             return redirect("/account/change_password")
 
         else:
-            flash("Incorrect password, please try again")
+            flash("Incorrect password, please try again", 'warning')
 
             return redirect("/account/change_password")
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -214,7 +214,7 @@ def display_saved_books():
                                read_books=ratings)
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -233,7 +233,7 @@ def display_read_books():
                                read_books=read_books)
 
     else:
-        flash("You need to be logged in to access that page", "error")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -290,10 +290,10 @@ def create_account():
     join_date = datetime.today()
 
     if crud.get_user_by_email(email) != None:
-        flash('Email exists. Please sign up with a different email.')
+        flash('Email exists. Please sign up with a different email.', 'warning')
     else:
         crud.create_user(email, first_name, last_name, username, password, join_date)
-        flash('Account created successfully!')
+        flash('Account created successfully!', 'success')
 
     return redirect('/')
 
@@ -310,7 +310,7 @@ def show_logged_in_user_profile():
         return render_template("/user_details.html", user=user, ratings=ratings)
 
     else:
-        flash("You need to be logged in to access that page")
+        flash("You need to be logged in to access that page", 'warning')
 
         return redirect("/login")
 
@@ -331,7 +331,7 @@ def log_out_user():
 
     if "user_id" in session:
         del session["user_id"]
-        flash("Logged out")
+        flash("Logged out", 'secondary')
 
     return redirect("/")
 
@@ -365,7 +365,7 @@ def show_book_list():
         books = helper.get_books_by_search(user_search)
 
         if books == None:
-            flash('No results found')
+            flash('No results found', 'secondary')
     
     else: 
         books = crud.get_all_books()
@@ -377,7 +377,7 @@ def show_book_list():
         # print("search", len(books))
 
         if books == None:
-            flash('No results found')
+            flash('No results found', 'secondary')
     
     else: 
         books = crud.get_all_books()
@@ -388,7 +388,7 @@ def show_book_list():
     #     books = helper.get_books_by_author(user_author_search)
 
     #     if books == None:
-    #         flash('No results found')
+    #         flash('No results found', 'secondary')
         
     # else: 
     #     books = crud.get_all_books()
@@ -425,7 +425,7 @@ def create_book_location_on_details_page(book_id):
     loc = crud.get_location_id_by_name(location)
 
     if loc == None:
-        flash("Select a Title")
+        flash("Select a Title", 'warning')
         
         return redirect(f"/books/{book_id}")
     
@@ -436,7 +436,7 @@ def create_book_location_on_details_page(book_id):
         loc_id = loc.loc_id
 
         crud.create_book_location(book_id, loc_id)
-        flash('New Book Location submitted successfully!')
+        flash('New Book Location submitted successfully!', 'success')
 
     return redirect(f"/books/{book_id}")
 
@@ -617,7 +617,7 @@ def all_locations():
         # locations = helper.get_locations_by_search(user_loc_search) # TODO: AttributeError: module 'helper' has no attribute 'get_locations_by_search'
 
         if locations == None:
-            flash('No results found')
+            flash('No results found', 'secondary')
     
     else: 
         locations = crud.get_all_locations()
@@ -694,7 +694,7 @@ def create_new_user_submitted_location():
     address = request.form.get('address')
 
     helper.create_user_submitted_loc(name, address)
-    flash('Location submitted successfully!')
+    flash('Location submitted successfully!', 'success')
 
     return redirect('/locations')
 
@@ -723,13 +723,13 @@ def create_new_book_location():
     # print(location)
 
     if title == None or location == None:
-	    flash("Select a Title & Location")
+	    flash("Select a Title & Location", 'warning')
         # return redirect("/add/book-loc")
     elif title == None:
-	    flash("Select a Title")
+	    flash("Select a Title", 'warning')
         # return redirect("/add/book-loc")
     elif location == None:
-	    flash("Select a Location")
+	    flash("Select a Location", 'warning')
         # return redirect("/add/book-loc")
 	
     else:
@@ -737,7 +737,7 @@ def create_new_book_location():
         loc_id = crud.get_location_id_by_name(location)
 
         bookloc = crud.create_book_location(book_id, loc_id)
-        flash('New Book Location submitted successfully!')
+        flash('New Book Location submitted successfully!', 'success')
 
     print(bookloc)
     return redirect('/books')
@@ -747,7 +747,7 @@ def create_new_book_location():
 
     # if book:
     #     return jsonify({'country':country})
-    #     flash('Location submitted successfully!')
+    #     flash('Location submitted successfully!', 'success')
 
     # return jsonify({'error': 'missing data..'})
 

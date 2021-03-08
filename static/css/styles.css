@@ -7,7 +7,14 @@
     background-color: yellow;
     color: black;
   }
-  
+
+#flash_msg {
+    text-align: center;
+    margin-bottom: 0;
+    color: rgb(170, 170, 170);
+    font-weight: bold;
+}
+
 .form-group {
     display: inline-block;
     margin-bottom: 0;
