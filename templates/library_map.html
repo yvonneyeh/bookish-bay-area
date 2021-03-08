@@ -10,7 +10,7 @@
   <style>
     /* Always set the map height explicitly to define the size of the div
      * element that contains the map. */
-    #map {
+     #map {
       height: 100%;
       background-color: grey;
     }
@@ -103,8 +103,8 @@
           };
           map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
-            zoom: 15,
-            mapId: 'a72aa248840e8771'
+            zoom: 15
+            // , mapId: {{ MAP_ID }}
           });
           bounds.extend(pos);
 
@@ -132,7 +132,8 @@
       pos = {lat: 37.786220, lng: -122.432210};
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
-        zoom: 13
+        zoom: 13,
+        mapId: 'MAP_ID'
       });
 
       // Display an InfoWindow at the map center
@@ -274,10 +275,10 @@
 
 <!-- Google Maps JS API script -->
 <!-- <script async defer
-src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=MAPS_JS_KEY&callback=initMap">
 </script> -->
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&libraries=places&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&map_ids={{MAP_ID}}&libraries=places&callback=initMap">
 </script>
 
 </body>

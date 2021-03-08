@@ -13,6 +13,8 @@ import helper
 from jinja2 import StrictUndefined
 
 MAPS_JS_KEY = os.environ['MAPS_JS_KEY']
+MAPS_GEOCODING_KEY = os.environ['MAPS_GEOCODING_KEY']
+MAP_ID = os.environ['MAP_ID']
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -600,7 +602,9 @@ def show_book_map(book_id):
 def show_library_map():
     """View Map."""
 
-    return render_template('library_map.html', MAPS_JS_KEY=MAPS_JS_KEY)
+    return render_template('library_map.html', 
+                            MAPS_JS_KEY=MAPS_JS_KEY, 
+                            MAP_ID=MAP_ID)
 
 @app.route('/locations')
 def all_locations():

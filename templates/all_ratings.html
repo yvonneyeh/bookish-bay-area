@@ -1,14 +1,109 @@
 {% extends 'base.html' %}
 {% block title %}All Ratings{% endblock %}
 
-{% block body %}
-<ul>
-{% for rating in ratings %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+{% endblock head %}
 
-  <li>
-      <a href="/ratings/{{rating.rating_id}}">{{ rating.book_id }}</a> - Score: {{ rating.score }}
-  </li>
-  
-{% endfor %}
-</ul>
+{% block body %}
 {% endblock body %}
+
+{% block content %}
+
+{% set count1 = namespace(value=0) %}
+{% set count2 = namespace(value=0) %}
+{% set count3 = namespace(value=0) %}
+{% set count4 = namespace(value=0) %}
+{% set count5 = namespace(value=0) %}
+
+{% for rating in ratings %}
+  {% if rating.score == 1 %}
+  {% set count1.value = count1.value + 1 %}
+  
+  {% elif rating.score == 2 %}
+  {% set count2.value = count2.value + 1 %}
+  
+  {% elif rating.score == 3 %}
+  {% set count3.value = count3.value + 1 %}
+  
+  {% elif rating.score == 4 %}
+  {% set count4.value = count4.value + 1 %}
+  
+  {% elif rating.score == 5 %}
+  {% set count5.value = count5.value + 1 %}
+  {% endif %}
+{% endfor %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <div class="row justify-content-center">
+      <h2>All Ratings on Bookish</h2>
+      <canvas id="ratingChart" width="400" height="400"></canvas>
+      <script>
+      var ctx = document.getElementById('ratingChart').getContext('2d');
+      var ratingChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Score: 1', 'Score: 2', 'Score: 3', 'Score: 4', 'Score: 5'],
+              datasets: [{
+                  label: '# of Ratings',
+                  data: [{{ count1.value }}, 
+                        {{ count2.value }}, 
+                        {{ count3.value }}, 
+                        {{ count4.value }},
+                        {{ count5.value }},
+                        ],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+      });
+      </script>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <br>
+      <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 260px; max-height: 1000px;">
+          
+      <ul>
+      {% for rating in ratings %}
+
+        <li>
+            <a href="/ratings/{{rating.rating_id}}">{{ rating.book.title }}</a><br>
+            Score: {{ rating.score }}
+        </li>
+        
+      {% endfor %}
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+{% endblock content%}
