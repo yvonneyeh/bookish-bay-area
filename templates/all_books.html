@@ -2,72 +2,65 @@
 {% block title %}All Books{% endblock %}
 
 {% block body %}
-
-<form id="genre_search" action="/books">
-  <label for="genre">Filter by Genre:</label>
-  <br>
-    <select class="form-control" name="genre" id="genre">
-
-      <option value="All">All</option>
-      <option value="Biography">Biography</option>
-      <option value="Business">Business</option>
-      <option value="Contemporary">Contemporary</option>
-      <option value="Cookbooks">Cookbooks</option>
-      <option value="Fiction">Fiction</option>
-      <option value="Graphic Novels">Graphic Novels</option>
-      <option value="History">History</option>
-      <option value="LGBT">LGBT</option>
-      <option value="Memoir">Memoir</option>
-      <option value="Nonfiction">Nonfiction</option>
-      <option value="Philosophy">Philosophy</option>
-      <option value="Psychology">Psychology</option>
-      <option value="Science">Science</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Sports">Sports</option>
-      <option value="Travel">Travel</option>
-    </select>
-</form>
-
-<!-- <br>
-
-<form id="user_search" action="/books">
-  <input type="text" class="form-control" name="user_search" id="user_search" placeholder="Search for books by title or author" size="50">
-
-  <input type="submit" \
-  class="submit_button"\
-  value="Search">
-
-</form>
-
-<br> -->
-
-
 <br>
+<div class="container">
+  <div class="row align-items-center">
+    
+      <div class="row justify-content-center">
+<div class="col">
+        <form id="genre_search" action="/books">
+          <label for="genre">Filter by Genre:</label>
+          <br>
+            <select class="form-control" name="genre" id="genre">
 
-<form id="title_search" action="/books">
-  <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
+              <option value="All">All</option>
+              <option value="Biography">Biography</option>
+              <option value="Business">Business</option>
+              <option value="Contemporary">Contemporary</option>
+              <option value="Cookbooks">Cookbooks</option>
+              <option value="Fiction">Fiction</option>
+              <option value="Graphic Novels">Graphic Novels</option>
+              <option value="History">History</option>
+              <option value="LGBT">LGBT</option>
+              <option value="Memoir">Memoir</option>
+              <option value="Nonfiction">Nonfiction</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Psychology">Psychology</option>
+              <option value="Science">Science</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Sports">Sports</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="col">
+          <form id="title_search" action="/books">
+            <input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50">
+            
+            <input type="submit" class="btn btn-primary" value="Title Search">
 
-  <input type="submit" \
-  class="submit_button"\
-  value="Search for title">
+          </form>
+      </div>
+      <div class="col">
+          <form id="author_search" action="/books">
+            <input type="text" class="form-control" name="author_search" id="author_search" placeholder="Search for books by author" size="50">
+        
+            <input type="submit" class="btn btn-primary" value="Author Search">
+      </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-</form>
-
-<br>
-
-<form id="author_search" action="/books">
-  <input type="text" class="form-control" name="author_search" id="author_search" placeholder="Search for books by author" size="50">
-
-  <input type="submit" \
-  class="submit_button"\
-  value="Search for author">
-
-</form>
-<br>
 <br>
 
 <ul>
-{% for book in books %}
+{% endblock body %}
+{% block content %} 
+  {% for book in books %}
 
   <li>
       <a href="/books/{{book.book_id}}">{{ book.title }}</a>
@@ -89,4 +82,4 @@
   
 </script>
 
-{% endblock body %}
+{% endblock content %}
