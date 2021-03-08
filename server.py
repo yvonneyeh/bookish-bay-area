@@ -90,7 +90,7 @@ def log_in_user():
             session['username'] = user_object.username
             session['user_id'] = user_object.user_id
             # print('Logged in!')
-            flash('Logged in!')
+            flash('Logged in!', 'success')
         else:
             flash('Incorrect password', 'warning') 
             return redirect("/login")  
@@ -399,7 +399,7 @@ def show_book_list():
                             genre=user_genre)
 
 
-@app.route('/<int:book_id>')
+@app.route('/books/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
     
@@ -747,7 +747,7 @@ def create_new_book_location():
 
     # if book:
     #     return jsonify({'country':country})
-    #     flash('Location submitted successfully!', 'success')
+    #     flash('Location submitted successfully!', 'success)
 
     # return jsonify({'error': 'missing data..'})
 
