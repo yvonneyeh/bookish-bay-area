@@ -1,4 +1,4 @@
-.alert-error {
+/* .alert-error {
     background-color: red;
     color: white;
   }
@@ -6,7 +6,21 @@
 .alert-info {
     background-color: yellow;
     color: black;
-  }
+  } */
+
+/* h1.title {
+    display: block;
+    font-size: 5em;
+    margin-top: 0em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h3.title {
+
+} */
 
 #flash_msg {
     text-align: center;
@@ -32,6 +46,9 @@
     justify-content: center;
     align-items: center;
     align-self: center;
+    /* background: rgba(0, 0, 0, 0.4);
+    width: 500px;
+    padding: 16px 32px; */
 }
 
 #homepage-search-div {
@@ -40,9 +57,9 @@
     width: 100%;
 }
 
-#homepage-header {
+/* #homepage-header {
     color: white;
-}
+} */
 
 #homepage-search-bar {
     flex: 1 1 auto;
@@ -55,6 +72,25 @@
 
 #homepage-logo {
     padding: 16px;
+}
+
+.home-content {
+    background-color: SlateGray;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+.home-content .card-img-overlay img {
+    max-height: 40rem;
+}
+
+.overlay-div{
+  height:100%;
+  width: 100%;
+  position:absolute;
+  background-color:#000;
+  opacity:.7;
 }
 
 .form-control {
@@ -237,4 +273,19 @@ p {
 a {
     text-decoration: none;
     color: cadetblue;
+}
+
+.footer { 
+    font-size:.875rem;
+    color:#63707c
+}
+
+.footer a {
+    font-weight:600;
+    color:#495057
+}
+
+.footer a:hover,
+.footer a:focus {
+    color:#0d6efd
 }

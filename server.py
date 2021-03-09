@@ -27,6 +27,12 @@ def homepage():
 
     return render_template('homepage.html')
 
+@app.route('/about')
+def show_about():
+    """View about page."""
+
+    return render_template('about.html')
+
 
 # ---------- ACCOUNT ROUTES ---------- #
 
