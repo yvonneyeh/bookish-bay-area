@@ -617,10 +617,8 @@ def all_locations():
 
     if 'loc_search' in request.args:
         user_loc_search = request.args['loc_search']
-        locations = Location.query.filter(Location.name.ilike("%" + user_loc_search + "%")).order_by(Location.name).all()
-        # locations = helper.get_locations_by_search(user_loc_search) # TODO: AttributeError: module 'helper' has no attribute 'get_locations_by_search'
-
-        if locations == None:
+        locations = helper.get_locations_by_search(user_loc_search) 
+        if locations == []:
             flash('No results found', 'secondary')
     
     else: 

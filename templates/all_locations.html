@@ -3,23 +3,46 @@
 
 {% block body %}
 
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="row justify-content-center">
+        <h2>Location Search</h2>
+        <br><br>
+      </div>
+      <div class="row justify-content-center">
 <form id="loc_search" action="/locations">
   <input type="text" class="form-control" name="loc_search" id="loc_search" placeholder="Search for locations by name" size="50">
 
-  <input type="submit" \
-  class="submit_button"\
-  value="Search for location">
+  <input type="submit" class="btn btn-primary" value="Search">
 
 </form>
+</div>
+</div>
+<br>
+{% endblock body %}
+{% block content %}
+<br><br>
+<div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 260px; max-height: 1000px;">
 
-
+{% if locations != [] %}
+  
+  <div class="row justify-content-center">
+    <h4>Locations</h4>
+  </div>
 <ul>
 {% for location in locations %}
 
   <li>
-      <a href="/locations/{{location.loc_id}}">{{ location.name }}</a> – ID: <b>{{ location.loc_id }}</b>
+      <a href="/locations/{{location.loc_id}}">{{ location.name }}</a> 
   </li>
+
+  
   
 {% endfor %}
+{% endif %}
 </ul>
-{% endblock body %}
+</div>
+</div>
+</div>
+{% endblock content %}
