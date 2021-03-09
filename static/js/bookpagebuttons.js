@@ -15,19 +15,13 @@ const book_id1 = path1.slice(7)
 console.log('book_id:', book_id1)
 
 
-// function toggleLocForm() {
-//     var x = document.getElementById("new-loc-form");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-//   }
+
 
 $.get("/user/loggedin", (res) => {
     // console.log("user logged in:", res)
     if (res === "false") {
         newLocButton.hide();
+        newLocForm.hide();
         saveButton.hide();
         unsaveButton.hide();
         readButton.hide();
@@ -36,16 +30,14 @@ $.get("/user/loggedin", (res) => {
     else {
         newLocButton.show();
         saveButton.show();
-        unsaveButton.show();
+        // unsaveButton.show();
         readButton.show();
-        unreadButton.show();
+        // unreadButton.show();
     }
 });
 
 $.get(`/user/is-book-saved/${book_id1}`, (res) => {
     if (res.read === true) {
-        saveButton.hide();
-        unsaveButton.show();
         readButton.hide();
         unreadButton.show();
     } else if (res.saved === true) {
@@ -54,9 +46,18 @@ $.get(`/user/is-book-saved/${book_id1}`, (res) => {
     }
 });
 
+function toggleLocForm() {
+    var x = document.getElementById("new-loc-form");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
 newLocButton.on("click", () => {
         newLocForm.show();
-        });
+        
 });
 
 saveButton.on("click", () => {
@@ -70,17 +71,13 @@ unsaveButton.on("click", () => {
     $.post("/user/unsave-book", {book_id: book_id1}, (res) => {
         unsaveButton.hide();
         saveButton.show()
-        readButton.show()
-        unreadButton.hide()
         });
 });
 
 readButton.on("click", () => {
     $.post("/user/read-book", {book_id: book_id1}, (res) => {
-        readButton.hide();
+        readButton.show();
         saveButton.hide();
-        unsaveButton.show();
-        unreadButton.show()
         });
 });
 

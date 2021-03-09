@@ -533,6 +533,7 @@ def unmark_saved_book_as_read():
 
     if "user_id" in session:
 
+        user = user_id = session.get("user_id")
         book_id = int(request.form.get("book_id"))
 
         saved_book = helper.get_session_users_saved_book(user_id, book_id)
