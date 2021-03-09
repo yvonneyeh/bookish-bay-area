@@ -65,6 +65,7 @@ class Book(db.Model):
     cover_path = db.Column(db.String)
     isbn = db.Column(db.String)
     pages = db.Column(db.Integer)
+    link = db.Column(db.String)
     
     # relationships
     # ratings = a list of Rating objects
