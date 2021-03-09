@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <!-- <a href="/">Bookish Home</a> -->
+    
     <title>{% block title %}{% endblock %}</title>
     
     <!-- Stylesheets -->
@@ -15,14 +15,17 @@
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
-    
+
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js"></script>
-
+    <!-- Google Fonts -->
+    <style>@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;600;700;800&display=swap');</style>
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="/static/css/styles.css">
 
     <!-- Favicon -->
-    <!-- Google Fonts -->
+    
 
     {% block head %}
     {% endblock %}
@@ -36,7 +39,7 @@
     
     <nav class="navbar navbar-expand">
       <a class="navbar-brand" href="/"><img src="/static/img/logo.png" id="navbar-logo" class="homepage logo"></a>
-      <a class="nav-link" href="/"><b>BOOKISH</b></a>
+      <a class="nav-link" href="/"><h1 class="nav">Bookish.</h1></a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <!-- <li class="nav-item">

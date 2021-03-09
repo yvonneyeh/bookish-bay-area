@@ -8,19 +8,41 @@
     color: black;
   } */
 
-/* h1.title {
+h1.nav {
+    font-family: 'Eczar', serif;
     display: block;
-    font-size: 5em;
-    margin-top: 0em;
-    margin-bottom: 0.67em;
+    letter-spacing: 0.1em;
+    margin-top: 0.3em;
+    margin-bottom: 0.1em;
     margin-left: 0;
     margin-right: 0;
-    font-weight: bold;
+    font-size: 2.5em;
+    font-weight: 500;
 }
 
-h3.title {
+h1.homepage {
+    font-family: 'Eczar', serif;
+    letter-spacing: 5px;
+    display: block;
+    font-size: 5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 700;
+}
 
-} */
+h3.homepage {
+    font-family: 'Eczar', serif;
+    letter-spacing: 2px;
+    display: block;
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 400;
+}
 
 #flash_msg {
     text-align: center;

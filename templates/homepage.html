@@ -6,14 +6,28 @@
 
 {% block body %}
 
+<div class="card text-white">
+  <img src="static/img/sf.jpg" alt="Background image of the Golden Gate Bridge in San Francisco">
+ <!-- <div class="overlay-div"></div> -->
+  <div class="card-img-overlay d-flex container">
+
 <div class="container">
   <div class="row align-items-center">
     <div class="col">
       <div class="row justify-content-center">
-        <h1 class="title">Bookish Bay Area</h1></div>
+        <h1 class="homepage">Bookish Bay Area</h1></div>
         <div class="row justify-content-center">
-<input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50"></div>
-<input type="submit" class="btn btn-primary" value="Search" id="homepage-search-btn" class="homepage"></div>
+        <h3 class="homepage">Find your next local literary adventure!</h3></div>
+
+        <div class="row justify-content-center">
+          <form id="title_search" action="/books">
+            <div class="form-row">
+            <div class="col"></div>
+            <div class="w-75"><input type="text" class="form-control" name="title_search" id="title_search" placeholder="Search for books by title" size="50"></div>
+            <div class="col"><input type="submit" class="btn btn-primary" value="Search" id="homepage-search-btn" class="homepage"></div>
+            </form></div>
+</div>
+</div>
 </div>
 </div>
 </div>
