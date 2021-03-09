@@ -88,13 +88,14 @@
     <div class="col-3">
       <br>
       <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 260px; max-height: 1000px;">
-        <div class="row justify-content-center"><h4>All Ratings</h4></div>
+        <div class="row justify-content-center"><h4>Recent Ratings</h4></div>
       <ul>
       {% for rating in ratings %}
 
         <li>
-            <a href="/ratings/{{rating.rating_id}}">{{ rating.book.title }}</a><br>
-            Score: {{ rating.score }}
+            <a href="/books/{{rating.book_id}}">{{ rating.book.title }}</a><br>
+            Reader: <b>{{ rating.user.username}}</b>
+            Score: <b>{{ rating.score }}</b> <br>
         </li>
         
       {% endfor %}

@@ -176,16 +176,16 @@ def seed_books(filename):
     f2 = open(filename)
     csv_f = csv.reader(f2)
     for row in csv_f:
-        web_scraper_order, web_scraper_start_url, link, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
+        web_scraper_order, web_scraper_start_url, link_text, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
         a_num = crud.get_author_id_by_name(author) 
         author_num = int(a_num[0])
-        test_loc_id = 1
+        # test_loc_id = 1
         # if location != None:
         #     l_num = crud.get_location_id_by_name(location)
         #     location_num = int(l_num[0])
         #     print(l_num)
         #     print(location_num)
-        book_obj = crud.create_book(title, author_num, description, cover_path, isbn)
+        book_obj = crud.create_book(title, author_num, description, cover_path, isbn, link_href)
     
         books_in_db.append(book_obj)
 
@@ -285,7 +285,7 @@ def add_yy_books():
     hg_obj2 = crud.create_book_location(homegoing, paly)
     tk_obj1 = crud.create_book_location(t_kingdom, stanford)
     tk_obj2 = crud.create_book_location(t_kingdom, tofu_house)
-    tk_obj1 = crud.create_book_location(t_kingdom, paly)
+    tk_obj3 = crud.create_book_location(t_kingdom, paly)
     book_locs_in_db.append(hg_obj1)
     book_locs_in_db.append(hg_obj2)
     book_locs_in_db.append(tk_obj1)

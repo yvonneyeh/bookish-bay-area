@@ -666,7 +666,7 @@ def show_genre(genre_id):
 @app.route('/ratings')
 def all_ratings():
     """Display all ratings."""
-    ratings = crud.get_all_ratings()
+    ratings = crud.get_all_ratings_order_by_new()
 
     return render_template("all_ratings.html", ratings=ratings)
 

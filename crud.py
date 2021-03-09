@@ -98,7 +98,7 @@ def get_author_name_by_book_id(id):
     
 
 # BOOKS
-def create_book(title, author_id, description, cover_path, isbn):
+def create_book(title, author_id, description, cover_path, isbn, link):
     """Create and return a new book."""
 
     book = Book(
@@ -108,7 +108,8 @@ def create_book(title, author_id, description, cover_path, isbn):
                 # location = location,
                 # pub_date = pub_date, 
                 cover_path = cover_path,
-                isbn = isbn
+                isbn = isbn,
+                link = link
                 # , pages = pages
             )
         
@@ -319,6 +320,12 @@ def get_all_ratings():
     """Return all ratings."""
 
     return Rating.query.all()
+
+
+def get_all_ratings_order_by_new():
+    """Return all ratings order by most recently rated."""
+
+    return Rating.query.order_by(Rating.rating_id.desc()).all()
 
 
 def get_rating_by_id(rating_id):
