@@ -8,15 +8,19 @@
     color: black;
   } */
 
+/* body { 
+    padding-top: 70px; 
+} */
+
 h1.nav {
     font-family: 'Eczar', serif;
     display: block;
-    letter-spacing: 0.1em;
-    margin-top: 0.3em;
-    margin-bottom: 0.1em;
-    margin-left: 0;
+    letter-spacing: 0.2em;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+    margin-left: -0.5em;
     margin-right: 0;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 500;
 }
 
@@ -282,7 +286,7 @@ h3.homepage {
 }
 
 #navbar-logo {
-    height: 50px;
+    height: 30px;
     padding: 0;
 }
 

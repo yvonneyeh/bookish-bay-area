@@ -3,11 +3,13 @@
 {% block title %}{{ user.username }} - Details{% endblock %}
 
 {% block body %}
-
-<h1>@{{ user.username }}</h1>
-<h2>{{ user.first_name }} {{ user.last_name }}</h2>
+<br>
+<div class="container"> 
+<!-- <div class="row"><h2></h2></div> -->
+<div class="row"><h3>{{ user.first_name }} {{ user.last_name }} (@{{ user.username }})</h3></div>
 <!-- <h2>{{ user.email }}</h2> -->
-<p>Date Joined: {{ user.join_date }}</p>
+<div class="row"><p>Date Joined: {{ user.join_date }}</p></div>
+<div class="row"><p>Date Joined: {{ user.join_date }}</p></div>
 
 <h3>Book Ratings</h3>
 {% for rating in ratings %}
@@ -17,5 +19,6 @@
   </li>
   
 {% endfor %}
+</div>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 "use strict";
 
+const logLink = $("#log")
 const accountLink = $("#account")
 const registerLink = $("#register")
 const loginLink = $("#login")
@@ -12,6 +13,7 @@ $(document).ready(function() {
     $.get("/user/loggedin", (res) => {
         console.log("user logged in:", res)
         if (res === "true") {
+            logLink.show();
             accountLink.show();
             registerLink.hide();
             loginLink.hide();
@@ -19,6 +21,7 @@ $(document).ready(function() {
             logBookLink.show();
         }
         else {
+            logLink.show();
             accountLink.hide();
             registerLink.show();
             loginLink.show();

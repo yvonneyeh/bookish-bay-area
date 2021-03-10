@@ -36,6 +36,12 @@ class User(db.Model):
     password_hash = db.Column(db.String(120))
     join_date = db.Column(db.DateTime)
     bio = db.Column(db.Text)
+    website = db.Column(db.String)
+    pronouns = db.Column(db.String)
+    city = db.Column(db.String)
+    state = db.Column(db.String)
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
 
     # Password hashing functions
 

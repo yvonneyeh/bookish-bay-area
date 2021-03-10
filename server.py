@@ -115,6 +115,8 @@ def show_acct_info_form():
 
     if "user_id" in session:
         user = User.query.get(session.get("user_id"))
+        city = request.form.get('city')
+        state = request.form.get('state')
 
         return render_template("/user_info.html", user=user)
 
