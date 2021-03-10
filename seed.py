@@ -56,7 +56,10 @@ def seed_users():
     password_hash = 'test'
     join_date = '2020-03-17 12:34:56'
     email = 'code@yvonneyeh.com'
-    yy = crud.create_user(email, first_name, last_name, username, password, join_date)
+    website = 'yvonneyeh.com'
+    city = 'Palo Alto'
+    pronouns = 'she/her'
+    yy = crud.create_user(email, first_name, last_name, username, password, join_date, website, city, pronouns)
     users_in_db.append(yy)
 
     for n in range(20):
@@ -66,7 +69,10 @@ def seed_users():
         username = f'{first_name}{last_name}'
         password_hash = 'test'
         join_date = datetime.today()
-        new_user = crud.create_user(email, first_name, last_name, username, password_hash, join_date)
+        website = None
+        city = None
+        pronouns = None
+        new_user = crud.create_user(email, first_name, last_name, username, password, join_date, website, city, pronouns)
         users_in_db.append(new_user)
     print(users_in_db)
 

@@ -36,8 +36,8 @@
             {% if user.username%} value={{user.username}} {% endif %}><br>
 
             <label for="website">Website</label>
-            <input type="text" class="form-control" id="website" name="website" placeholder="Website" 
-            {% if user.website%} value={{user.username}} {% endif %}><br>
+            <input type="text" class="form-control" id="website" name="website" placeholder="yvonneyeh.com" >
+            <br>
 
           
             
@@ -45,48 +45,37 @@
               <div class="col">
                 <label for="pronoun">Pronouns</label>
               <select name="pronoun" id="pronoun" class="form-control">
-                
-                
                   <option data-pronoun-possessive="their" value="They" >They / their</option> 
-                
                   <option data-pronoun-possessive="his" value="He">He / his</option> 
-                
                   <option data-pronoun-possessive="their" value="HeThem">He / their</option> 
-                
                   <option data-pronoun-possessive="her" value="She" selected="selected">She / her</option> 
-                
                   <option data-pronoun-possessive="their" value="SheThem">She / their</option> 
-                
                   <option data-pronoun-possessive="xyr" value="Xe">Xe / xyr</option> 
-                
                   <option data-pronoun-possessive="hir" value="ZeHir">Ze / hir</option> 
-                
                   <option data-pronoun-possessive="zir" value="ZeZir">Ze / zir</option> 
-                
-                  <option data-pronoun-possessive="its" value="It">It / its</option> 
+                  <option data-pronoun-possessive="other" value="Other">Other</option>  
                 
               </select>
             </div>
             <div class="col">
-            <p id="pronoun-example" class="notes example-activity"><b>Example use: </b><br> <a class="person" id="pronoun-name" href="users/yvonneyeh">Yvonne</a> added <a class="target" href="/books/1">Homegoing</a> to <a class="secondary" href="/users/yvonneyeh"><span id="pronoun-possessive">their</span> reading list</a></p>
+            <p id="pronoun-example" class="notes example-activity"><b>Example use: </b><br> <a class="person" id="pronoun-name" href="users/yvonneyeh">Yvonne</a> added <a class="target" href="/books/1">Homegoing</a> to <a class="secondary" href="/users/yvonneyeh"><span id="pronoun-possessive">their</span> reading list.</a></p>
           </div></div>
         
         <br>
             <div class="form-row">
             <div class="col-md"><label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="City" 
-            {% if user.username%} value={{user.city}} {% endif %}>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Palo Alto" >
             </div>
           
           <div class="col-sm">
           <label for="state">State</label>
           <select name="state" class="form-control" >
-              <option value="starter" selected>State</option>
+              <!-- <option value="starter" selected>State</option> -->
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
               <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
+              <option value="CA" selected="selected">California</option>
               <option value="CO">Colorado</option>
               <option value="CT">Connecticut</option>
               <option value="DE">Delaware</option>

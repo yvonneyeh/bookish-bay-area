@@ -3,10 +3,10 @@
 from model import *
 
 # USERS
-def create_user(email, first_name, last_name, username, password, join_date):
+def create_user(email, first_name, last_name, username, password, join_date, website, city, pronouns):
     """Create and return a new user."""
 
-    user = User(email=email, first_name=first_name, last_name=last_name, username=username, password=password, join_date=join_date)
+    user = User(email=email, first_name=first_name, last_name=last_name, username=username, password=password, join_date=join_date, website=website, city=city, pronouns=pronouns)
 
     db.session.add(user)
     db.session.commit()

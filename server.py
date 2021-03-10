@@ -690,6 +690,40 @@ def show_rating(rating_id):
 
 # ---------- SUBMISSION FORM ROUTES ---------- #
 
+@app.route('/add/book')
+def show_new_book_form():
+    """Display new book submission form."""
+
+    return render_template("add_book.html")
+
+
+@app.route('/add/book', methods=['POST'])
+def create_new_user_submitted_book():
+    """Create a new user-submitted book."""
+
+    title = request.form.get('title')
+    author = request.form.get('author')
+
+    # Validate if username or email already exists in users table in database
+    if not crud.get_book_by_title(title):
+
+        book = Book(title=title)
+
+        db.session.add(book)
+        db.session.commit()
+
+        flash('Book submitted successfully!', 'success')
+
+        return redirect("/books")
+
+    # If book does exist, flash message
+    else:
+        if Book.query.filter_by(title=title).all():
+            flash(f"The book you submitted already exists in the library", "warning")
+
+        return redirect("/books")
+
+
 @app.route('/add/location')
 def show_new_loc_form():
     """Display new location submission form."""
