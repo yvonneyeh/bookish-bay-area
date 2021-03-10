@@ -25,6 +25,7 @@
           <div class="col-md">
           <label for="state">State</label>
           <select name="state" class="form-control" >
+              <option value="starter" selected>State</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -81,10 +82,10 @@
           <label for="zipcode">Zip Code</label>
           <input type="zipcode" class="form-control" id="zipcode" name="zipcode" placeholder="99999" required>
           </div></div><br>
-          <label for="description">Description</label>
+          <label for="description">Location Description</label>
           <br>
+          <!-- Enter a location description here... -->
           <textarea rows="4" cols="50" name="description" form="loc-form" class="form-control" id="description">
-            Enter a location description here...
           </textarea>
           <br>
           <input type="submit" class="btn btn-primary">

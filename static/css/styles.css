@@ -16,7 +16,7 @@ h1.nav {
     margin-bottom: 0.1em;
     margin-left: 0;
     margin-right: 0;
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: 500;
 }
 
@@ -31,6 +31,29 @@ h1.homepage {
     margin-right: 0;
     font-weight: 700;
 }
+
+h1.title {
+    font-family: 'Eczar', serif;
+    display: block;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: 'Eczar', serif;
+    display: block;
+    /* font-weight: 500; */
+}
+
+h3 {
+    font-family: 'Eczar', serif;
+    display: block;
+}
+/* 
+h3.author {
+    font-family: 'Eczar', serif;
+    display: block;
+    font-weight: 700;
+} */
 
 h3.homepage {
     font-family: 'Eczar', serif;
@@ -132,66 +155,74 @@ h3.homepage {
 }
 
 .btn-primary {
-    background-color: #00A6A6;
+    /* background-color: #189CC4; */
+    /* background-color: #00A6A6; */
+    background-color: #3b5998;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:2px;
+    margin-right:2px;
 }
 
 .)btn-primary:hover {
-    background-color: #019191;
+    /* 019191 */
+    background-color: #2f477a;
+    
 }
 
 .btn-primary:active {
-    background-color: #019191 !important;
+    background-color: #2f477a !important;
 }
 
 .btn-primary:focus {
-    background-color: #019191 !important;
+    background-color: #2f477a !important;
     box-shadow: 0 0 0 0 !important;
 }
 
 .btn-primary.dropdown-toggle {
-    background-color: #00A6A6;
+    background-color: #3b5998;
     border: 0;
 }
 
 .btn-primary.dropdown-toggle:focus {
-    background-color: #019191 !important;
+    background-color: #2f477a !important;
     box-shadow: 0 0 0 0;
 }
 
 .btn-secondary {
     background-color: #456990;
-    border-color: #456990;
+    /* border-color: #456990; */
 }
 
 .btn-secondary:hover {
     background-color: #3e5e81;
-    border-color: #3e5e81;
+    /* border-color: #3e5e81; */
 }
 
 .btn-secondary:active {
     background-color: #3e5e81;
-    border-color: #3e5e81;
+    /* border-color: #3e5e81; */
 }
 
 .btn-secondary:focus {
     background-color: #3e5e81;
-    border-color: #3e5e81;
+    /* border-color: #3e5e81; */
 }
 
 
 .btn-danger {
     background-color: #FF8360;
-    border-color: #FF8360;
+    /* border-color: #FF8360; */
 }
 
 .btn-danger:hover {
     background-color: #ee7b5b;
-    border-color: #ee7b5b;
+    /* border-color: #ee7b5b; */
 }
 
 .btn-danger:active {
     background-color: #ee7b5b;
-    border-color: #ee7b5b;
+    /* border-color: #ee7b5b; */
 }
 
 .btn-danger:focus {
@@ -200,20 +231,20 @@ h3.homepage {
 }
 
 .btn-link {
-    color: #00A6A6;
+    color: #3b5998;
     padding-top: 0;
 }
 
 .btn-link:hover {
-    color: #019191;
+    color: #2f477a;
 }
 
 .btn-link:active {
-    color: #019191;
+    color: #2f477a;
 }
 
 .btn-link:focus {
-    color: #019191;
+    color: #2f477a;
 }
 
 .navbar {
@@ -294,7 +325,8 @@ p {
 
 a {
     text-decoration: none;
-    color: cadetblue;
+    color: #406cc8;
+    /* color: cadetblue; */
 }
 
 .footer { 

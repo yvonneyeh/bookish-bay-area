@@ -608,7 +608,7 @@ def show_book_map(book_id):
 @app.route('/library-map')
 def show_library_map():
     """View Map."""
-
+    
     return render_template('library_map.html', 
                             MAPS_JS_KEY=MAPS_JS_KEY, 
                             MAP_ID=MAP_ID)

@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
   {% block head %}
-<head>
+
   <title>Bookish Bay Area</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
@@ -64,10 +62,10 @@
       color: cadetblue;
     }
   </style>
-</head>  
+ 
 {% endblock %}
 {% block body %}
-<body>
+
   <!-- TODO: Step 4A2: Add a generic sidebar -->
   <!-- The slide-out panel for showing place details -->
   <div id="panel"></div>
@@ -280,8 +278,4 @@ src="https://maps.googleapis.com/maps/api/js?key=MAPS_JS_KEY&callback=initMap">
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&map_ids={{MAP_ID}}&libraries=places&callback=initMap">
 </script>
-
-</body>
-
-</html>
 {% endblock %}
