@@ -20,17 +20,7 @@ h1.nav {
     font-weight: 500;
 }
 
-h1.homepage {
-    font-family: 'Eczar', serif;
-    letter-spacing: 5px;
-    display: block;
-    font-size: 5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.2em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: 700;
-}
+
 
 h1.title {
     font-family: 'Eczar', serif;
@@ -55,6 +45,43 @@ h3.author {
     font-weight: 700;
 } */
 
+
+
+/* ========== FLASH MESSAGES ========== */
+#flash_msg {
+    text-align: center;
+    margin-bottom: 0;
+    color: rgb(170, 170, 170);
+    font-weight: bold;
+}
+
+/* ========== FORMS ========== */
+
+.form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    width: auto;
+}
+
+/* ========== HOMEPAGE ========== */
+
+.homepage {
+    display: flex !important;
+}
+
+h1.homepage {
+    font-family: 'Eczar', serif;
+    letter-spacing: 5px;
+    display: block;
+    font-size: 5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 700;
+}
+
 h3.homepage {
     font-family: 'Eczar', serif;
     letter-spacing: 2px;
@@ -65,24 +92,6 @@ h3.homepage {
     margin-left: 0;
     margin-right: 0;
     font-weight: 400;
-}
-
-#flash_msg {
-    text-align: center;
-    margin-bottom: 0;
-    color: rgb(170, 170, 170);
-    font-weight: bold;
-}
-
-.form-group {
-    display: inline-block;
-    margin-bottom: 0;
-    vertical-align: middle;
-    width: auto;
-}
-
-.homepage {
-    display: flex !important;
 }
 
 #homepage {
@@ -115,8 +124,11 @@ h3.homepage {
     margin: 0 0 0 12px;
 }
 
+
+
+
 #homepage-logo {
-    padding: 16px;
+    padding: 10px;
 }
 
 .home-content {
@@ -158,10 +170,10 @@ h3.homepage {
     /* background-color: #189CC4; */
     /* background-color: #00A6A6; */
     background-color: #3b5998;
-    margin-top:10px;
+    /* margin-top:10px;
     margin-bottom:10px;
     margin-left:2px;
-    margin-right:2px;
+    margin-right:2px; */
 }
 
 .)btn-primary:hover {
@@ -271,6 +283,7 @@ h3.homepage {
 
 #navbar-logo {
     height: 50px;
+    padding: 0;
 }
 
 .dropdown-menu{
