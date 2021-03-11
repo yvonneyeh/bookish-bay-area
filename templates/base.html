@@ -77,7 +77,7 @@
                 Log a Book
               </a>
               <a class="dropdown-item" href="/log/location">
-                Log a Book Spot
+                Log a Spot in a Book
               </a>  
 
             </div>
@@ -100,12 +100,12 @@
               <!-- <a class="dropdown-item" href="/account/locations">
                 My Locations
               </a>       -->
-              <a class="dropdown-item" href="/library_map">
+              <a class="dropdown-item" href="/libraries">
                 Library Map
               </a>  
-              <a class="dropdown-item" href="/add/location">
+              <!-- <a class="dropdown-item" href="/add/location">
                 Add a Location
-              </a>  
+              </a>   -->
 
               <div role="separator" class="dropdown-divider"></div>
 
@@ -145,7 +145,7 @@
             {% if messages %}
               {% for category, message in messages %}
                 <!-- <div class="alert alert-category alert-dismissible fade show" role="alert"> -->
-                <br><div class="alert alert-{{ category }} " role="alert">
+                <div class="alert alert-{{ category }} " role="alert">
                 {{ message }}
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span> -->
@@ -163,11 +163,14 @@
     {% block after_body %}{% endblock %}
     {% block content %} {% endblock %}
     {% block map %} {% endblock %}
-    {% block footer %} {% endblock %}
+    
     
     <!-- Display navbar buttons based on login state -->
     <script src="/static/js/togglenavbar.js"></script>
   </body>
+
+  {% block footer %} {% endblock %}
+  
 </html>
 
 

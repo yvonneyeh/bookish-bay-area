@@ -14,6 +14,58 @@
         <h3>by <a href="/authors/{{author.author_id}}">{{ author.name }}</a></h3>
         <br>
         {% endif %}
+
+<!-- Buttons to Save/Read books -->
+<div class="d-flex justify-content-end">
+    <div class="row">
+        <div class="col text-right">
+            <!-- Button to redirect to add book-loc page -->
+            <!-- <button type="button" class="btn btn-primary" id="new-loc" onclick="window.location.href='/add/book-loc';">
+                Add New Location
+            </button> -->
+            <!-- <button type="button" class="btn btn-primary" id="new-loc">
+                Add New Location
+            </button> -->
+            <button type="button" class="btn btn-primary" id="new-loc" onclick="toggleLocForm()">
+                Add New Location
+            </button>
+            <button type="button" class="btn btn-primary" id="save-button">
+                Save Book
+            </button>
+            <button type="button" class="btn btn-primary hidden" style="display:None" id="unsave-button">
+                Unsave Book
+            </button>
+            <button type="button" class="btn btn-primary" id="read-button">
+                Mark As Read
+            </button>
+            <button type="button" class="btn btn-primary hidden" style="display:None" id="unread-button">
+                Mark As Not Read
+            </button>
+        </div>
+    </div>
+    </div>
+<!-- Add Location Form -->
+<div class="d-flex justify-content-end">
+    <div class="row">
+        <div class="col-6">
+    <div id="new-loc-form" style="display:None">
+      <form action="/books/{{ book.book_id }}" method="POST" id="new-loc-form">
+    
+        <label for="location">Location Name</label>
+        <select name="location" id="location" required>
+            <option value="starter" selected>Select a Location</option>
+            {% for location in locations %}
+            <option value="{{location.name}}">{{ location.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-primary">
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
         <div class="row">
             <div class="col-4">
                 <img src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}" width="200">
@@ -37,6 +89,7 @@
                 {% endif %}
                 
             </div>
+
           </div>
         
     <!-- </div> -->
@@ -44,56 +97,8 @@
 
 
 <!-- Buttons to Save/Read books -->
-<div class="d-flex justify-content-end">
-<div class="row">
-    <div class="col text-right">
-        <!-- Button to redirect to add book-loc page -->
-        <!-- <button type="button" class="btn btn-primary" id="new-loc" onclick="window.location.href='/add/book-loc';">
-            Add New Location
-        </button> -->
-        <!-- <button type="button" class="btn btn-primary" id="new-loc">
-            Add New Location
-        </button> -->
-        <button type="button" class="btn btn-primary" id="new-loc" onclick="toggleLocForm()">
-            Add New Location
-        </button>
-        <button type="button" class="btn btn-primary" id="save-button">
-            Save Book
-        </button>
-        <button type="button" class="btn btn-primary hidden" style="display:None" id="unsave-button">
-            Unsave Book
-        </button>
-        <button type="button" class="btn btn-primary" id="read-button">
-            Mark As Read
-        </button>
-        <button type="button" class="btn btn-primary hidden" style="display:None" id="unread-button">
-            Mark As Not Read
-        </button>
-    </div>
-</div>
-</div>
 
-<!-- Add Location Form -->
-<div class="d-flex justify-content-end">
-<div class="row">
-    <div class="col-6">
-<div id="new-loc-form" style="display:None">
-  <form action="/books/{{ book.book_id }}" method="POST" id="new-loc-form">
-
-    <label for="location">Location Name</label>
-    <select name="location" id="location" required>
-        <option value="starter" selected>Select a Location</option>
-        {% for location in locations %}
-        <option value="{{location.name}}">{{ location.name }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <input type="submit" class="btn btn-primary">
-</form>
-</div>
-</div>
-</div>
-</div>
+<!-- Location Form -->
 
 {% endblock %}
 
@@ -103,14 +108,14 @@
 function initialize() {
 
 // HB Default Loc
-//   const defaultLocation = new google.maps.LatLng(37.787971,-122.418472)
-  const defaultLocation = new google.maps.LatLng(37.786220,-122.432210)
+  const defaultLocation = new google.maps.LatLng(37.787971,-122.418472)
+//   const defaultLocation = new google.maps.LatLng(37.786220,-122.432210)
 
   var contentString =
       '<div id="content">'+ "<p></p>"+'</div>';
 
   const mapOptions = {
-    zoom: 9,
+    zoom: 11,
     center: defaultLocation,
     mapId: 'a72aa248840e8771'
   };
@@ -137,7 +142,13 @@ function initialize() {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(location.lat, location.lng),
                 map: map,
-                title: location.name
+                title: location.name,
+                animation: google.maps.Animation.DROP,
+                icon: {
+                    size: new google.maps.Size(50, 50),
+                    scaledSize: new google.maps.Size(50, 50),
+                    url: "/static/img/icon.svg"
+                }
             });
 
             // Define the content of the infoWindow

@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ user.username }} - Details{% endblock %}
+{% block title %}@{{ user.username }} - Details{% endblock %}
 
 {% block body %}
 <br>
 <div class="container"> 
 <!-- <div class="row"><h2></h2></div> -->
-<div class="row"><h3>{{ user.first_name }} {{ user.last_name }} (@{{ user.username }})</h3></div>
+<div class="row"><h3><b>{{ user.first_name }} {{ user.last_name }}</b> (@{{ user.username }})</h3></div>
 <!-- <h2>{{ user.email }}</h2> -->
-<div class="row"><p>Date Joined: {{ user.join_date }}</p></div>
-<div class="row"><p>Date Joined: {{ user.join_date }}</p></div>
 
+<div class="row">
+  {% if user.city %}
+  <div class="p-2">
+  📍 {{ user.city }}</div>
+{% endif %}
+{% if user.website %}
+<div class="p-2">🌐 {{ user.website }}</div>
+{% endif %}
+</div><br>
+
+{% if user.pronouns %}
+<div class="row"><p><b>Pronouns:</b> {{ user.pronouns }}</p></div>
+{% endif %}
+
+
+
+<div class="row"><p><b>Date Joined:</b> {{ user.join_date }}</p></div>
+
+{% if ratings %}
 <h3>Book Ratings</h3>
 {% for rating in ratings %}
 
@@ -20,5 +37,6 @@
   
 {% endfor %}
 </div>
+{% endif %}
 
 {% endblock %}

@@ -101,9 +101,19 @@
           };
           map = new google.maps.Map(document.getElementById('map'), {
             center: pos,
-            zoom: 15
+            zoom: 14,
+            mapTypeControlOptions: {
+            mapTypeIds: [
+                "roadmap",
+                "satellite",
+                "hybrid",
+                "terrain",
+                "styled_map",
+            ],
+            },
+        });
             // , mapId: {{ MAP_ID }}
-          });
+          
           bounds.extend(pos);
 
           infoWindow.setPosition(pos);
@@ -205,9 +215,8 @@
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         let placeInfowindow = new google.maps.InfoWindow();
         let rating = "None";
-        if (placeResult.rating) rating = placeResult.rating;
-        placeInfowindow.setContent('<div><strong>' + placeResult.name +
-          '</strong><br>' + 'Rating: ' + rating + '</div>');
+        
+        placeInfowindow.setContent('<div><strong>' + placeResult.name);
         placeInfowindow.open(marker.map, marker);
         currentInfoWindow.close();
         currentInfoWindow = placeInfowindow;
@@ -245,12 +254,7 @@
       name.classList.add('place');
       name.textContent = placeResult.name;
       infoPane.appendChild(name);
-      if (placeResult.rating) {
-        let rating = document.createElement('p');
-        rating.classList.add('details');
-        rating.textContent = `Rating: ${placeResult.rating} \u272e`;
-        infoPane.appendChild(rating);
-      }
+      
       let address = document.createElement('p');
       address.classList.add('details');
       address.textContent = placeResult.formatted_address;
@@ -278,4 +282,6 @@ src="https://maps.googleapis.com/maps/api/js?key=MAPS_JS_KEY&callback=initMap">
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&map_ids={{MAP_ID}}&libraries=places&callback=initMap">
 </script>
+
+
 {% endblock %}

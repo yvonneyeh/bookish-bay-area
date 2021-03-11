@@ -436,7 +436,7 @@ def create_book_location_on_details_page(book_id):
     loc = crud.get_location_id_by_name(location)
 
     if loc == None:
-        flash("Select a Title", 'warning')
+        flash("Select a Location", 'warning')
         
         return redirect(f"/books/{book_id}")
     
@@ -609,7 +609,7 @@ def show_book_map(book_id):
                             location_list=location_list, 
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
-@app.route('/library-map')
+@app.route('/libraries')
 def show_library_map():
     """View Map."""
     
@@ -769,8 +769,8 @@ def create_new_book_location():
     # print(title)
     # print(location)
 
-    if title == None or location == None:
-	    flash("Select a Title & Location", 'warning')
+    if location == None:
+	    flash("Select a Location", 'warning')
         # return redirect("/add/book-loc")
     elif title == None:
 	    flash("Select a Title", 'warning')
