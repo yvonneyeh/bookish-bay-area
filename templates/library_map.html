@@ -62,12 +62,84 @@
       color: cadetblue;
     }
   </style>
- 
+
+
 {% endblock %}
 {% block body %}
 
-  <!-- TODO: Step 4A2: Add a generic sidebar -->
-  <!-- The slide-out panel for showing place details -->
+  <!-- Transit Panel -->
+  <!-- <div id="floating-panel align-items-center">
+
+    <b>Start: </b>
+      <select id="start">
+        <option value="starter" selected>Starting Point</option>
+        {% for location in locations %}
+        <option value="{{ location.name }}">{{ location.name }}</option>
+        {% endfor %}
+      </select>
+      <b>End: </b>
+      <select id="end">
+        <option value="starter" selected>Destination</option>
+        {% for location in locations %}
+        <option value="{{ location.name }}">{{ location.name }}</option>
+        {% endfor %}
+      </select>
+
+
+    <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+  </div> -->
+
+  <!-- Mode of Transportation -->
+  <!-- <script>
+    function initMap() {
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 7,
+        center: { lat: 41.85, lng: -87.65 },
+      });
+      directionsRenderer.setMap(map);
+
+      const onChangeHandler = function () {
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+      };
+      document
+        .getElementById("start")
+        .addEventListener("change", onChangeHandler);
+      document
+        .getElementById("end")
+        .addEventListener("change", onChangeHandler);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+      directionsService.route(
+        {
+          origin: {
+            query: document.getElementById("start").value,
+          },
+          destination: {
+            query: document.getElementById("end").value,
+          },
+          travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+          if (status === "OK") {
+            directionsRenderer.setDirections(response);
+          } else {
+            window.alert("Directions request failed due to " + status);
+          }
+        }
+      );
+    }
+  </script> -->
+
+  <!-- slide-out panel for showing place details -->
   <div id="panel"></div>
 
   <!-- Map appears here -->
@@ -390,6 +462,17 @@
       map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
         zoom: 13,
+        // disableDefaultUI: true,
+        // mapTypeControl: true,
+        // zoomControl: true,
+        // scaleControl: true,
+        
+        // mapTypeControl: true,
+        //   mapTypeControlOptions: {
+        //     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        //     position: google.maps.ControlPosition.TOP_CENTER,
+        //   },
+        streetViewControl: false,
         styles: [
   {
     "elementType": "geometry",

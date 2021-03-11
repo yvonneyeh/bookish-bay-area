@@ -68,11 +68,13 @@
 
         <div class="row">
             <div class="col-4">
+                <br>
                 <img src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}" width="200">
             </div>
             
             <div class="col-8">
                 {% if book.description != "null"%}
+                <br>
                 <span class="book_detail_content"> {{ book.description }}</span>
                 <br><br>
                 {% endif %}
@@ -87,7 +89,7 @@
                 {{ location }} <br>
                 {% endfor %}
                 {% endif %}
-                
+                <br>
             </div>
 
           </div>

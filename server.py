@@ -596,13 +596,10 @@ def show_author(author_id):
 # ---------- LOCATION ROUTES ---------- #
 
 @app.route('/books/map')
-def show_book_map(book_id):
+def show_book_map():
     """Show all book locations on a map."""
     
     location_dict, location_list = helper.get_all_locations()
-
-    # print("*"*20)
-    # print(f"book_locations={location_dict}, \n location_list={location_list}" )
 
     return render_template("book_map.html", 
                             book_locations=location_dict,
@@ -612,8 +609,11 @@ def show_book_map(book_id):
 @app.route('/libraries')
 def show_library_map():
     """View Map."""
+
+    locations = crud.get_all_locations()
     
-    return render_template('library_map.html', 
+    return render_template('library_map.html',
+                            locations=locations, 
                             MAPS_JS_KEY=MAPS_JS_KEY, 
                             MAP_ID=MAP_ID)
 
