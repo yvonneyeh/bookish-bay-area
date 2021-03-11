@@ -5,21 +5,51 @@
 {% block head %}
 {% endblock %}
 
-{% block content %}
-<div class="row">
-    <div class="col" id="completed-books-list-div">
-      <h4>Completed Books:</h4>
-      {% if read_books %}
-        <ul id="completed-books-list-div-li">
-          {% for book in read_books %}
-          <li><a href="/books/{{book.book_id}}">{{book.book.title}}</a> <p>Score: {{ book.score }}</p></li>
 
+{% block body %}
+
+<!-- Page Content -->
+<div class="container">
+
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">My Library of Saved Books:</h1>
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center text-lg-left">
+    {% for rating in read_books %}
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="/books/{{rating.book.book_id}}" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="{{ rating.book.cover_path }}" alt="Cover image of {{ rating.book.title }}, links to book details page">
+          </a>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<!-- /.container -->
+
+<!-- END -->
+<br>
+<div class="container"> 
+<div class="row"><h2>My Library of Saved Books:</h2></div>
+
+{% if read_books %}
+        <ul id="completed-books-list-div-li">
+          {% for rating in read_books %}
+          <div class="row">
+            <div class="col-4">
+                <a href="/books/{{rating.book.book_id}}"><img src="{{ rating.book.cover_path }}" alt="Cover image of {{ rating.book.title }}" width="100"></a>
+            </div> 
+            
+            <div class="col-4">
+            {{rating.book.title}}</a> <p></p>
+            </div>
           {% endfor %}
         </ul>
         {% else %}
           <p>No logged books! Save some books <a href="/books">here</a></p>
       {% endif %}
-    </div>
-  </div>
+
+</div>
 
 {% endblock %}
