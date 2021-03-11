@@ -32,21 +32,6 @@ d2 = datetime.strptime('1/1/2021 4:50 AM', '%m/%d/%Y %I:%M %p')
 rand_date = random_date(d1, d2)
 
 
-# start_date = datetime.date(2020, 1, 1)
-# datetime.date(2020-01-01)
-# end_date = datetime.date(2021, 3, 1)
-
-# time_between_dates = end_date - start_date
-# days_between_dates = time_between_dates.days
-# random_number_of_days = random.randrange(days_between_dates)
-# random_date = start_date + datetime.timedelta(days=random_number_of_days)
-
-# # f = open('data/silicon_valley_books.csv')
-# f = open('data/small.csv')
-# # csv_f = csv.reader(f)
-# f1 = open('data/test_book_data.csv')
-# f2 = open('data/silicon_valley_books.csv')
-
 users_in_db = []
 def seed_users():
     first_name = 'Yvonne'
@@ -184,7 +169,9 @@ def seed_books(filename):
     for row in csv_f:
         web_scraper_order, web_scraper_start_url, link_text, link_href, title, author, description, genres, isbn, location, cover_path, pub_date = row
         a_num = crud.get_author_id_by_name(author) 
-        author_num = int(a_num[0])
+        # author_num = int(a_num[0])
+        author_num = a_num.author_id
+
         # test_loc_id = 1
         # if location != None:
         #     l_num = crud.get_location_id_by_name(location)

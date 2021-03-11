@@ -10,7 +10,7 @@
         <h1 class="title">{{ book.title }}</h1>
     <!-- </div> -->
     <!-- <div class="row"> -->
-        {% if book.author_rel.name %}
+        {% if author %}
         <h3>by <a href="/authors/{{author.author_id}}">{{ author.name }}</a></h3>
         <br>
         {% endif %}

@@ -413,8 +413,9 @@ def show_book_list():
 def show_book(book_id):
     """Show details for a book."""
     
-    author = crud.get_author_name_by_book_id(book_id)
     book = crud.get_book_by_id(book_id)
+    author_id = book.author_id
+    author = crud.get_author_by_id(author_id)
     locations = crud.get_all_locations()
     location_dict, location_list = helper.get_locations(book_id)
 
