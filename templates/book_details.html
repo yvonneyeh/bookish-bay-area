@@ -78,6 +78,10 @@
                 <span class="book_detail_content"> {{ book.description }}</span>
                 <br><br>
                 {% endif %}
+                {% if book.link %}
+                <a href="{{ book.link }}">Goodreads Entry</a>
+                <br>
+                {% endif %} <br>
                 {% if book.isbn %}
                 <span class="book_detail_label"><b>ISBN: </b></span> 
                 <span class="book_detail_content">{{ book.isbn }}</span>
