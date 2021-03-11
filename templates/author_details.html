@@ -4,7 +4,7 @@
 
 {% block body %}
 <br>
-<div class="container"> 
+<!-- <div class="container"> 
 
 <!-- <div class="row"><h1>{{ author.name }}</h1></div> -->
 <!-- Author ID: {{ author.author_id }} -->
@@ -14,6 +14,27 @@
       <a href="/books/{{book.book_id}}">{{ book.title }}</a>
   </li>
 {% endfor %}
+</div> -->
+
+<!-- Book Grid -->
+<div class="container">
+
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Books by {{ author.name }}</h1>
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center text-lg-left">
+    {% for book in books %}
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="/books/{{book.book_id}}" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}, links to book details page">
+          </a>
+    </div>
+    {% endfor %}
+  </div>
+
 </div>
+
+
 
 {% endblock body%}
