@@ -15,6 +15,7 @@ pkg-resources==0.0.0
 psycopg2-binary==2.8.5
 python-dateutil==2.8.1
 pytz==2021.1
+selenium==3.141.0
 six==1.15.0
 SQLAlchemy==1.3.23
 SQLAlchemy-Searchable==1.2.0
@@ -22,6 +23,7 @@ SQLAlchemy-Utils==0.36.8
 sqlitis==0.0.5
 sqlparse==0.3.0
 text-unidecode==1.3
+urllib3==1.26.3
 validators==0.18.2
 Werkzeug==1.0.1
 WTForms==2.3.3
