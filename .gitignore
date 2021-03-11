@@ -7,3 +7,4 @@ node_modules/
 *pycache*
 *.sql
 .vscode/
+package-lock.json
