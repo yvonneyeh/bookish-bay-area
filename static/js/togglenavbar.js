@@ -21,7 +21,7 @@ $(document).ready(function() {
             logBookLink.show();
         }
         else {
-            logLink.show();
+            logLink.hide();
             accountLink.hide();
             registerLink.show();
             loginLink.show();

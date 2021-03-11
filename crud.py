@@ -149,6 +149,12 @@ def get_book_id_by_title(title):
 
     return db.session.query(Book.book_id).filter(Book.title == title).first()
 
+
+def get_books_by_author_by(author_id):
+    """Return all books by an author given the author's ID"""
+
+    return Book.query.filter(Book.author_id == author_id).all() 
+
 # GENRES
 def create_genre(name):
     """Create and return a new book."""

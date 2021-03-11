@@ -12,6 +12,12 @@
     padding-top: 70px; 
 } */
 
+h1 {
+    font-family: 'Eczar', serif;
+    display: block;
+    font-weight: 600;
+}
+
 h1.nav {
     font-family: 'Eczar', serif;
     display: block;
@@ -56,6 +62,7 @@ h3.author {
 /* ========== FLASH MESSAGES ========== */
 #flash_msg {
     text-align: center;
+    padding-top: 10px;
     margin-bottom: 0;
     color: rgb(170, 170, 170);
     font-weight: bold;

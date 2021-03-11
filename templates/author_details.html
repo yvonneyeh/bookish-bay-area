@@ -3,7 +3,17 @@
 {% block title %}{{ author.name }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ author.name }}</h1>
-<h3>Author ID: {{ author.author_id }}</h3>
+<br>
+<div class="container"> 
 
-{% endblock %}
+<!-- <div class="row"><h1>{{ author.name }}</h1></div> -->
+<!-- Author ID: {{ author.author_id }} -->
+<u><h2>Books by {{ author.name }}: </h2></u>
+{% for book in books %}
+  <li>
+      <a href="/books/{{book.book_id}}">{{ book.title }}</a>
+  </li>
+{% endfor %}
+</div>
+
+{% endblock body%}

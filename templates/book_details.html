@@ -11,8 +11,7 @@
     <!-- </div> -->
     <!-- <div class="row"> -->
         {% if book.author_rel.name %}
-        <h3><span class="book_detail_label">by</span> 
-        <span class="book_detail_content"><b> {{ book.author_rel.name }}</b></span></h3>
+        <h3>by <a href="/authors/{{author.author_id}}">{{ author.name }}</a></h3>
         <br>
         {% endif %}
         <div class="row">
@@ -29,7 +28,14 @@
                 <span class="book_detail_label"><b>ISBN: </b></span> 
                 <span class="book_detail_content">{{ book.isbn }}</span>
                 <br>
+                {% endif %} <br>
+                {% if location_list %} 
+                <b>Book Spots: </b> <br>
+                {% for location in location_list %}
+                {{ location }} <br>
+                {% endfor %}
                 {% endif %}
+                
             </div>
           </div>
         

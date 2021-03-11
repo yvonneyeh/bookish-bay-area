@@ -587,8 +587,9 @@ def show_author(author_id):
     """Show details for an author."""
     
     author = crud.get_author_by_id(author_id)
+    books = crud.get_books_by_author_by(author_id)
 
-    return render_template("author_details.html", author=author)
+    return render_template("author_details.html", author=author, books=books)
 
 
 # ---------- LOCATION ROUTES ---------- #
