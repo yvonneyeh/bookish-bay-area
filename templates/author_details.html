@@ -4,22 +4,10 @@
 
 {% block body %}
 <br>
-<!-- <div class="container"> 
-
-<!-- <div class="row"><h1>{{ author.name }}</h1></div> -->
-<!-- Author ID: {{ author.author_id }} -->
-<u><h2>Books by {{ author.name }}: </h2></u>
-{% for book in books %}
-  <li>
-      <a href="/books/{{book.book_id}}">{{ book.title }}</a>
-  </li>
-{% endfor %}
-</div> -->
-
 <!-- Book Grid -->
 <div class="container">
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Books by {{ author.name }}</h1>
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Books by <b>{{ author.name }}</b></h1>
 
   <hr class="mt-2 mb-5">
 

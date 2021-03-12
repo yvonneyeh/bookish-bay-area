@@ -356,6 +356,8 @@ def show_book_list():
     Else: display entire book list.
     """
     
+    location_dict, location_list = helper.get_all_locations()
+
     user_genre = None
     user_title_search = None
     user_author_search = None
@@ -406,7 +408,10 @@ def show_book_list():
     # print("final", len(books))
     return render_template("all_books.html", 
                             books=books, 
-                            genre=user_genre)
+                            genre=user_genre,
+                            book_locations=location_dict,
+                            location_list=location_list, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/books/<int:book_id>')
@@ -599,9 +604,11 @@ def show_author(author_id):
 def show_book_map():
     """Show all book locations on a map."""
     
+    locs = crud.get_all_locations()
     location_dict, location_list = helper.get_all_locations()
 
     return render_template("book_map.html", 
+                            locs=locs,
                             book_locations=location_dict,
                             location_list=location_list, 
                             MAPS_JS_KEY=MAPS_JS_KEY)
