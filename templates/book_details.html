@@ -16,7 +16,7 @@
         {% endif %}
 
 <!-- Buttons to Save/Read books -->
-<div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end">
     <div class="row">
         <div class="col text-right">
             <!-- Button to redirect to add book-loc page -->
@@ -44,8 +44,9 @@
         </div>
     </div>
     </div>
+    
 <!-- Add Location Form -->
-<div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end">
     <div class="row">
         <div class="col-6">
     <div id="new-loc-form" style="display:None">
@@ -69,7 +70,10 @@
         <div class="row">
             <div class="col-4">
                 <br>
-                <img src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}" width="200">
+                <img src="{{ book.cover_path }}" 
+                    alt="Cover image of {{ book.title }}" 
+                    style="padding-bottom: 20px;"
+                    width="200"><br>
             </div>
             
             <div class="col-8">
@@ -79,7 +83,7 @@
                 <br><br>
                 {% endif %}
                 {% if book.link %}
-                <a href="{{ book.link }}">Goodreads</a>
+                <a href="{{ book.link }}">View this book on Goodreads</a>
                 <br>
                 {% endif %} <br>
                 {% if book.isbn %}
@@ -87,19 +91,11 @@
                 <span class="book_detail_content">{{ book.isbn }}</span>
                 <br>
                 {% endif %} <br>
-                
-                {% if location_list %} 
-                <b>Book Spots: </b> <br>
-                {% for location in location_list %}
-                {{ location }} <br>
-                {% endfor %}
-                {% endif %}
 
                 {% if book_locs %} 
                 <b>Book Spots: </b> <br>
                 {% for bl in book_locs %}
-                <a href="/locations/{{bl.loc_id}}">{{ bl.location.name }}</a><br>
-                <!-- <a href="{{ book.link }}">Goodreads</a> <br> -->
+                <a href="/locations/{{bl.location.loc_id}}">{{ bl.location.name }}</a><br>
                 {% endfor %}
                 {% endif %}
                 <br>
@@ -109,12 +105,6 @@
         
     <!-- </div> -->
 </div>
-
-
-<!-- Buttons to Save/Read books -->
-
-<!-- Location Form -->
-
 {% endblock %}
 
 {% block map %}

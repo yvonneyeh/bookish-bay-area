@@ -3,43 +3,51 @@
 {% block title %}{{ location.name }} - Details{% endblock %}
 {% block head%}
 
-<div class="row text-center text-lg-left">
+<!-- <div class="row text-center text-lg-left">
   {% for book in book_locs  %}
   <div class="col-lg-3 col-md-4 col-6">
-    <a href="/books/{{bookbook..book_id}}" class="d-block mb-4 h-100">
+    <a href="/books/{{book.book_id}}" class="d-block mb-4 h-100">
           <img class="img-fluid img-thumbnail" src="{{ book.book.cover_path }}" alt="Cover image of {{ book.book.title }}, links to book details page">
         </a>
   </div>
   {% endfor %}
-</div>
+</div> -->
 
-<div class="float-right w-25">
+<div class="container-fluid float-right w-50 align-items-center">
+  <div class="col">
 
-  <div class="row text-center text-lg-left">
-    {% if book_locs %}
-    {% for book in book_locs %}
-    <div class="col-lg-3 col-md-4 col-6">
-      <a href="/books/{{book.book_id}}" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}, links to book details page">
-          </a>
-    </div>
-    {% endfor %}
-    {% endif %}
-  </div>
+
 
 {% if book_locs %}
-    <h2>Books set @ {{ location.name }}</h2>
+    <h2>{{ location.name }}</h2>
+    <h3><u>Setting of:</u></h3>
+
+  <div class="row text-center text-lg-left">
+    {% for book in book_locs %}
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="/books/{{book.book_id}}" class="d-block "><br>
+        <img class="img-fluid img-thumbnail" src="{{ book.book.cover_path }}" style="width: 100px;" alt="Cover image of {{ book.book.title }}, links to book details page">
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+<br>
+
 <ul>
   {% for book in book_locs %}
 
   <li>
-    <a href="/books/{{book.book.book_id}}">{{ book.book.title }}</a>
+    <a href="/books/{{book.book.book_id}}">{{ book.book.title }}</a><br>
+    <!-- <a href="/books/{{book.book_id}}" class="d-block "><br>
+      <img class="img-fluid img-thumbnail" src="{{ book.book.cover_path }}" style="width: 100px;" alt="Cover image of {{ book.book.title }}, links to book details page">
+    </a><br> -->
   </li>
 {% endfor %}
 {% endif %}
 </div>
+</div>
 
-<div class="google-maps" id="map"></div>
+<div class="google-maps w-50" id="map"></div>
 
 <style>
   .google-maps {
@@ -47,7 +55,7 @@
       padding-bottom: 75%; // This is the aspect ratio
       height: 0;
       overflow: hidden;
-      width: 60% !important;
+      width: 50% !important;
       height: 100% !important;
   }
   
@@ -76,12 +84,279 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: myLatLng,
-          mapId: 'a72aa248840e8771'
+          styles: [
+                {
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#ebe3cd"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#523735"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                    {
+                      "color": "#f5f1e6"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                    {
+                      "color": "#c9b2a6"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                    {
+                      "color": "#dcd2be"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#ae9e90"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "landscape.natural",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dfd2ae"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dfd2ae"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#93817c"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.business",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                    {
+                      "color": "#a5b076"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#447530"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#f5f1e6"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#fdfcf8"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#f8c967"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                    {
+                      "color": "#e9bc62"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway.controlled_access",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e98d58"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway.controlled_access",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                    {
+                      "color": "#db8555"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#806b63"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dfd2ae"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#8f7d77"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                    {
+                      "color": "#ebe3cd"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.station",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dfd2ae"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                    {
+                      "color": "#b9d3c2"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#92998d"
+                    }
+                  ]
+                }
+              ]
+                  // mapId: 'a72aa248840e8771'
+
         });
+
+        // Define the marker
         new google.maps.Marker({
           position: myLatLng,
           map,
           title: "{{ location.name }}",
+          animation: google.maps.Animation.DROP,
+          icon: {
+              size: new google.maps.Size(100, 100),
+              scaledSize: new google.maps.Size(100, 100),
+              url: "/static/img/book-pin.svg"
+          }
         });
       }
     </script>
