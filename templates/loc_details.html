@@ -3,12 +3,55 @@
 {% block title %}{{ location.name }} - Details{% endblock %}
 {% block head%}
 
+<div class="row text-center text-lg-left">
+  {% for book in book_locs  %}
+  <div class="col-lg-3 col-md-4 col-6">
+    <a href="/books/{{bookbook..book_id}}" class="d-block mb-4 h-100">
+          <img class="img-fluid img-thumbnail" src="{{ book.book.cover_path }}" alt="Cover image of {{ book.book.title }}, links to book details page">
+        </a>
+  </div>
+  {% endfor %}
+</div>
 
-{% for book in book_locs %}
-<li>
+<div class="float-right w-25">
+
+  <div class="row text-center text-lg-left">
+    {% if book_locs %}
+    {% for book in book_locs %}
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="/books/{{book.book_id}}" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="{{ book.cover_path }}" alt="Cover image of {{ book.title }}, links to book details page">
+          </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+{% if book_locs %}
+    <h2>Books set @ {{ location.name }}</h2>
+<ul>
+  {% for book in book_locs %}
+
+  <li>
     <a href="/books/{{book.book.book_id}}">{{ book.book.title }}</a>
-</li>
+  </li>
 {% endfor %}
+{% endif %}
+</div>
+
+<div class="google-maps" id="map"></div>
+
+<style>
+  .google-maps {
+      position: relative;
+      padding-bottom: 75%; // This is the aspect ratio
+      height: 0;
+      overflow: hidden;
+      width: 60% !important;
+      height: 100% !important;
+  }
+  
+</style>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
@@ -45,7 +88,7 @@
 {% endblock %}
 
 {% block body %}
-    <div id="map"></div>
+    
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!-- Google Maps JS API script -->
@@ -53,7 +96,8 @@
     src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMap">
     </script>
 
-    <!-- <script async defer
-      src="https://maps.googleapis.com/maps/api/staticmap?key={{MAPS_JS_KEY}}&center=47.649999999999984,-122.34965667724609&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative.land_parcel%7Celement:labels%7Cvisibility:off&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text%7Cvisibility:off&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.business%7Cvisibility:off&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text%7Cvisibility:off&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Celement:labels%7Cvisibility:off&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&size=480x360"
-    </script> -->
   {% endblock %}
+
+  {% block content %}
+
+{% endblock content %}
