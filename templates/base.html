@@ -1,5 +1,7 @@
 <!doctype html>
 <html>
+{% block html %}
+{% endblock %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -34,15 +36,11 @@
     <!-- Favicon -->
     
 
-    {% block head %}
-    {% endblock %}
-    
-  
     
 
     <!-- Navigation Bar -->
     
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand navbar-static-top">
       <a class="navbar-brand" href="/"><img src="/static/img/logo.png" id="navbar-logo" class="homepage logo"></a>
       <a class="nav-link" href="/"><h1 class="nav">Bookish.</h1></a>
       <div class="collapse navbar-collapse">
@@ -134,6 +132,9 @@
       </div>
   </nav>
     
+{% block head %}
+{% endblock %}
+
 </head>
 
   <body>

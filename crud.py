@@ -244,7 +244,14 @@ def get_all_locations():
 
 def get_all_book_locations(book_id):
     """Return all book locations."""
+
     return BookLocation.query.filter(BookLocation.book_id == book_id).all()
+
+
+def get_book_locations_by_loc(loc_id):
+    """Return all book locations given a location ID."""
+    
+    return BookLocation.query.filter(BookLocation.loc_id == loc_id).all()
 
 
 def get_location_by_name(name):

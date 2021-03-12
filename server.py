@@ -6,6 +6,9 @@ from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Ge
 from sqlalchemy_searchable import search
 from datetime import date, datetime
 from random import randint
+from flask_mail import Mail, Message
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import faker
 import crud
 import helper
@@ -15,11 +18,28 @@ from jinja2 import StrictUndefined
 MAPS_JS_KEY = os.environ['MAPS_JS_KEY']
 MAPS_GEOCODING_KEY = os.environ['MAPS_GEOCODING_KEY']
 MAP_ID = os.environ['MAP_ID']
+MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
+sg = SendGridAPIClient(SENDGRID_API_KEY)
+
+app.config.update(
+    MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT = 587, 
+    MAIL_USE_TLS = True, #587 for TLS
+    MAIL_USE_SSL = False, #465 for SSL
+    MAIL_USERNAME = 'bookish@yvonneyeh.com',
+    MAIL_PASSWORD = MAIL_PASSWORD,
+    MAIL_DEFAULT_SENDER = 'bookish@yvonneyeh.com',
+    MAIL_MAX_EMAILS = 5,
+    MAIL_ASCII_ATTACHMENTS = False
+)
+
+mail = Mail(app)
 
 @app.route('/')
 def homepage():
@@ -64,6 +84,23 @@ def register_user():
         db.session.commit()
 
         flash("User created!", "success")
+
+        # msg = Message(subject = "Welcome to Bookish!",
+        #             recipients=email,
+        #             body = f'Hi {first_name}! This is a test email sent from <b>Bookish Bay Area</b>. You don\'t have to reply :D'
+        #             )
+
+        # mail.send(msg)
+
+        # Send welcome email with SendGrid
+        message = Mail(
+                from_email='bookish@yvonneyeh.com',
+                to_emails=email,
+                subject='Welcome to Bookish!',
+                html_content= (f"<p>Hi {first_name}!</p>Thank you for signing up to be a reader on <b>Bookish Bay Area</b>.</p><p>This is a project designed and built with love by <b>Yvonne Yeh</b> with the help of everyone at Hackbright Academy. I welcome any and all feedback you may have for me on my coding journey. Feel free to reply to this email!</p>"))
+
+        response = sg.send(message)
+        print(response.status_code, response.body, response.headers)
 
         return redirect("/login")
 
@@ -650,12 +687,11 @@ def show_location(loc_id):
     """Show details for a location."""
     
     location = crud.get_location_by_id(loc_id)
-    # book_dict, book_list = helper.get_books_by_location(loc_id)
+    book_locs = crud.get_book_locations_by_loc(loc_id)
 
     return render_template("loc_details.html", 
                             location=location, 
-                            # books = book_dict, 
-                            # books_list = book_list,
+                            book_locs = book_locs,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 

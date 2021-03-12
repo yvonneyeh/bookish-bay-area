@@ -2,35 +2,62 @@
 {% block title %}Bookish Bay Area Home{% endblock %}
 
 {% block head %}
+<!-- <style>
+  /* html { 
+    background: url(static/img/sf.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  } */
+  body, html {
+  height: 100%;
+}
+
+  .bg {
+    /* The image used */
+    background-image: url("static/img/sf.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style> -->
 {% endblock %}
 
 {% block body %}
+
+
 
 <div class="card text-white">
   <img src="static/img/sf.jpg" alt="Background image of the Golden Gate Bridge in San Francisco">
  <!-- <div class="overlay-div"></div> -->
   <div class="card-img-overlay d-flex container">
 
-<div class="container">
-  <div class="row align-items-center">
-    <div class="col">
-      <div class="row justify-content-center">
-        <h1 class="homepage">Bookish Bay Area</h1></div>
-        <div class="row justify-content-center">
-        <h3 class="homepage">Find your next local literary adventure!</h3></div>
-        
-        <div class="row justify-content-center">
-        <div class="w-50 input-group">
-          <!-- class="form-control" -->
-          <input type="text"  name="title_search" id="title_search" aria-label="Book search form with dropdown button for categories" placeholder=" Search for books by title, author, or location" size="50">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/books?title_search=homegoing">Title</a>
-              <a class="dropdown-item" href="#">Author</a>
-              <a class="dropdown-item" href="#">Location</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/books">Search All</a>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="row justify-content-center">
+            <h1 class="homepage">Bookish Bay Area</h1></div>
+            <div class="row justify-content-center">
+            <h3 class="homepage">Find your next local literary adventure!</h3></div>
+            
+            <div class="row justify-content-center">
+            <div class="w-50 input-group">
+              <!-- class="form-control" -->
+              <input type="text"  name="title_search" id="title_search" aria-label="Book search form with dropdown button for categories" placeholder=" Search for books by title, author, or location" size="50">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/books?title_search=homegoing">Title</a>
+                  <a class="dropdown-item" href="#">Author</a>
+                  <a class="dropdown-item" href="#">Location</a>
+                  <div role="separator" class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/books">Search All</a>
             </div>
           </div>
         </div></div>
@@ -46,12 +73,12 @@
             </form></div></div> -->
           
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 

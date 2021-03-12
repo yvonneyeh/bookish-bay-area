@@ -2,6 +2,14 @@
 
 {% block title %}{{ location.name }} - Details{% endblock %}
 {% block head%}
+
+
+{% for book in book_locs %}
+<li>
+    <a href="/books/{{book.book.book_id}}">{{ book.book.title }}</a>
+</li>
+{% endfor %}
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div

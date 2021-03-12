@@ -51,7 +51,8 @@ def seed_users():
         email = f'reader{n}@books.book'
         first_name = fake.first_name()
         last_name = fake.last_name()
-        username = f'{first_name}{last_name}'
+        username = first_name.lower() + '.' + last_name.lower()
+        # username = f'{first_name}{last_name}'
         password_hash = 'test'
         join_date = datetime.today()
         website = None
