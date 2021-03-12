@@ -297,7 +297,6 @@ const defaultLocation = new google.maps.LatLng(37.5048,-122.1204)
 
         for (var key in locations) {
             location = locations[key];
-            console.log("the key is ", key )
 
             // Define the marker
             marker = new google.maps.Marker({
@@ -308,7 +307,7 @@ const defaultLocation = new google.maps.LatLng(37.5048,-122.1204)
                 icon: {
                     size: new google.maps.Size(50, 50),
                     scaledSize: new google.maps.Size(35, 35),
-                    url: "/static/img/icon.svg"
+                    url: "/static/img/book.svg"
                 }
             });
 

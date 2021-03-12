@@ -48,7 +48,9 @@
 
     .place,
     p {
-      font-family: 'open sans', arial, sans-serif;
+      font-family: 'Eczar', serif;
+      /* font-family: 'open sans', arial, sans-serif; */
+      padding-top: 18px;
       padding-left: 18px;
       padding-right: 18px;
     }
@@ -770,7 +772,13 @@
         let marker = new google.maps.Marker({
           position: place.geometry.location,
           map: map,
-          title: place.name
+          title: place.name,
+          animation: google.maps.Animation.DROP,
+          icon: {
+              size: new google.maps.Size(50, 50),
+              scaledSize: new google.maps.Size(50, 50),
+              url: "/static/img/library.svg"
+          }
         });
 
         /* TODO: Step 4B: Add click listeners to the markers */

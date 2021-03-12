@@ -458,12 +458,14 @@ def show_book(book_id):
     book = crud.get_book_by_id(book_id)
     author_id = book.author_id
     author = crud.get_author_by_id(author_id)
+    book_locs = crud.get_book_locations_by_book(book_id)
     locations = crud.get_all_locations()
     location_dict, location_list = helper.get_locations(book_id)
 
     return render_template("book_details.html", 
                             author=author, 
                             book=book,
+                            book_locs=book_locs,
                             locations = locations,
                             book_locations=location_dict,
                             location_list=location_list, 

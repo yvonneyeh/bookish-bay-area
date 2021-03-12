@@ -79,7 +79,7 @@
                 <br><br>
                 {% endif %}
                 {% if book.link %}
-                <a href="{{ book.link }}">Goodreads Entry</a>
+                <a href="{{ book.link }}">Goodreads</a>
                 <br>
                 {% endif %} <br>
                 {% if book.isbn %}
@@ -87,10 +87,19 @@
                 <span class="book_detail_content">{{ book.isbn }}</span>
                 <br>
                 {% endif %} <br>
+                
                 {% if location_list %} 
                 <b>Book Spots: </b> <br>
                 {% for location in location_list %}
                 {{ location }} <br>
+                {% endfor %}
+                {% endif %}
+
+                {% if book_locs %} 
+                <b>Book Spots: </b> <br>
+                {% for bl in book_locs %}
+                <a href="/locations/{{bl.loc_id}}">{{ bl.location.name }}</a><br>
+                <!-- <a href="{{ book.link }}">Goodreads</a> <br> -->
                 {% endfor %}
                 {% endif %}
                 <br>
@@ -411,7 +420,7 @@ function initialize() {
                 icon: {
                     size: new google.maps.Size(50, 50),
                     scaledSize: new google.maps.Size(50, 50),
-                    url: "/static/img/icon.svg"
+                    url: "/static/img/book.svg"
                 }
             });
 
