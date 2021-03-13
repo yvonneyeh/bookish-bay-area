@@ -2,6 +2,8 @@
 
 const newLocButton = $("#new-loc")
 const newLocForm = $("#new-loc-form")
+const newRateButton = $("#rate-button")
+const newRateForm = $("#rate-form")
 const saveButton = $("#save-button")
 const readButton = $("#read-button")
 const unsaveButton = $("#unsave-button")
@@ -22,6 +24,8 @@ $.get("/user/loggedin", (res) => {
     if (res === "false") {
         newLocButton.hide();
         newLocForm.hide();
+        newRateButton.hide();
+        newRateForm.hide();
         saveButton.hide();
         unsaveButton.hide();
         readButton.hide();
@@ -40,24 +44,40 @@ $.get(`/user/is-book-saved/${book_id1}`, (res) => {
     if (res.read === true) {
         readButton.hide();
         unreadButton.show();
+        newRateButton.show();
     } else if (res.saved === true) {
         saveButton.hide();
         unsaveButton.show();
     }
 });
 
-function toggleLocForm() {
-    var x = document.getElementById("new-loc-form");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+// function toggleLocForm() {
+// var x = document.getElementById("new-loc-form");
+// if (x.style.display === "none") {
+//     x.style.display = "block";
+// } else {
+//     x.style.display = "none";
+// }
+// }
+
+
+// function toggleRateForm() {
+// var x = document.getElementById("rate-form");
+// if (x.style.display === "none") {
+//     x.style.display = "block";
+// } else {
+//     x.style.display = "none";
+// }
+// }
 
 newLocButton.on("click", () => {
         newLocForm.show();
         
+});
+
+newRateButton.on("click", () => {
+    newRateForm.show();
+    
 });
 
 saveButton.on("click", () => {

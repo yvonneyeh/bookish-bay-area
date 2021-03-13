@@ -15,7 +15,7 @@
         <br>
         {% endif %}
 
-<!-- Buttons to Save/Read books -->
+<!-- Buttons to Save/Read/Locate/Rate books -->
   <div class="d-flex justify-content-end">
     <div class="row">
         <div class="col text-right">
@@ -29,6 +29,9 @@
             <button type="button" class="btn btn-primary" id="new-loc" onclick="toggleLocForm()">
                 Add New Location
             </button>
+            <button type="button" class="btn btn-primary" id="rate-button" onclick="toggleRateForm()">
+              Add Rating
+          </button>
             <button type="button" class="btn btn-primary" id="save-button">
                 Save Book
             </button>
@@ -48,13 +51,13 @@
 <!-- Add Location Form -->
   <div class="d-flex justify-content-end">
     <div class="row">
-        <div class="col-6">
+        <div class="col w-25">
     <div id="new-loc-form" style="display:None">
+      <br>
       <form action="/books/{{ book.book_id }}" method="POST" id="new-loc-form">
-    
-        <label for="location">Location Name</label>
-        <select name="location" id="location" required>
-            <option value="starter" selected>Select a Location</option>
+        <label for="location">Select a Location to Add to this Book</label>
+        <select name="location" class="form-control" id="location" required>
+            <option value="starter" selected>Select BookSpot</option>
             {% for location in locations %}
             <option value="{{location.name}}">{{ location.name }}</option>
             {% endfor %}
@@ -62,10 +65,33 @@
         <input type="submit" class="btn btn-primary">
     </form>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 
+  <div class="col w-25">
+    <div class="form-group" id="rate-form" style="display:None">
+      <br>
+      <input type="number" class="form-control" step="1" max="5" placeholder="Rate 1 - 5" >
+      <input type="submit" class="btn btn-primary">
+  </div>
+</div>
+
+
+  </div>
+</div>
+<!-- Add Rating Form -->
+    
+
+    
+
+    <div class="d-flex justify-content-end">
+      <div class="row">
+    <div class="form-group" id="rate-form" style="display:None">
+      <br>
+      <input type="number" class="form-control" step="1" max="5" placeholder="Rate 1 - 5" >
+      <input type="submit" class="btn btn-primary">
+  </div>
+</div>
+</div>
 
         <div class="row">
             <div class="col-4">
