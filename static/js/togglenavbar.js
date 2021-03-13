@@ -6,6 +6,7 @@ const registerLink = $("#register")
 const loginLink = $("#login")
 const logoutLink = $("#logout")
 const logBookLink = $("#log_book")
+const menuLink = $("#menu")
 
 
 $(document).ready(function() {
@@ -19,6 +20,7 @@ $(document).ready(function() {
             loginLink.hide();
             logoutLink.show();
             logBookLink.show();
+            menuLink.show()
         }
         else {
             logLink.hide();
@@ -27,8 +29,7 @@ $(document).ready(function() {
             loginLink.show();
             logoutLink.hide();
             logBookLink.hide();
+            menuLink.show()
         }
     })
 });
-  
-

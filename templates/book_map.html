@@ -4,25 +4,68 @@
 
 {% block head %}
 <style>
-/* Always set the map height explicitly to define the size of the div
-    * element that contains the map. */
-    #map {
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+   #map {
     height: 100%;
     background-color: grey;
-}
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
+  }
+
+  /* TODO: Step 4A1: Make a generic sidebar */
+  /* Styling for an info pane that slides out from the left. 
+   * Hidden by default. */
+  #panel {
+    height: 100%;
+    width: null;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: all .2s ease-out;
+  }
+
+  .open {
+    width: 250px;
+  }
+
+  /* Styling for place details */
+  .hero {
+    width: 100%;
+    height: auto;
+    max-height: 166px;
+    display: block;
+  }
+
+  .place,
+  p {
+    font-family: 'Eczar', serif;
+    /* font-family: 'open sans', arial, sans-serif; */
+    padding-top: 18px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .details {
+    color: darkslategrey;
+  }
+
+  a {
+    text-decoration: none;
+    color: cadetblue;
+  }
 </style>
 {% endblock %}
 
 {% block map %}
-<div id="map-canvas" style="height:500px"></div>
+<div id="map-canvas" style="height: 100%"></div>
 <script>
 function initMap() {
 
@@ -325,7 +368,7 @@ const defaultLocation = new google.maps.LatLng(37.5048,-122.1204)
                 icon: {
                     size: new google.maps.Size(50, 50),
                     scaledSize: new google.maps.Size(50, 50),
-                    url: "/static/img/icon.svg"
+                    url: "/static/img/book.svg"
                 }
             });
 

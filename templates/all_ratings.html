@@ -124,11 +124,12 @@
       <tr>
         <th>Title</th>
         <th>Rating</th>
+        <th>Reader</th>
       </tr>
     </thead>
     <tbody>
       {% for rating in ratings %}
-        <tr class="sony">
+        <tr class="{{rating.rating_id}}">
       <td><a href="/books/{{rating.book_id}}">{{ rating.book.title }}</a><br></td>
       <td>
           <div class="stars-outer">
