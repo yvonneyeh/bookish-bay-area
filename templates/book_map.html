@@ -350,14 +350,12 @@ const defaultLocation = new google.maps.LatLng(37.5048,-122.1204)
   });
 
   const locations = {{ book_locations|tojson|safe }};
-  console.log("locations = ", locations);
 
   // Attach markers to each location in returned JSON
         var location, marker, contentString;
 
         for (var key in locations) {
             location = locations[key];
-            console.log("the key is ", key )
 
             // Define the marker
             marker = new google.maps.Marker({
@@ -373,6 +371,8 @@ const defaultLocation = new google.maps.LatLng(37.5048,-122.1204)
             });
 
             // Define the content of the infoWindow
+            // console.log(
+            //     '<div class="content">'+'<a href="/locations/'+location.id+'>'+location.name+'</a></div>')
             contentString = (
                 '<div class="window-content">' +
                     location.name +

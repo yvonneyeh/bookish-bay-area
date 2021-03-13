@@ -1,5 +1,6 @@
 """Helper functions for server.py"""
 # from model import *
+import os
 from crud import *
 from sqlalchemy import and_, or_, not_
 from geopy.geocoders import Nominatim
@@ -175,6 +176,7 @@ def get_all_locations():
         else:
 
             location_dict[dict_key] = {}
+            location_dict[dict_key]['id'] = loc.location.loc_id
             location_dict[dict_key]['lat'] = loc.location.lat
             location_dict[dict_key]['lng'] = loc.location.lng
             location_dict[dict_key]['name'] = loc.location.name

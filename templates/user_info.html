@@ -58,10 +58,9 @@
               </select>
             </div>
             <div class="col">
-            <p id="pronoun-example" class="notes example-activity"><b>Example use: </b><br> <a class="person" id="pronoun-name" href="users/yvonneyeh">Yvonne</a> added <a class="target" href="/books/1">Homegoing</a> to <a class="secondary" href="/users/yvonneyeh"><span id="pronoun-possessive">their</span> reading list.</a></p>
+            <p id="pronoun-example" class="notes example-activity" style="font-size: small"><br><b>Example use: </b><br> <a class="person" id="pronoun-name" href="users/yvonneyeh">Booky</a> added <a class="target" href="/books/1">Homegoing</a> to <a class="secondary" href="/users/yvonneyeh"><span id="pronoun-possessive">their</span></a> reading list.</p>
           </div></div>
         
-        <br>
             <div class="form-row">
             <div class="col-md"><label for="city">City</label>
             <input type="text" class="form-control" id="city" name="city" placeholder="Palo Alto" >
@@ -123,9 +122,15 @@
               <option value="WY">Wyoming</option>
             </select></div></div>
           <br>
-
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Sign up to receive emails when a new BookSpot is logged in your city.
+            </label>
+          </div>
+          <br>
             <label for="bio">Bio</label>
-            <input type="textarea" class="form-control" id="bio" name="bio" placeholder="Bio" 
+            <input type="textarea" class="form-control" id="bio" name="bio" placeholder=" " 
             {% if user.bio%} value={{user.bio}} {% endif %}>
 
           <br>
