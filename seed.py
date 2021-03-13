@@ -145,8 +145,10 @@ def seed_addresses(filename):
     csv_f = csv.reader(f)
     for row in csv_f:
         name, address, lat, lng = row
+        city = None
+        state = None
         if crud.get_location_by_name(name) == None:
-            loc_obj = crud.create_location(name, float(lat), float(lng), address)
+            loc_obj = crud.create_location(name, float(lat), float(lng), address, city, state)
             locs_in_db.append(loc_obj)
     print(locs_in_db)
 
@@ -158,7 +160,7 @@ def seed_cities(filename):
     for row in csv_f:
         city, state, country, lat, lng = row
         if crud.get_location_by_name(city) == None:
-            loc_obj = crud.create_location(city, float(lat), float(lng), city)
+            loc_obj = crud.create_location(city, float(lat), float(lng), city, city, state)
             locs_in_db.append(loc_obj)
     print(locs_in_db)
 

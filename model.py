@@ -203,6 +203,8 @@ class Location(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
     address = db.Column(db.String)
+    city = db.Column(db.String)
+    state = db.Column(db.String)
     description = db.Column(db.String)
 
     # book = db.relationship('Book', backref='locations')

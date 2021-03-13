@@ -216,13 +216,15 @@ def create_book_location(book_id, loc_id):
     return book_loc
 
 
-def create_location(name, lat, lng, address):
+def create_location(name, lat, lng, address, city, state):
     """Create and return a new location."""
 
     location = Location(name = name, 
                         lat = lat, 
                         lng = lng,
-                        address = address)
+                        address = address,
+                        city = city,
+                        state = state)
         
     db.session.add(location)
     db.session.commit()

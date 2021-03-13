@@ -3,23 +3,19 @@
 {% block title %}{{ location.name }} - Details{% endblock %}
 {% block head%}
 
-<!-- <div class="row text-center text-lg-left">
-  {% for book in book_locs  %}
-  <div class="col-lg-3 col-md-4 col-6">
-    <a href="/books/{{book.book_id}}" class="d-block mb-4 h-100">
-          <img class="img-fluid img-thumbnail" src="{{ book.book.cover_path }}" alt="Cover image of {{ book.book.title }}, links to book details page">
-        </a>
-  </div>
-  {% endfor %}
-</div> -->
-
 <div class="container-fluid float-right w-50 align-items-center">
   <div class="col">
 
 
 
 {% if book_locs %}
-    <h2>{{ location.name }}</h2>
+
+    <br>
+    <h1>{{ location.name }}{% if location.city %}, {{ location.state }}{% endif %}</h1>
+    
+    <b>Coordinates:</b> ({{location.lat}}, {{location.lng}})
+    
+    <br><br>   
     <h3><u>Setting of:</u></h3>
 
   <div class="row text-center text-lg-left">
