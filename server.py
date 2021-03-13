@@ -19,7 +19,7 @@ MAPS_JS_KEY = os.environ['MAPS_JS_KEY']
 MAPS_GEOCODING_KEY = os.environ['MAPS_GEOCODING_KEY']
 MAP_ID = os.environ['MAP_ID']
 MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -392,7 +392,8 @@ def show_book_list():
     Else: If user entered title search, filter by title
     Else: display entire book list.
     """
-    
+
+    authors = crud.get_all_authors()
     location_dict, location_list = helper.get_all_locations()
 
     user_genre = None
@@ -401,23 +402,23 @@ def show_book_list():
     user_search = None
     # books = []
 
-    if 'genre' in request.args:
-        user_genre = request.args['genre']
-        books = helper.get_books_by_genre(user_genre)
+    # if 'genre' in request.args:
+    #     user_genre = request.args['genre']
+    #     books = helper.get_books_by_genre(user_genre)
 
-    else: 
-        books = crud.get_all_books()
+    # else: 
+    #     books = crud.get_all_books()
 
     
-    if 'user_search' in request.args:
-        user_title_search = request.args['user_search']
-        books = helper.get_books_by_search(user_search)
+    # if 'user_search' in request.args:
+    #     user_title_search = request.args['user_search']
+    #     books = helper.get_books_by_search(user_search)
 
-        if books == None:
-            flash('No results found', 'secondary')
+    #     if books == None:
+    #         flash('No results found', 'secondary')
     
-    else: 
-        books = crud.get_all_books()
+    # else: 
+    #     books = crud.get_all_books()
 
 
     if 'title_search' in request.args:
@@ -445,6 +446,7 @@ def show_book_list():
     # print("final", len(books))
     return render_template("all_books.html", 
                             books=books, 
+                            authors=authors,
                             genre=user_genre,
                             book_locations=location_dict,
                             location_list=location_list, 
@@ -735,8 +737,11 @@ def show_genre(genre_id):
 def all_ratings():
     """Display all ratings."""
     ratings = crud.get_all_ratings_order_by_new()
+    ratings_json = return_json_ratings()
 
-    return render_template("all_ratings.html", ratings=ratings)
+    return render_template("all_ratings.html", 
+                            ratings=ratings,
+                            ratings_json=ratings_json)
 
 
 @app.route('/ratings/<int:rating_id>')
@@ -891,6 +896,17 @@ def get_book_titles_for_form():
     books = [r.as_dict() for r in res]
     
     return jsonify(books)
+
+
+@app.route("/json/ratings")
+def return_json_ratings():
+    """Return all ratings in json"""
+
+    res = crud.get_all_ratings_order_by_new()
+    ratings = [r.as_dict() for r in res]
+
+    return jsonify(ratings)
+
 
 
 @app.route("/json/search")

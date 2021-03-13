@@ -39,7 +39,7 @@
     <div class="col-9">
       <div class="row justify-content-center">
       <h2>All Ratings on Bookish</h2>
-      <canvas id="ratingChart" width="400" height="400"></canvas>
+      <canvas id="ratingChart" width="400" height="300"></canvas>
       <script>
       var ctx = document.getElementById('ratingChart').getContext('2d');
       var ratingChart = new Chart(ctx, {
@@ -55,18 +55,18 @@
                         {{ count5.value }},
                         ],
                   backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)'
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)'
                   ],
                   borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)'
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)'
                   ],
                   borderWidth: 1
               }]
@@ -87,8 +87,8 @@
 
     <div class="col-3">
       <br>
-      <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 260px; max-height: 1000px;">
-        <div class="row justify-content-center"><h4>Recent Ratings</h4></div>
+      <div class="overflow-auto p-3 mb-3 mb-md-0 bg-light" style="max-width: 260px; max-height: 700px;">
+        <div class="row justify-content-center"><h3>Recent Ratings</h3></div>
       <ul>
       {% for rating in ratings %}
 
@@ -145,7 +145,7 @@
 </div>
 
 <script>
-// Initial Ratings
+// Initial Ratings = ratings_json
     const ratings = {
 
       {% for rating in ratings %}

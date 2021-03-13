@@ -6,6 +6,8 @@ from geopy.geocoders import Nominatim
 
 geolocator = Nominatim(user_agent="app")
 
+MAPS_GEOCODING_KEY = os.environ['MAPS_GEOCODING_KEY']
+
 def call_geocoding_api(search_terms):
     """Query Google Maps Geocoding API to convert search terms to
     lat/lng coordinates"""

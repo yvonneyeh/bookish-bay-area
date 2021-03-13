@@ -113,6 +113,9 @@ class Rating(db.Model):
 
     book = db.relationship('Book', backref=db.backref('ratings', order_by=book_id))
 
+    def as_dict(self):
+        return {self.book.title : self.score}
+        
     def __repr__(self):
         return f'<Rating rating_id={self.rating_id} book_id={self.book_id} score={self.score}>'
 

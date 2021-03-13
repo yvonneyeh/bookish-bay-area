@@ -411,19 +411,29 @@ src="https://maps.googleapis.com/maps/api/js?key={{MAPS_JS_KEY}}&callback=initMa
   </div>
 </div>
 
-<br>
-
-<ul>
 {% endblock body %}
 {% block content %} 
-  {% for book in books %}
 
-  <li>
-      <a href="/books/{{book.book_id}}">{{ book.title }}</a>
-  </li>
-  
-{% endfor %}
-</ul>
+{% if books %}
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Books Matching Your Search</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr class="book_{{book.book_id}}"> 
+      <td><a href="/books/{{book.book_id}}">{{ book.title }}</a><br></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <h3>No Results Found</h3>
+{% endif %}
 
 <script>
   var selectedGenre = "{{ genre }}";
