@@ -803,8 +803,10 @@ def create_new_user_submitted_location():
 
     name = request.form.get('name')
     address = request.form.get('address')
+    city = request.form.get('city')
+    state = request.form.get('state')
 
-    helper.create_user_submitted_loc(name, address)
+    helper.create_user_submitted_loc(name, address, city, state)
     flash('Location submitted successfully!', 'success')
 
     return redirect('/locations')

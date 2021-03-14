@@ -17,6 +17,7 @@
   <hr class="mt-2 mb-5">
 
   <div class="row text-center text-lg-left">
+    {% if read_books %}
     {% for rating in read_books %}
     <div class="col-lg-3 col-md-4 col-6">
       <a href="/books/{{rating.book.book_id}}" class="d-block mb-4 h-100">
@@ -24,6 +25,10 @@
           </a>
     </div>
     {% endfor %}
+
+    {% else %}
+          <p><h4>No completed books! Save some of your read books <a href="/books">here</a>.</h4></p>
+    {% endif %}
   </div>
 
 </div>

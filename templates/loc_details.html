@@ -6,16 +6,18 @@
 <div class="container-fluid float-right w-50 align-items-center">
   <div class="col">
 
-
-
-{% if book_locs %}
-
-    <br>
+<br>
     <h1>{{ location.name }}{% if location.city %}, {{ location.state }}{% endif %}</h1>
     
     <b>Coordinates:</b> ({{location.lat}}, {{location.lng}})
+
     
-    <br><br>   
+    
+    <br><br> 
+
+
+{% if book_locs %}
+      
     <h3><u>Setting of:</u></h3>
 
   <div class="row text-center text-lg-left">
@@ -39,43 +41,37 @@
     </a><br> -->
   </li>
 {% endfor %}
+{% else %}
+  <p><h4>No books have been logged here yet! Save book a book to this location with the form above.</h4></p>
+
 {% endif %}
 </div>
 </div>
 
 <div class="google-maps w-50" id="map"></div>
 
-<style>
-  .google-maps {
-      position: relative;
-      padding-bottom: 75%; // This is the aspect ratio
-      height: 0;
-      overflow: hidden;
-      width: 50% !important;
-      height: 100% !important;
+
+<script src="static/js/locationDetailsMap.js"></script>
+
+<!-- MAP STYLES -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+  #map {
+    height: 100%;
   }
-  
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 </style>
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
     <script>
       function initMap() {
-        console.log({ lat: {{ location.lat }}, lng: {{ location.lng }} })
         const myLatLng = { lat: {{ location.lat }}, lng: {{ location.lng }} };
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
@@ -338,8 +334,6 @@
                   ]
                 }
               ]
-                  // mapId: 'a72aa248840e8771'
-
         });
 
         // Define the marker

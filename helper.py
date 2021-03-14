@@ -32,14 +32,14 @@ def call_geocoding_api(search_terms):
         return "Invalid search terms"
 
 
-def create_user_submitted_loc(name, address):
+def create_user_submitted_loc(name, address, city, state):
     """Create and return a new user-submitted location."""
 
     location = geolocator.geocode(address)
     lat = location.latitude
     lng = location.longitude
 
-    location = create_location(name, lat, lng, address)
+    location = create_location(name, lat, lng, address, city, state)
         
     db.session.add(location)
     db.session.commit()
