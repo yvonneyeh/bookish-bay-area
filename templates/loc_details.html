@@ -7,17 +7,36 @@
   <div class="col">
 
 <br>
-    <h1>{{ location.name }}{% if location.city %}, {{ location.state }}{% endif %}</h1>
+    <h1>{{ location.name }}</h1>
+    <hr class="mt-2 mb-4">  
+    <h2>{% if location.city %}{{location.city}}{% endif %}, {% if location.state %}{{location.state}}{% endif %}</h2>
     
-    <b>Coordinates:</b> ({{location.lat}}, {{location.lng}})
+    
 
-    
-    
-    <br><br> 
+    <b>Coordinates:</b> ({{location.lat}}, {{location.lng}})
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" id="new-book" onclick="toggleBookForm()">
+      Add Book Here
+    </button>
+    <div id="new-book-form" style="display:None">
+      <br>
+      <form action="/locations/{{ location.loc_id }}" method="POST" id="new-book-form">
+        <label for="book_title">Select a Book to Log Here</label>
+        <select name="book_title" class="form-control" id="book_title" required>
+            <option value="starter" selected>Select Book</option>
+            {% for book in books %}
+            <option value="{{book.title}}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-primary">
+    </form>
+    </div>
+  <br> 
 
 
 {% if book_locs %}
-      
+    <br>
     <h3><u>Setting of:</u></h3>
 
   <div class="row text-center text-lg-left">
@@ -49,9 +68,10 @@
 </div>
 
 <div class="google-maps w-50" id="map"></div>
-
-
 <script src="static/js/locationDetailsMap.js"></script>
+
+<!-- Script to capture interaction with book saving button -->
+<script src="/static/js/locPageButton.js"></script>
 
 <!-- MAP STYLES -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

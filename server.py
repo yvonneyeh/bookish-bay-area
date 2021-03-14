@@ -424,7 +424,8 @@ def show_book_list():
     if 'title_search' in request.args:
         user_title_search = request.args['title_search']
         books = helper.get_books_by_title(user_title_search)
-        # print("search", len(books))
+        print(user_title_search)
+        print("search", len(books))
 
         if books == None:
             flash('No results found', 'secondary')
@@ -468,7 +469,7 @@ def show_book(book_id):
                             author=author, 
                             book=book,
                             book_locs=book_locs,
-                            locations = locations,
+                            locations=locations,
                             book_locations=location_dict,
                             location_list=location_list, 
                             MAPS_JS_KEY=MAPS_JS_KEY)
@@ -487,26 +488,12 @@ def create_book_location_on_details_page(book_id):
         return redirect(f"/books/{book_id}")
     
     else:
-        # book_id = crud.get_book_id_by_title(title)
-        # print(loc)
-        # print(type(loc))
         loc_id = loc.loc_id
 
         crud.create_book_location(book_id, loc_id)
         flash('New Book Location submitted successfully!', 'success')
 
     return redirect(f"/books/{book_id}")
-
-    # author = crud.get_author_name_by_book_id(book_id)
-    # book = crud.get_book_by_id(book_id)
-    # location_dict, location_list = helper.get_locations(book_id)
-
-    # return render_template("book_details.html", 
-    #                         author=author, 
-    #                         book=book,
-    #                         book_locations=location_dict,
-    #                         location_list=location_list, 
-    #                         MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/user/save-book', methods=["POST"])
@@ -706,11 +693,35 @@ def show_location(loc_id):
     
     location = crud.get_location_by_id(loc_id)
     book_locs = crud.get_book_locations_by_loc(loc_id)
+    books = crud.get_all_books()
 
     return render_template("loc_details.html", 
                             location=location, 
-                            book_locs = book_locs,
+                            book_locs=book_locs,
+                            books=books,
                             MAPS_JS_KEY=MAPS_JS_KEY)
+
+
+@app.route('/locations/<int:loc_id>', methods=["POST"])
+def add_book_to_location(loc_id):
+    # """Show details for a book."""
+    
+    title = request.form.get('book_title')
+    book = crud.get_book_id_by_title(title)
+    print(title, book)
+
+    if title == 'starter': #or book == None:
+        flash("Select a Book", 'warning')
+        
+        return redirect(f"/locations/{loc_id}")
+    
+    else:
+        book_id = book.book_id
+
+        crud.create_book_location(book_id, loc_id)
+        flash('New BookSpot submitted successfully!', 'success')
+
+    return redirect(f"/locations/{loc_id}")
 
 
 # ---------- GENRE ROUTES ---------- #
@@ -850,23 +861,11 @@ def create_new_book_location():
         loc_id = crud.get_location_id_by_name(location)
 
         bookloc = crud.create_book_location(book_id, loc_id)
-        flash('New Book Location submitted successfully!', 'success')
+        flash('New BookSpot submitted successfully!', 'success')
 
     print(bookloc)
     return redirect('/books')
 
-    # title = request.form['book']
-    # book_id = crud.get_book_id_by_title(title)
-
-    # if book:
-    #     return jsonify({'country':country})
-    #     flash('Location submitted successfully!', 'success)
-
-    # return jsonify({'error': 'missing data..'})
-
-    # crud.create_book_location(book_id, loc_id)
-    
-    # return redirect('')
 
 
 # ---------- SEARCH ROUTES ---------- #

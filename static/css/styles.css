@@ -41,8 +41,8 @@ h1.title {
 h2 {
     font-family: 'Eczar', serif;
     display: block;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    /* margin-top: 1em; */
+    /* margin-bottom: 1em; */
     /* font-weight: 500; */
 }
 
@@ -60,9 +60,10 @@ h3.author {
 
 
 /* ========== FLASH MESSAGES ========== */
+
 #flash_msg {
     text-align: center;
-    padding-top: 10px;
+    padding: 10px;
     margin-bottom: 0;
     color: rgb(170, 170, 170);
     font-weight: bold;
