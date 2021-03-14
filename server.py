@@ -41,11 +41,24 @@ app.config.update(
 
 mail = Mail(app)
 
-@app.route('/')
-def homepage():
-    """View homepage."""
+# @app.route('/')
+# def homepage():
+#     """View homepage."""
 
-    return render_template('homepage.html')
+#     return render_template('homepage.html')
+
+
+@app.route('/')
+def homepage_with_map():
+    """View homepage with map."""
+
+    location_dict, location_list = helper.get_all_locations()
+
+    return render_template("home.html", 
+                            book_locations=location_dict,
+                            location_list=location_list, 
+                            MAPS_JS_KEY=MAPS_JS_KEY)
+
 
 @app.route('/about')
 def show_about():
