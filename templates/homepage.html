@@ -2,6 +2,11 @@
 {% block title %}Bookish Bay Area Home{% endblock %}
 
 {% block head %}
+<style>
+  body {
+    /* background-color: #97CADD; */
+  }
+</style>
 <!-- <style>
   /* html { 
     background: url(static/img/sf.jpg) no-repeat center center fixed; 
@@ -27,11 +32,8 @@
     background-size: cover;
   }
 </style> -->
-{% endblock %}
-
+{% endblock head %}
 {% block body %}
-
-
 
 <div class="card text-white">
   <img src="static/img/sf.jpg" alt="Background image of the Golden Gate Bridge in San Francisco">
@@ -83,7 +85,8 @@
 {% endblock %}
 
 {% block footer %} 
-    <footer class="footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start">
+<!-- <footer class="footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start"> -->
+    <footer class="footer p-md-5 bg-light text-center text-sm-start">
       <div class="container">
         <ul class="footer-links ps-0 mb-3">
           <li class="d-inline-block"><a href="/about">About</a></li> • 

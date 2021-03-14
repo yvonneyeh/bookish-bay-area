@@ -63,7 +63,7 @@ h3.author {
 
 #flash_msg {
     text-align: center;
-    padding: 10px;
+    padding-top: 25px;
     margin-bottom: 0;
     color: rgb(170, 170, 170);
     font-weight: bold;
@@ -331,10 +331,10 @@ h3.homepage {
 }
 
 .card {
-    color: black;
+    /* color: black; */
     border: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 8px 0;
+    /* margin: 8px 0; */
 }
 
 .card:hover {
@@ -377,7 +377,8 @@ a {
 
 .footer { 
     font-size:.875rem;
-    color:#63707c
+    color:#63707c;
+    background-color: #D1D5D4;
 }
 
 .footer a {

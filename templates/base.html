@@ -90,13 +90,13 @@
                 My Profile
               </a>     
               <a class="dropdown-item" href="/account/saved_books">
-                Saved Books
+                My Saved Books
               </a>         
               <!-- <a class="dropdown-item" href="/account/locations">
                 My Locations
               </a>       -->
-              <a class="dropdown-item" href="/libraries">
-                Local Library Map
+              <a class="dropdown-item" href="/map/libraries">
+                My Library Map
               </a>  
               <!-- <a class="dropdown-item" href="/add/location">
                 Add a Location
@@ -154,10 +154,11 @@
   <body>
 
 <!-- Flashed Messages -->
+{% if get_flashed_messages() %}
 <div class="container">
   <div class="row align-items-center">
     <div class="col">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" id="flash_msg">
         {% with messages = get_flashed_messages(with_categories=true) %}
           <!-- Categories: success (green), info (blue), warning (yellow), danger (red), secondary (grey) -->
             {% if messages %}
@@ -176,6 +177,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
     {% block body %}{% endblock %}
     {% block after_body %}{% endblock %}

@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 
-
-{% extends 'base.html' %}
-
 {% block title %}About Bookish{% endblock %}
 
+{% block head %}
+<style>
+#yvonne {
+  width: 250px;
+  border-radius: 50%;
+}
+</style>
+{% endblock head%}
+
 {% block body %}
+<br>
 
+<div class="container">
+<div class="row align-items-center">
+    <div class="w-50 align-items-center">
+    1 of 2
+    </div>
+    <div class="w-50 align-items-center">
+    <img src="static/img/yvonne.jpg" id="yvonne" alt="Yvonne Yeh">
+    </div>
 
-{% endblock %}
+</div>
+</div>
+
+{% endblock body%}
