@@ -3,7 +3,7 @@ temp
 ignore
 secrets.sh
 node_modules/
-.DS_Store
+*.DS_Store
 *pycache*
 *.sql
 .vscode/
