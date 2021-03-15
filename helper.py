@@ -132,7 +132,7 @@ def get_session_users_saved_book(user_id, book_id):
     """Query database to find Ratings objects belonging to user in session
         & matching book_id"""
 
-    saved_book = Rating.query.filter((Rating.user_id == session["user_id"])
+    saved_book = Rating.query.filter((Rating.user_id == user_id)
                                               & (Rating.book_id == book_id)).first()
 
     return saved_book

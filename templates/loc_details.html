@@ -9,8 +9,8 @@
 <br>
     <h1>{{ location.name }}</h1>
     <hr class="mt-2 mb-4">  
-    <h2>{% if location.city %}{{location.city}}{% endif %}, {% if location.state %}{{location.state}}{% endif %}</h2>
-    
+    <h2>{% if location.address %}{{location.address}}{% endif %}</h2>
+    <h3>{% if location.city %}{{location.city}}{% endif %}, {% if location.state %}{{location.state}}{% endif %}</h3>
     
 
     <b>Coordinates:</b> ({{location.lat}}, {{location.lng}})

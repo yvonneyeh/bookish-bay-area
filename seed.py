@@ -144,9 +144,7 @@ def seed_addresses(filename):
     f = open(filename)
     csv_f = csv.reader(f)
     for row in csv_f:
-        name, address, lat, lng = row
-        city = None
-        state = None
+        name, address, city, state, zipcode, lat, lng = row
         if crud.get_location_by_name(name) == None:
             loc_obj = crud.create_location(name, float(lat), float(lng), address, city, state)
             locs_in_db.append(loc_obj)
@@ -198,17 +196,17 @@ book_locs_in_db = []
 def seed_book_locs():
 
     # Sample data for multiple locations - Hackbright & Home
-    for n in range (3,84):
-        book_id = n
-        loc_id = 1
-        book_obj = crud.create_book_location(book_id, loc_id)
-        book_locs_in_db.append(book_obj)
+    # for n in range (3,84):
+    #     book_id = n
+    #     loc_id = 1
+    #     book_obj = crud.create_book_location(book_id, loc_id)
+    #     book_locs_in_db.append(book_obj)
 
-    for n in range (3,84):
-        book_id = n
-        loc_id = 2
-        book_obj = crud.create_book_location(book_id, loc_id)
-        book_locs_in_db.append(book_obj)
+    # for n in range (3,84):
+    #     book_id = n
+    #     loc_id = 2
+    #     book_obj = crud.create_book_location(book_id, loc_id)
+    #     book_locs_in_db.append(book_obj)
 
     # Sample data for Apple Books
     apple_books = ["Steve Jobs","Apple Confidential 2.0: The Definitive History of the World's Most Colorful Company","Dogfight: How Apple and Google Went to War and Started a Revolution", "Haunted Empire: Apple After Steve Jobs"] 
