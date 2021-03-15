@@ -738,7 +738,8 @@
       // Display an InfoWindow at the map center
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
-        'Geolocation permissions denied. Using default location.' :
+        'Local libraries near your saved address' :
+        // 'Geolocation permissions denied. Using default location.' :
         'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
       currentInfoWindow = infoWindow;
