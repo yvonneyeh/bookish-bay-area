@@ -25,6 +25,8 @@ I developed this project at [Hackbright Academy](http://www.hackbrightacademy.co
 
 My project incorporates everything I’ve learned about full-stack web development in the first 6 weeks of my software engineering fellowship at Hackbright. I started with little to no experience in computer science before this and was excited to combine my bookishness, love of exploration, and new coding skills to build a tool I've always wanted to use personally.
 
+![GIF of BookSpots Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/bookspots.gif)
+
 ## <a name="Features"></a>Features
 
 - Displays a list of books set in the Bay Area about Silicon Valley and the tech industry
@@ -39,7 +41,7 @@ My project incorporates everything I’ve learned about full-stack web developme
 - Users can save their favorite location and receive email alerts when a new book is added via the SendGrid API.
 - See all ratings of books rendered in a graph with Chart.js
 
-![GIF of BookSpots Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/bookspots.gif)
+![Library Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/libraries.png)
 
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
