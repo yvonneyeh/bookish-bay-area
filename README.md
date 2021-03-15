@@ -4,7 +4,7 @@ by [Yvonne Yeh](https://yvonneyeh.com)
 
 **Bookish Bay Area** is a full-stack web application that helps readers find and log books set in the San Francisco Bay Area. This app aims to help readers go on their next literary adventure by allowing them to search for, contribute, and borrow books about the locale, from their local libraries.
 
-[image](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/homepage.png)
+![Screenshot of Homepage](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/homepage.png)
 
 
 ### Table of Contents
@@ -39,7 +39,7 @@ My project incorporates everything I’ve learned about full-stack web developme
 - Users can save their favorite location and receive email alerts when a new book is added via the SendGrid API.
 - See all ratings of books rendered in a graph with Chart.js
 
-[image](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/bookspots.gif)
+![GIF of BookSpots Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/bookspots.gif)
 
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
@@ -47,6 +47,8 @@ My project incorporates everything I’ve learned about full-stack web developme
 - **APIs**: Open Library, Google Maps, Google Places, Google Geocoding, Nominatim OpenStreetMap, Twilio SendGrid, Libby, OverDrive, GoodReads (deprecated, see [data collection section](#Seed) below)
 
 ## <a name="Seed"></a>Initial Seed Data Collection
+
+![GIF of Book Search](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/book-search.gif)
 
 There’s currently no API for book-locations, I solved this by learning to scrape data from multiple sources together with Selenium WebDriver to build an initial SQL database. The seed data was scraped and parsed from GoodReads, Amazon, Wikipedia, and literature blogs, using Selenium WebDriver and Beautiful Soup. Selenium was used to call a GET request for book searches, then used to automate the process of scrolling down the page, prompting sites' lazy load to render more posts. The HTML from the search was then parsed using Beautiful Soup to extract the data about each book, including: title, author, description, genres, ISBN, setting or location (if available), cover image, date published, and link to GoodReads. This process of web-scraping was chosen because GoodReads' API was recently deprecated, with all existing API keys disabled and unsupported as of December 2020. By scraping the data, I was able to gather information about books from location-specific lists and articles, such as [Silicon Valley History](https://www.goodreads.com/list/show/13430.Silicon_Valley_History) list on GoodReads and [Books](https://en.wikipedia.org/wiki/Category:Books_about_California)/[Novels](https://en.wikipedia.org/wiki/Category:Novels_set_in_California) set in California from Wikipedia. 
 
@@ -64,7 +66,7 @@ In your terminal, install the Discord.js module and its dependencies. Use npm in
 git clone https://github.com/yvonneyeh/bookish-bay-area.git
 ```
 
-1b. Optional: Create and activate a virtual environment:
+*Optional*: Create and activate a virtual environment:
 ```shell
 pip3 install virtualenv
 virtualenv env
@@ -78,7 +80,7 @@ pip3 install -r requirements.txt
 
 3. Create environmental variables to hold your API keys:
 _secrets.sh_
-```shell
+```
 export MAPS_JS_KEY='{MAPS_JS_KEY}'
 export MAPS_GEOCODING_KEY='{MAPS_GEOCODING_KEY}'
 export SENDGRID_API_KEY='{SENDGRID_API_KEY}' #OPTIONAL
