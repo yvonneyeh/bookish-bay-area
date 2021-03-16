@@ -2,7 +2,7 @@
 
 by [Yvonne Yeh](https://yvonneyeh.com)
 
-**Bookish Bay Area** is a full-stack web application that helps readers find and log books set in the San Francisco Bay Area. This app aims to help readers go on their next literary adventure by allowing them to search for, contribute, and borrow books about the locale, from their local libraries.
+**Bookish Bay Area** is a full-stack web app that helps readers find and log books set in the San Francisco Bay Area. This app aims to help readers go on their next literary adventure by allowing them to search for, save, and contribute books then borrow those books from their local libraries.
 
 ![Screenshot of Homepage](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/homepage.png)
 
@@ -10,7 +10,7 @@ by [Yvonne Yeh](https://yvonneyeh.com)
 ### Table of Contents
 - [Why Bookish](#Why)
 - [App Features](#Features)
-- [Technology and Tech Choices](#Techy)
+- [Technology](#Tech)
 - [Initial Seed Data](#Seed)
 - [Book List](#List)
 - [BookSpot & Library Maps](#Map)

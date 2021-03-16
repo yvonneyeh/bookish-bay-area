@@ -17,11 +17,15 @@
 {% if user.website %}
 <div class="p-2">🌐 {{ user.website }}</div>
 {% endif %}
-</div><br>
+
+<div class="p-2"><a href="/account/update_info">Edit Profile</a></div>
+</div>
+<br>
 
 {% if user.pronouns %}
 <div class="row"><p><b>Pronouns:</b> {{ user.pronouns }}</p></div>
 {% endif %}
+
 
 
 
