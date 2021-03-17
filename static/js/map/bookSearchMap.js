@@ -1,4 +1,3 @@
-"use strict";
 function initMap() {
 
     //   const defaultLocation = new google.maps.LatLng(37.787971,-122.418472)
