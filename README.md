@@ -71,20 +71,21 @@ There’s currently no API for book-locations, I solved this by learning to scra
 ## <a name="Install"></a>Installation Instructions
 
 ### Prerequisites
-To run Bookish, you will need API keys for [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start), [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial), and [SendGrid Mail Send API](https://sendgrid.com/docs/api-reference/). 
+To run Bookish, you will need the following API keys: 
+- [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start)
+- [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial)
+- [SendGrid Mail Send API](https://sendgrid.com/docs/api-reference/)
 
 **Python3** and **PostgreSQL** will also need to be installed on your machine.
 
 ### Running Bookish
 
-In your terminal, install the Discord.js module and its dependencies. Use npm in the command prompt to install the module:
-
-1. Clone this repository
+1. Clone this repository:
 ```shell
 git clone https://github.com/yvonneyeh/bookish-bay-area.git
 ```
 
-*Optional*: Create and activate a virtual environment:
+***Optional***: Create and activate a virtual environment:
 ```shell
 pip3 install virtualenv
 virtualenv env
@@ -96,21 +97,20 @@ source env/bin/activate
 pip3 install -r requirements.txt
 ```
 
-3. Create environmental variables to hold your API keys:
-_secrets.sh_
+3. Create environmental variables to hold your API keys in a `secrets.sh` file:
 ```
 export MAPS_JS_KEY='{MAPS_JS_KEY}'
 export MAPS_GEOCODING_KEY='{MAPS_GEOCODING_KEY}'
 export SENDGRID_API_KEY='{SENDGRID_API_KEY}' #OPTIONAL
 ```
 
-4. Create your database & seed sample data
+4. Create your database & seed sample data:
 ```shell
 createdb books
 python3 seed.py
 ```
 
-5. Run the app on localhost
+5. Run the app on localhost:
 ```shell
 source secrets.sh
 python3 server.py
