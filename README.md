@@ -12,11 +12,10 @@ by [Yvonne Yeh](https://yvonneyeh.com)
 - [App Features](#Features)
 - [Technology](#Tech)
 - [Initial Seed Data](#Seed)
-- [Book List](#List)
 - [BookSpot & Library Maps](#Map)
 - [Data Structure](#Data)
-- [Future Features](#Future)
 - [Installation Instructions](#Install)
+- [Future Features](#Future)
 - [Acknowledgments](#Acknowledgments)
 
 
@@ -41,8 +40,6 @@ My project incorporates everything I’ve learned about full-stack web developme
 - Users can save their favorite location and receive email alerts when a new book is added via the SendGrid API.
 - See all ratings of books rendered in a graph with Chart.js
 
-![Library Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/libraries.png)
-
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
 - **Backend**: Python3, Flask, PostgreSQL, SQLAlchemy, Jinja2, Selenium, Bash
@@ -54,10 +51,27 @@ My project incorporates everything I’ve learned about full-stack web developme
 
 There’s currently no API for book-locations, I solved this by learning to scrape data from multiple sources together with Selenium WebDriver to build an initial SQL database. The seed data was scraped and parsed from GoodReads, Amazon, Wikipedia, and literature blogs, using Selenium WebDriver and Beautiful Soup. Selenium was used to call a GET request for book searches, then used to automate the process of scrolling down the page, prompting sites' lazy load to render more posts. The HTML from the search was then parsed using Beautiful Soup to extract the data about each book, including: title, author, description, genres, ISBN, setting or location (if available), cover image, date published, and link to GoodReads. This process of web-scraping was chosen because GoodReads' API was recently deprecated, with all existing API keys disabled and unsupported as of December 2020. By scraping the data, I was able to gather information about books from location-specific lists and articles, such as [Silicon Valley History](https://www.goodreads.com/list/show/13430.Silicon_Valley_History) list on GoodReads and [Books](https://en.wikipedia.org/wiki/Category:Books_about_California)/[Novels](https://en.wikipedia.org/wiki/Category:Novels_set_in_California) set in California from Wikipedia. 
 
+## <a name="Map"></a>BookSpot & Library Maps
+
+![Book Details page for 'Steve Jobs' by Walter Isaacson](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/steve-jobs.png)
+*Book Details Page*
+
+![Location Details page for Stanford University](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/stanford.png)
+*Location Details Page*
+
+![Library Map](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/libraries.png)
+*Local Library Map*
+
+## <a name="Data"></a>Data Structure
+
+![Data Model Graphic](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/data-model.png)
+
 ## <a name="Install"></a>Installation Instructions
 
 #### Prerequisites
-To run Bookish, you will need API keys for [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start), [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial), and [SendGrid Mail Send API](https://sendgrid.com/docs/api-reference/). Python3 and PostgreSQL also need to be installed on your machine.t
+To run Bookish, you will need API keys for [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start), [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial), and [SendGrid Mail Send API](https://sendgrid.com/docs/api-reference/). 
+
+**Python3** and **PostgreSQL** will also need to be installed on your machine.
 
 #### Running Bookish
 
