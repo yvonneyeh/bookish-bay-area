@@ -4,6 +4,8 @@ by [Yvonne Yeh](https://yvonneyeh.com)
 
 **Bookish Bay Area** is a full-stack web app that helps readers find and log books set in the San Francisco Bay Area. This app aims to help readers go on their next literary adventure by allowing them to search for, save, and contribute books then borrow those books from their local libraries.
 
+[Bookish Intro Video](https://www.youtube.com/watch?v=R-Wqe7G9UL4)
+
 ![Screenshot of Homepage](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/homepage.png)
 
 
@@ -68,12 +70,12 @@ There’s currently no API for book-locations, I solved this by learning to scra
 
 ## <a name="Install"></a>Installation Instructions
 
-#### Prerequisites
+### Prerequisites
 To run Bookish, you will need API keys for [Google Maps Geocoding](https://developers.google.com/maps/documentation/geocoding/start), [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial), and [SendGrid Mail Send API](https://sendgrid.com/docs/api-reference/). 
 
 **Python3** and **PostgreSQL** will also need to be installed on your machine.
 
-#### Running Bookish
+### Running Bookish
 
 In your terminal, install the Discord.js module and its dependencies. Use npm in the command prompt to install the module:
 
@@ -123,19 +125,19 @@ python3 server.py
 ## <a name="#Acknowledgments"></a>Acknowledgments 
 In addition to the support of my family, friends, partner, and fellow Hackbright cohort-mates, the following people were instrumental to this project, providing mentorship, code reviews, inspiration, and guidance:
 
-##### Hackbright Advisors
+#### Hackbright Advisors
 - Andrew Blum
 - Kat Huber-Juma
 - Thu Nguyen
 - Lucia Racine
 
-##### Amiga Housemates
+#### Amiga Housemates
 - Elizabeth Jamison
 - Fionnie Pollack
 - Katie Aquino
 - Nan Li
 
-##### Mentors
+#### Mentors
 - Lydia Gorham
 - Katie Cheng
 - Meghan Hade
