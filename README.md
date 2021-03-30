@@ -45,7 +45,7 @@ My project incorporates everything I’ve learned about full-stack web developme
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
 - **Backend**: Python3, Flask, PostgreSQL, SQLAlchemy, Jinja2, Selenium, Bash
-- **APIs**: Open Library, Google Maps, Google Places, Google Geocoding, Nominatim OpenStreetMap, Twilio SendGrid, Libby, OverDrive, GoodReads (deprecated, see [data collection section](#Seed) below)
+- **APIs**: Open Library, Google Maps, Google Places, Google Geocoding, Nominatim OpenStreetMap, Twilio SendGrid, OneSignal, Libby, OverDrive, GoodReads (deprecated, see [data collection section](#Seed) below)
 
 ## <a name="Seed"></a>Initial Seed Data Collection
 
