@@ -39,8 +39,11 @@ My project incorporates everything I’ve learned about full-stack web developme
 - Allows readers to submit new books to be added to the database, and create/edit a list of their read, rated, and saved books
 - Geocoding user-submitted locations into coordinates to save to the location database
 - Allows readers to contribute new BookSpot (add books to a location or add locations to a book)
-- Users can save their favorite location and receive email alerts when a new book is added via the SendGrid API.
 - See all ratings of books rendered in a graph with Chart.js
+- Users can save their favorite location and receive email alerts when a new book is added via SendGrid API and web push notifications via.
+
+![Web Push Notifications with OneSignal](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/notif-manage.png)
+*Web Push Notifications with OneSignal*
 
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
