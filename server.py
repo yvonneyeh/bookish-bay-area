@@ -6,7 +6,6 @@ from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Ge
 from sqlalchemy_searchable import search
 from datetime import date, datetime
 from random import randint
-from flask_mail import Mail, Message
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import faker

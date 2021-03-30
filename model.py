@@ -3,8 +3,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import StringField, TextField, Form
-from wtforms.validators import DataRequired, Length
+# from wtforms import StringField, TextField, Form
+# from wtforms.validators import DataRequired, Length
 
 # from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy_searchable import make_searchable
@@ -264,12 +264,12 @@ class BookLocation(db.Model):
         return f'<BookLocation book_id={self.book_id} loc_id={self.loc_id}>'
 
 
-class BookSearchForm(Form): 
-    title = StringField('Title', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Book Title"})
+# class BookSearchForm(Form): 
+#     title = StringField('Title', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Book Title"})
 
 
-class LocSearchForm(Form): 
-    location = StringField('Location', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Location Name"})
+# class LocSearchForm(Form): 
+#     location = StringField('Location', validators=[DataRequired(),Length(max=50)],render_kw={"placeholder": "Location Name"})
 
 # wa.whoosh_index(app, Book, Author, Location)
 

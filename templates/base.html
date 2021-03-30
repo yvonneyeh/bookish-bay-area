@@ -18,6 +18,21 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
 
+    <!-- OneSignal -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "6d30dd45-5e4f-4fdd-9bd9-0013ab0909d5",
+          notifyButton: {
+            enable: true,
+          },
+          subdomainName: "bookish",
+        });
+      });
+    </script>
+
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js"></script>
 

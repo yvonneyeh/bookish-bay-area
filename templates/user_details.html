@@ -28,8 +28,9 @@
 
 
 
-
+{% if user.join_date %}
 <div class="row"><p><b>Date Joined:</b> {{ user.join_date }}</p></div>
+{% endif %}
 
 {% if ratings %}
 <h3><u>Library</u></h3>
@@ -52,6 +53,7 @@
   <hr class="mt-2 mb-5">
 
   <div class="row text-center text-lg-left">
+    {% if ratings %}
     {% for rating in ratings %}
     <div class="col-lg-3 col-md-4 col-6">
       <a href="/books/{{rating.book.book_id}}" class="d-block mb-4 h-100">
@@ -59,6 +61,9 @@
           </a>
     </div>
     {% endfor %}
+    {% else %}
+          <p><h4>No completed books! Save some of your read books <a href="/books">here</a>.</h4></p>
+    {% endif %}
   </div>
 
 </div>
