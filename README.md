@@ -42,8 +42,8 @@ My project incorporates everything I’ve learned about full-stack web developme
 - See all ratings of books rendered in a graph with Chart.js
 - Users can save their favorite location and receive email alerts when a new book is added via SendGrid API and web push notifications via.
 
-![Web Push Notifications with OneSignal](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/notif-manage.png)
-*Web Push Notifications with OneSignal*
+![Web Push Notifications with OneSignal](https://raw.githubusercontent.com/yvonneyeh/bookish-bay-area/master/static/img/user-profile.png)
+*User Profile & Web Push Notifications with OneSignal*
 
 ## <a name="Tech"></a>Tech Stack
 - **Frontend**: JavaScript, jQuery, HTML5, CSS, Bootstrap, Chart.js
