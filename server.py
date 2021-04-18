@@ -2,7 +2,7 @@
 
 import os
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
-from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
+from model import (app, db, connect_to_db, User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
 from sqlalchemy_searchable import search
 from datetime import date, datetime
 from random import randint
@@ -21,7 +21,7 @@ MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 DATABASE_URL = os.environ['DATABASE_URL']
 
-app = Flask(__name__)
+# app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
