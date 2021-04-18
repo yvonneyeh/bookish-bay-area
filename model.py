@@ -288,7 +288,7 @@ def connect_to_db(app):
         app.debug = False
         app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.config['SQLALCHEMY_ECHO'] = False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
     # app.config['WHOOSH_BASE'] = 'whoosh'
     db.app = app
