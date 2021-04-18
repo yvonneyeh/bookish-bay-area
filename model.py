@@ -286,7 +286,7 @@ def connect_to_db(app):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
     else:
         app.debug = False
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kcvzebtomhjvvr:850a994eeb4adb73f905f5a7d66cf19ac577403f9f083267b43cfefbb66fbb9c@ec2-23-21-229-200.compute-1.amazonaws.com:5432/dd05apam1nj14b'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.config['SQLALCHEMY_ECHO'] = False
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
