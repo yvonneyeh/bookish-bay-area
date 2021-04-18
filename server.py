@@ -28,7 +28,7 @@ sg = SendGridAPIClient(SENDGRID_API_KEY)
 
 app.config.update(
     MAIL_SERVER = 'smtp.gmail.com',
-    MAIL_PORT = 587, 
+    MAIL_PORT = 587,
     MAIL_USE_TLS = True, #587 for TLS
     MAIL_USE_SSL = False, #465 for SSL
     MAIL_USERNAME = 'bookish@yvonneyeh.com',
@@ -53,9 +53,9 @@ def homepage_with_map():
 
     location_dict, location_list = helper.get_all_locations()
 
-    return render_template("home.html", 
+    return render_template("home.html",
                             book_locations=location_dict,
-                            location_list=location_list, 
+                            location_list=location_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
@@ -149,12 +149,12 @@ def log_in_user():
             # print('Logged in!')
             flash('Logged in!', 'success')
         else:
-            flash('Incorrect password', 'warning') 
-            return redirect("/login")  
+            flash('Incorrect password', 'warning')
+            return redirect("/login")
     else:
         flash('Username does not exist. Please register for an account.', 'warning')
         return redirect("/register")
-    
+
     return redirect('/')
 
 
@@ -185,7 +185,7 @@ def update_account_info():
         username = request.form.get("username")
         email = request.form.get("email")
         bio = request.form.get("bio")
-        
+
         user = User.query.get(session["user_id"])
 
         # Form fields are not required - only update database if text was
@@ -309,18 +309,18 @@ def display_user_booklocs():
         return render_template("user_locs.html",
                                read_books=read_books,
                                book_locations=location_dict,
-                               location_list=location_list,  
+                               location_list=location_list,
                                MAPS_JS_KEY=MAPS_JS_KEY)
 
         # author = crud.get_author_name_by_book_id(book_id)
         # book = crud.get_book_by_id(book_id)
         # location_dict, location_list = helper.get_locations(book_id)
 
-        # return render_template("book_details.html", 
-        #                     author=author, 
+        # return render_template("book_details.html",
+        #                     author=author,
         #                     book=book,
         #                     book_locations=location_dict,
-        #                     location_list=location_list, 
+        #                     location_list=location_list,
         #                     )
 
     else:
@@ -364,7 +364,7 @@ def show_logged_in_user_profile():
     if "username" in session:
         username = session["username"]
         user = crud.get_user_by_username(username)
-        ratings = crud.get_user_ratings(username) 
+        ratings = crud.get_user_ratings(username)
 
         return render_template("/user_details.html", user=user, ratings=ratings)
 
@@ -399,7 +399,7 @@ def log_out_user():
 
 @app.route('/books')
 def show_book_list():
-    """Show list of books. 
+    """Show list of books.
     If user selected genre: filter by genre.
     Else: If user entered title search, filter by title
     Else: display entire book list.
@@ -418,18 +418,18 @@ def show_book_list():
     #     user_genre = request.args['genre']
     #     books = helper.get_books_by_genre(user_genre)
 
-    # else: 
+    # else:
     #     books = crud.get_all_books()
 
-    
+
     # if 'user_search' in request.args:
     #     user_title_search = request.args['user_search']
     #     books = helper.get_books_by_search(user_search)
 
     #     if books == None:
     #         flash('No results found', 'secondary')
-    
-    # else: 
+
+    # else:
     #     books = crud.get_all_books()
 
 
@@ -441,8 +441,8 @@ def show_book_list():
 
         if books == None:
             flash('No results found', 'secondary')
-    
-    else: 
+
+    else:
         books = crud.get_all_books()
         # print(len(books))
 
@@ -452,24 +452,24 @@ def show_book_list():
 
     #     if books == None:
     #         flash('No results found', 'secondary')
-        
-    # else: 
+
+    # else:
     #     books = crud.get_all_books()
 
     # print("final", len(books))
-    return render_template("all_books.html", 
-                            books=books, 
+    return render_template("all_books.html",
+                            books=books,
                             authors=authors,
                             genre=user_genre,
                             book_locations=location_dict,
-                            location_list=location_list, 
+                            location_list=location_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/books/<int:book_id>')
 def show_book(book_id):
     """Show details for a book."""
-    
+
     book = crud.get_book_by_id(book_id)
     author_id = book.author_id
     author = crud.get_author_by_id(author_id)
@@ -477,28 +477,28 @@ def show_book(book_id):
     locations = crud.get_all_locations()
     location_dict, location_list = helper.get_locations(book_id)
 
-    return render_template("book_details.html", 
-                            author=author, 
+    return render_template("book_details.html",
+                            author=author,
                             book=book,
                             book_locs=book_locs,
                             locations=locations,
                             book_locations=location_dict,
-                            location_list=location_list, 
+                            location_list=location_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/books/<int:book_id>', methods=["POST"])
 def create_book_location_on_details_page(book_id):
     # """Show details for a book."""
-    
+
     location = request.form.get('location')
     loc = crud.get_location_id_by_name(location)
 
     if loc == None:
         flash("Select a Location", 'warning')
-        
+
         return redirect(f"/books/{book_id}")
-    
+
     else:
         loc_id = loc.loc_id
 
@@ -562,7 +562,7 @@ def mark_saved_book_as_read():
             db.session.commit()
 
         else:
-            saved_book = Rating(user_id=user_id, 
+            saved_book = Rating(user_id=user_id,
                                 book_id=book_id,
                                 read=True)
 
@@ -631,7 +631,7 @@ def all_authors():
 @app.route('/authors/<int:author_id>')
 def show_author(author_id):
     """Show details for an author."""
-    
+
     author = crud.get_author_by_id(author_id)
     books = crud.get_books_by_author_by(author_id)
 
@@ -643,28 +643,28 @@ def show_author(author_id):
 @app.route('/map')
 def show_map():
     """Show all book locations and libraries on a map."""
-    
+
     location_dict, location_list = helper.get_all_locations()
     locations = crud.get_all_locations()
 
-    return render_template("map.html", 
-                            locations=locations, 
+    return render_template("map.html",
+                            locations=locations,
                             book_locations=location_dict,
-                            location_list=location_list, 
+                            location_list=location_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 
 @app.route('/map/books')
 def show_book_map():
     """Show all book locations on a map."""
-    
+
     locs = crud.get_all_locations()
     location_dict, location_list = helper.get_all_locations()
 
-    return render_template("book_map.html", 
+    return render_template("book_map.html",
                             locs=locs,
                             book_locations=location_dict,
-                            location_list=location_list, 
+                            location_list=location_list,
                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 @app.route('/map/libraries')
@@ -672,15 +672,15 @@ def show_library_map():
     """View library Map."""
 
     locations = crud.get_all_locations()
-    
+
     return render_template('library_map.html',
-                            locations=locations, 
-                            MAPS_JS_KEY=MAPS_JS_KEY, 
+                            locations=locations,
+                            MAPS_JS_KEY=MAPS_JS_KEY,
                             MAP_ID=MAP_ID)
 
 @app.route('/locations')
 def all_locations():
-    """Show list of books. 
+    """Show list of books.
     If user entered location search, filter by location
     Else: display entire book list.
     """
@@ -689,11 +689,11 @@ def all_locations():
 
     if 'loc_search' in request.args:
         user_loc_search = request.args['loc_search']
-        locations = helper.get_locations_by_search(user_loc_search) 
+        locations = helper.get_locations_by_search(user_loc_search)
         if locations == []:
             flash('No results found', 'secondary')
-    
-    else: 
+
+    else:
         locations = crud.get_all_locations()
 
     return render_template("all_locations.html", locations=locations)
@@ -702,13 +702,13 @@ def all_locations():
 @app.route('/locations/<int:loc_id>')
 def show_location(loc_id):
     """Show details for a location."""
-    
+
     location = crud.get_location_by_id(loc_id)
     book_locs = crud.get_book_locations_by_loc(loc_id)
     books = crud.get_all_books()
 
-    return render_template("loc_details.html", 
-                            location=location, 
+    return render_template("loc_details.html",
+                            location=location,
                             book_locs=book_locs,
                             books=books,
                             MAPS_JS_KEY=MAPS_JS_KEY)
@@ -717,16 +717,16 @@ def show_location(loc_id):
 @app.route('/locations/<int:loc_id>', methods=["POST"])
 def add_book_to_location(loc_id):
     # """Show details for a book."""
-    
+
     title = request.form.get('book_title')
     book = crud.get_book_id_by_title(title)
     print(title, book)
 
     if title == 'starter': #or book == None:
         flash("Select a Book", 'warning')
-        
+
         return redirect(f"/locations/{loc_id}")
-    
+
     else:
         book_id = book.book_id
 
@@ -748,7 +748,7 @@ def all_genres():
 @app.route('/genres/<int:genre_id>')
 def show_genre(genre_id):
     """Show details for a genre."""
-    
+
     genre = crud.get_genre_by_id(genre_id)
 
     return render_template("genre_details.html", genre=genre)
@@ -762,7 +762,7 @@ def all_ratings():
     ratings = crud.get_all_ratings_order_by_new()
     ratings_json = return_json_ratings()
 
-    return render_template("all_ratings.html", 
+    return render_template("all_ratings.html",
                             ratings=ratings,
                             ratings_json=ratings_json)
 
@@ -770,10 +770,10 @@ def all_ratings():
 @app.route('/ratings/<int:rating_id>')
 def show_rating(rating_id):
     """Show details for a location."""
-    
+
     rating = crud.get_rating_by_id(rating_id)
 
-    return render_template("rating_details.html", 
+    return render_template("rating_details.html",
                             rating=rating)
 
 
@@ -867,7 +867,7 @@ def create_new_book_location():
     elif location == None:
 	    flash("Select a Location", 'warning')
         # return redirect("/add/book-loc")
-	
+
     else:
         book_id = crud.get_book_id_by_title(title)
         loc_id = crud.get_location_id_by_name(location)
@@ -907,7 +907,7 @@ def get_book_titles_for_form():
 
     res = Book.query.all()
     books = [r.as_dict() for r in res]
-    
+
     return jsonify(books)
 
 
@@ -924,8 +924,8 @@ def return_json_ratings():
 
 @app.route("/json/search")
 def return_json_search_results():
-    """Search for books given a location, 
-    seed books into database, 
+    """Search for books given a location,
+    seed books into database,
     and return json response."""
 
     search_terms = request.args.get("search")
@@ -960,4 +960,6 @@ def get_search_coordinates():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    # app.run(host='0.0.0.0', debug=True) #testing mode
