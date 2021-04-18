@@ -1,1 +1,1 @@
-web: gunicorn bookish-bay-area:app
+web: gunicorn app:app
