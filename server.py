@@ -3,7 +3,6 @@
 import os
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import (db, connect_to_db, User, Book, Rating, Author, BookAuthor, Genre, BookGenre, Location, BookLocation)
-from flask_sqlalchemy import app
 from sqlalchemy_searchable import search
 from datetime import date, datetime
 from random import randint
@@ -33,7 +32,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# app = Flask(__name__)
+app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
