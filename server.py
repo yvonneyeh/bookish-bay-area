@@ -28,7 +28,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
