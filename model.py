@@ -282,16 +282,18 @@ class BookLocation(db.Model):
 def connect_to_db(app):
     """Connect the database to our Flask app."""
 
-    ENV = 'prod'
+    # ENV = 'prod'
 
-    if ENV == 'dev':
-        app.debug = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
-    else:
-        app.debug = False
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+    # if ENV == 'dev':
+    #     app.debug = True
+    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+    # else:
+    #     app.debug = False
+    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.config['SQLALCHEMY_ECHO'] = False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # True for Dev, False when Prod
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
     # app.config['WHOOSH_BASE'] = 'whoosh'
     db.app = app
@@ -307,3 +309,6 @@ if __name__ == '__main__':
     # you in a state of being able to work with the database directly.
     connect_to_db(app)
     print('Connected to db!')
+
+    db.create_all()
+    print("Tables created.")
