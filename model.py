@@ -14,16 +14,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 db = SQLAlchemy()
 DATABASE_URL = os.environ['DATABASE_URL']
-ENV = 'prod'
 
-if ENV == 'dev':
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
-else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+# ENV = 'prod'
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# if ENV == 'dev':
+#     app.debug = True
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+# else:
+#     app.debug = False
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 # Base = declarative_base()
@@ -287,7 +288,9 @@ class BookLocation(db.Model):
 ##################################################
 
 
-def connect_to_db(app):
+# def connect_to_db(app):
+def connect_to_db(app, db_uri=os.environ.get('DATABASE_URL') or 'postgresql:///books', echo=True):
+    print("db_uri on model.py:", os.environ.get('DATABASE_URL') or 'postgresql:///books')
     """Connect the database to our Flask app."""
 
     # ENV = 'prod'
