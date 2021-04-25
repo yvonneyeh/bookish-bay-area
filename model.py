@@ -2,7 +2,7 @@
 
 import os
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import app, SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 # from wtforms import StringField, TextField, Form
 # from wtforms.validators import DataRequired, Length
@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy_searchable import make_searchable
 # from sqlalchemy_utils.types import TSVectorType
 
-app = Flask(__name__)
+# app = Flask(__name__)
 db = SQLAlchemy()
 DATABASE_URL = os.environ['DATABASE_URL']
 
