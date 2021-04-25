@@ -1,5 +1,6 @@
 """Models for book app."""
 
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +15,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 app = Flask(__name__)
+
+DATABASE_URL = os.environ['DATABASE_URL']
 
 # Base = declarative_base()
 
