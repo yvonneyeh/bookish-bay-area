@@ -8,3 +8,4 @@ class Config:
     MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
     SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
     DATABASE_URL = os.environ['DATABASE_URL']
+    
