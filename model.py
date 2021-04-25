@@ -11,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy_searchable import make_searchable
 # from sqlalchemy_utils.types import TSVectorType
 
-app = Flask(__name__)
+# app = Flask(__name__)
 db = SQLAlchemy()
 DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -304,7 +304,7 @@ def connect_to_db(app, db_uri=os.environ.get('DATABASE_URL') or 'postgresql:///b
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.config['SQLALCHEMY_ECHO'] = False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
     # app.config['WHOOSH_BASE'] = 'whoosh'
     db.app = app
