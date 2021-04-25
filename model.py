@@ -16,7 +16,7 @@ db = SQLAlchemy()
 
 app = Flask(__name__)
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # Base = declarative_base()
 
@@ -291,7 +291,9 @@ def connect_to_db(app):
     #     app.debug = False
     #     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+    # app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
     app.config['SQLALCHEMY_ECHO'] = False
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
@@ -309,6 +311,3 @@ if __name__ == '__main__':
     # you in a state of being able to work with the database directly.
     connect_to_db(app)
     print('Connected to db!')
-
-    db.create_all()
-    print("Tables created.")
