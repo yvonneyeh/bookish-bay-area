@@ -21,6 +21,17 @@ MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
 SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 DATABASE_URL = os.environ['DATABASE_URL']
 
+ENV = 'prod'
+
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined

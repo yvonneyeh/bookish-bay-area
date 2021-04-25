@@ -11,12 +11,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy_searchable import make_searchable
 # from sqlalchemy_utils.types import TSVectorType
 
-
-db = SQLAlchemy()
-
 app = Flask(__name__)
+db = SQLAlchemy()
+DATABASE_URL = os.environ['DATABASE_URL']
+ENV = 'prod'
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 # Base = declarative_base()
 
@@ -291,9 +299,7 @@ def connect_to_db(app):
     #     app.debug = False
     #     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.debug = False
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
-    # app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
     app.config['SQLALCHEMY_ECHO'] = False
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
