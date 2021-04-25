@@ -2,7 +2,7 @@
 
 import os
 from flask import Flask
-from flask_sqlalchemy import app, SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 # from wtforms import StringField, TextField, Form
 # from wtforms.validators import DataRequired, Length
