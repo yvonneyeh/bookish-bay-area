@@ -52,6 +52,11 @@ app.config.update(
 
 mail = Mail(app)
 
+def create_app():
+    app = Flask(__name__)
+    db.init_app(app)
+    return app
+
 @app.route('/')
 def homepage():
     """View homepage."""
