@@ -293,21 +293,21 @@ def connect_to_db(app, db_uri=os.environ.get('DATABASE_URL') or 'postgresql:///b
     print("db_uri on model.py:", os.environ.get('DATABASE_URL') or 'postgresql:///books')
     """Connect the database to our Flask app."""
 
-    # ENV = 'prod'
+    ENV = 'prod'
 
-    # if ENV == 'dev':
-    #     app.debug = True
-    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
-    # else:
-    #     app.debug = False
-    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    if ENV == 'dev':
+        app.debug = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///books'
+    else:
+        app.debug = False
+        app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    # app.debug = False
+    # app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     app.config['SQLALCHEMY_ECHO'] = False
-    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # True for Dev, False when Prod
     # app.config['DEBUG'] = True # Debug mode, remove when done
     # app.config['WHOOSH_BASE'] = 'whoosh'
-    db.app = app
+    # db.app = app
     db.init_app(app)
 
 

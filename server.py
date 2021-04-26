@@ -52,24 +52,24 @@ app.config.update(
 
 mail = Mail(app)
 
-# @app.route('/')
-# def homepage():
-#     """View homepage."""
-
-#     return render_template('homepage.html')
-
-
 @app.route('/')
-def homepage_with_map():
-    """View homepage with map."""
+def homepage():
+    """View homepage."""
 
-    location_dict, location_list = helper.get_all_locations()
+    return render_template('homepage.html')
 
-    return render_template("home.html",
-                            book_locations=location_dict,
-                            location_list=location_list,
-                            MAPS_JS_KEY=MAPS_JS_KEY)
+# @app.route('/', defaults={'path': ''}) 
+# @app.route('/<path:path>') 
 
+# def homepage_with_map():
+#     """View homepage with map."""
+
+#     location_dict, location_list = helper.get_all_locations()
+
+#     return render_template("home.html",
+#                             book_locations=location_dict,
+#                             location_list=location_list,
+#                             MAPS_JS_KEY=MAPS_JS_KEY)
 
 @app.route('/about')
 def show_about():
@@ -973,6 +973,6 @@ def get_search_coordinates():
 if __name__ == '__main__':
     connect_to_db(app)
     app.run()
-    # port = int(os.environ.get("PORT", 5000))
-    # app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
     # app.run(host='0.0.0.0', debug=True) #testing mode
