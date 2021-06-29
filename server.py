@@ -303,7 +303,7 @@ def display_read_books():
     # & not marked read
     if "user_id" in session:
         user_id = session.get("user_id")
-        read_.get_users_rated_books(user_id)
+        read_books = helper.get_users_rated_books(user_id)
 
         return render_template("user_read.html",
                                read_books=read_books)
